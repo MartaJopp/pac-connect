@@ -3,7 +3,11 @@ myApp.controller('LoginController', function($http, $location, UserService) {
     var vm = this;
     vm.user = {
       username: '',
-      password: ''
+      password: '',
+      name: '',
+      user_role: '',
+      profile: '',
+      gym_id: ''
     };
     vm.message = '';
 
