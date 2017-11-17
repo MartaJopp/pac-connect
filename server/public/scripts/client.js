@@ -10,8 +10,20 @@ myApp.config(function($routeProvider, $locationProvider) {
       controller: 'LoginController as lc',
     })
     .when('/register', {
-      templateUrl: '/views/templates/register.html',
+      templateUrl: '/views/templates/register_step1.html',
       controller: 'LoginController as lc'
+    })
+    .when('/coachRegistration', {
+      templateUrl: '/views/templates/register_coach.html',
+      controller: 'LoginController as lc',
+    })
+    .when('/parentRegistration', {
+      templateUrl: '/views/templates/register_parent.html',
+      controller: 'LoginController as lc',
+    })
+    .when('/athleteRegistration', {
+      templateUrl: '/views/templates/register_athlete.html',
+      controller: 'LoginController as lc',
     })
     .when('/user', {
       templateUrl: '/views/templates/user.html',

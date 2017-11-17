@@ -11,6 +11,15 @@ myApp.controller('LoginController', function($http, $location, UserService) {
     };
     vm.message = '';
 
+    vm.roles = ['coach', 'parent', 'gymnast'];
+
+  vm.registerStep1 = function() {
+    console.log('button clicked');
+    if(vm.user.user_role === 'coach'){
+      $location.path('/coachRegistration');
+    }
+  }
+
     vm.login = function() {
       console.log('LoginController -- login');
       if(vm.user.username === '' || vm.user.password === '') {
