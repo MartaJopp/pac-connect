@@ -1,7 +1,12 @@
 <div class="container">
-    <h1 class="lead">Coach Registration Step 2/2</h1>
+    <h1 class="lead">Parent Registration Step 2/2</h1>
     <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h2>
-        <form ng-submit="lc.registerCoach(lc.user.user_role, lc.user.gym_id)">
+        <form ng-submit="lc.registerParent(lc.user.user_role)">
+            <div>
+                <label for="coach">My athlete's coach is:</label>
+                <select ng-model="lc.user.connectedCoach" ng-repeat="x in lc.coachnames">{{x}}">
+                </select>
+            </div>
             <div>
                 <label for="name">Name:</label>
                 <input type="name" ng-model="lc.user.name" />
