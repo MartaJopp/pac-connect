@@ -31,7 +31,6 @@ myApp.controller('LoginController', function ($http, $location, UserService) {
       });
     }
     if (selectedGroup === 'gymnast') {
-      console.log('I am a gymnast?', theRole)
       $http.get('/dropdown/parent/' + gymId).then(function (response) {
         console.log('LoginController -- get route -- success');
         console.log(response);

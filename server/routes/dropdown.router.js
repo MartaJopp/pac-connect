@@ -38,6 +38,7 @@ router.get('/parent/:id', function (req, res) {
     console.log('id', req.params.id);
     var theId = '';
     theId = req.params.id.toString();
+    var role = 'parent'
     // Attempt to connect to the database
     pool.connect(function (errorConnectingToDb, db, done) {
         if (errorConnectingToDb) {
@@ -47,8 +48,8 @@ router.get('/parent/:id', function (req, res) {
         } else {
             // 'UPDATE "hotel_pets" SET "name" = $1, "breed" = $2, "color" = $3 WHERE "id" = $4;';
             // We connected to the db!!!!! pool -1
-            var queryText = 'SELECT * FROM "users" where "gym_id" = $1 and "role" like "coach";';
-            db.query(queryText, [theId], function (errorMakingQuery, result) {
+            var queryText = 'SELECT * FROM "users" where "gym_id" = $1 and "user_role" = $2;';
+            db.query(queryText, [theId, role], function (errorMakingQuery, result) {
                 done(); // add + 1 to pool - we have received a result or error
                 if (errorMakingQuery) {
                     console.log('Error making query', errorMakingQuery);

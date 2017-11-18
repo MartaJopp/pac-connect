@@ -4,8 +4,7 @@
         <form ng-submit="lc.registerUser()">
             <div>
                 <label for="role">I am a:</label>
-                <select ng-options="x for x in lc.roles" ng-change="lc.groupSelected(lc.user.user_role, lc.user.gym_id)" 
-                ng-model="lc.user.user_role"></select>
+                <select ng-options="x for x in lc.roles" ng-change="lc.groupSelected(lc.user.user_role, lc.user.gym_id)" ng-model="lc.user.user_role"></select>
                 </select>
             </div>
             <div>
@@ -32,61 +31,53 @@
                 <a href="#home">Already a user? Login here.</a>
             </div>
             <!--end show coach div-->
-        <div ng-show="lc.user.user_role =='parent'">
-            <div>
-                <label for="name">Your Name:</label>
-                <input type="name" ng-model="lc.user.name" />
+            <div ng-show="lc.user.user_role =='parent'">
+                <div>
+                    <label for="name">Your Name:</label>
+                    <input type="name" ng-model="lc.user.name" />
+                </div>
+                <br>
+                <div>
+                    <label for="username">Username:</label>
+                    <input type="text" ng-model="lc.user.username" />
+                </div>
+                <br>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" ng-model="lc.user.password" />
+                </div>
+                <div>
+                    <select ng-model=lc.user.user_coach>
+                        <option ng-repeat="coach in lc.coaches.data">{{coach.name}}</option>
+                    </select>
+                </div>
+                <input class="btn btn-default" type="submit" name="submit" value="Register" />
+                <a href="#home">Already a user? Login here.</a>
             </div>
-            <br>
-            <div>
-                <label for="username">Username:</label>
-                <input type="text" ng-model="lc.user.username" />
+            <!--end show parent div-->
+            <div ng-show="lc.user.user_role =='gymnast'">
+                <div>
+                    <label for="name">Your Name:</label>
+                    <input type="name" ng-model="lc.user.name" />
+                </div>
+                <br>
+                <div>
+                    <label for="username">Username:</label>
+                    <input type="text" ng-model="lc.user.username" />
+                </div>
+                <br>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" ng-model="lc.user.password" />
+                </div>
+                <div>
+                    <select ng-model=lc.user.user_parent>
+                        <option ng-repeat="parent in lc.parents.data">{{parent.name}}</option>
+                    </select>
+                </div>
+                <input class="btn btn-default" type="submit" name="submit" value="Register" />
+                <a href="#home">Already a user? Login here.</a>
             </div>
-            <br>
-            <div>
-                <label for="password">Password:</label>
-                <input type="password" ng-model="lc.user.password" />
-            </div>
-            <div>
-                <!-- <label for="athleteCoach">Athlete's Coach:</label>
-                <select ng-model="athleteCoach" 
-                <option ng-repeat="coach in lc.coaches" value="{{coach}}">{{coach}}</option>
-                </select> -->
-                <select ng-model=lc.user.user_coach>
-                    <option ng-repeat = "coach in lc.coaches.data">{{coach.name}}</option>
-                </select>
-            </div>
-            <input class="btn btn-default" type="submit" name="submit" value="Register" />
-            <a href="#home">Already a user? Login here.</a>
-        </div>
-        <!--end show parent div-->
-        <div ng-show="lc.user.user_role =='gymnast'">
-            <div>
-                <label for="name">Your Name:</label>
-                <input type="name" ng-model="lc.user.name" />
-            </div>
-            <br>
-            <div>
-                <label for="username">Username:</label>
-                <input type="text" ng-model="lc.user.username" />
-            </div>
-            <br>
-            <div>
-                <label for="password">Password:</label>
-                <input type="password" ng-model="lc.user.password" />
-            </div>
-            <div>
-                <!-- <label for="athleteCoach">Athlete's Coach:</label>
-                        <select ng-model="athleteCoach" 
-                        <option ng-repeat="coach in lc.coaches" value="{{coach}}">{{coach}}</option>
-                        </select> -->
-                <select ng-model=lc.user.user_parent>
-                    <option ng-repeat="parent in lc.parents.data">{{parent.name}}</option>
-                </select>
-            </div>
-            <input class="btn btn-default" type="submit" name="submit" value="Register" />
-            <a href="#home">Already a user? Login here.</a>
-        </div>
         </form>
         <!--end form for all-->
 </div>
