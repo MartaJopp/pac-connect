@@ -3,4 +3,9 @@ myApp.controller('UserController', function(UserService) {
   var vm = this;
   vm.userService = UserService;
   vm.userObject = UserService.userObject;
+
+  vm.getGymnastList = function () { // calls getGymnast upon click of link in nav bar
+    UserService.getGymnastList();
+  }
+
 });

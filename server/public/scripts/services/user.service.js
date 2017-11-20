@@ -6,9 +6,11 @@ myApp.service('UserService', function($http, $location){
   self.getuser = function(){
     console.log('UserService -- getuser');
     $http.get('/user').then(function(response) {
+      console.log('response', response);
         if(response.data.username) {
             // user has a curret session on the server
             self.userObject.userName = response.data.username;
+            self.userObject.user_role = response.data.user_role;
             console.log('UserService -- getuser -- User Data: ', self.userObject.userName);
         } else {
             console.log('UserService -- getuser -- failure');
@@ -28,4 +30,9 @@ myApp.service('UserService', function($http, $location){
       $location.path("/home");
     });
   }
+
+  self.getGymnastList = function() {
+    console.log('Get gymnast')
+  }
 });
+
