@@ -33,6 +33,9 @@ myApp.service('UserService', function($http, $location){
 
   self.getGymnastList = function() {
     console.log('Get gymnast')
+    $http.get('/dropdown/coachesTeam/').then(function(response){
+      console.log('response', response)
+    });
   }
 });
 

@@ -10,7 +10,7 @@ router.get('/', function(req, res) {
     console.log('logged in', req.user);
     var userInfo = {
       username : req.user.username,
-      user_role: req.user.user_role
+      user_role: req.user.user_role,
     };
     res.send(userInfo);
   } else {
