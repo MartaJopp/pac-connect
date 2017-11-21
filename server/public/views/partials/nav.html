@@ -3,7 +3,8 @@
     <ul>
       <li><a href="#/user">User Home</a></li>
       <li><a href="#/info">Info Page</a></li>
-      <li ng-show = "uc.userObject.user_role == 'coach'" ng-click=uc.getGymnastList()><a href="#/team">Team</a></li>
+      <li ng-show = "uc.userObject.user_role === 'coach'" ng-click="uc.getGymnastList()"><a href="#/team">Team</a></li>
+      <li md-button="submit" id = "logout" class="logout" ng-click="uc.userService.logout()">Logout</li>
     </ul>
   </div>
 </div>

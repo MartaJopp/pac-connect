@@ -1,6 +1,21 @@
-<div ng-include="'views/partials/nav.html'"></div>
+<div class="navbar">
+  <div class="container">
+    <ul>
+      <li>
+        <a href="#/user">User Home</a>
+      </li>
+      <li>
+        <a href="#/info">Info Page</a>
+      </li>
+      <li ng-show="ic.userObject.user_role === 'coach'" ng-click="ic.getGymnastList()">
+        <a href="#/team">Team</a>
+      </li>
+      <li md-button = "submit" id="logout" class="logout" ng-click = "ic.userService.logout()">Logout</li>
+    </ul>
+  </div>
+</div>
 <div class="container">
-  <p>
-    In Info
-  </p>
+
+  <h1 id="welcome" class="lead">Welcome, {{ic.userObject.userName}}!</h1>
+  <button class="btn btn-default" ng-click="ic.userService.logout()">Log Out</button>
 </div>

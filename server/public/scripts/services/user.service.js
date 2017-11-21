@@ -2,6 +2,7 @@ myApp.service('UserService', function($http, $location){
   console.log('UserService Loaded');
   var self = this;
   self.userObject = {};
+  self.gymnasts = {data: []};
 
   self.getuser = function(){
     console.log('UserService -- getuser');
@@ -35,6 +36,8 @@ myApp.service('UserService', function($http, $location){
     console.log('Get gymnast')
     $http.get('/dropdown/coachesTeam/').then(function(response){
       console.log('response', response)
+      self.gymnasts.data = response.data;
+      console.log(self.gymnasts);
     });
   }
 });
