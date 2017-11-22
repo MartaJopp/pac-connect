@@ -40,5 +40,12 @@ myApp.service('UserService', function ($http, $location) {
       console.log(self.gymnasts);
     });
   }
+
+  // this.getMessage = function () {
+  //   console.log('get Messages called')
+  //   $http.get('/message/gymnast/').then(function (response) {
+  //     console.log('getGymnastMessages response', response);
+  //   })
+  // } // end getGymnastMessages function
 });
 

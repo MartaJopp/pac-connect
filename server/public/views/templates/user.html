@@ -3,4 +3,27 @@
 
     <h1 id="welcome" class="lead">Welcome, {{uc.userObject.userName}}!</h1>
     <button class="btn btn-default" ng-click="uc.userService.logout()">Log Out</button>
+
+    {{uc.allMessages.data}}
+
+</div>
+<div>
+<ul class="threads">
+    <li ng-repeat="threads in uc.allMessages.data">
+        <h4>
+            <a href="#" ng-click="showMessages = ! showMessages">{{threads.subject}}</a>
+        </h4>
+        <div class="messages" ng-show="showMessages">
+            <md-list-item class="md-3-line md-long-text">
+                <div class="md-list-item-text">
+                    <h3>From: {{ threads.user_id}}</h3>
+                    <h3>Date Received: {{ x.timestamp}}</h3>
+                    <p>
+                        {{x.message}}
+                    </p>
+                </div>
+            </md-list-item>
+        </div>
+    </li>
+</ul>
 </div>

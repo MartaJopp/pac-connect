@@ -1,4 +1,4 @@
-myApp.controller('LoginController', function ($http, $location, UserService) {
+myApp.controller('LoginController', function ($http, $location, UserService, MessageService) {
   console.log('LoginController created');
   var vm = this;
   vm.user = {
@@ -12,7 +12,7 @@ myApp.controller('LoginController', function ($http, $location, UserService) {
     parent_id: ''
   };
   vm.message = '';
-
+vm.messageService = MessageService;
   vm.roles = ['coach', 'parent', 'gymnast'];
   vm.coaches = { data: [] };
   vm.parents = { data: [] };
@@ -25,8 +25,10 @@ myApp.controller('LoginController', function ($http, $location, UserService) {
       console.log('LoginController -- login -- sending to server...', vm.user);
       $http.post('/', vm.user).then(function (response) {
         if (response.data.username) {
-          console.log('LoginController -- login -- success: ', response.data);
+          MessageService.getMessage();
+          console.log(' the IF login LoginController -- login -- success: ', response.data);
           // location works with SPA (ng-route)
+          
           $location.path('/user'); // http://localhost:5000/#/user
         } else {
           console.log('LoginController -- login -- failure: ', response);
@@ -38,6 +40,8 @@ myApp.controller('LoginController', function ($http, $location, UserService) {
       });
     }
   };
+
+
 
   vm.groupSelected = function (selectedGroup, gymId) {
     console.log('selected', selectedGroup);

@@ -3,25 +3,24 @@
     <ul>
       <li>
         <a href="#/user">User Home</a>
-      </li>
-          <li ng-hide="ic.userObject.user_role === 'coach'">
-            <a href="#/info">Send Message</a>
-          </li>
-          <li ng-show="ic.userObject.user_role === 'coach'">
-            <a href="#/infoCoach">Send Message</a>
-          </li>
-      <li ng-if="ic.userObject.user_role === 'coach'" ng-click="ic.getGymnastList()">
-        <a href="#/team">Team</a>
-      </li>
-      <li md-button="submit" id="logout" class="logout" ng-click="ic.userService.logout()">Logout</li>
+        <li>
+          <a href="#/info">Send Message</a>
+        </li>
+
+        <li ng-if="ic.userObject.user_role === 'coach'" ng-click="ic.getGymnastList()">
+          <a href="#/team">Team</a>
+        </li>
+        <li md-button="submit" id="logout" class="logout" ng-click="ic.userService.logout()">Logout</li>
     </ul>
   </div>
 </div>
-<div class = "container">
-<h1 id="welcome" class="lead">Welcome, {{ic.userObject.userName}}!</h1>
 <div class="container">
-  <div id = "gymParent">
-      <form name="gym_parentForm" ng-submit="ic.sendCoachMessage()">
+  <h1 id="welcome" class="lead">Welcome, {{ic.userObject.userName}}!</h1>
+  <div class="container">
+    
+    <div id="forms">
+  
+      <form id = "coachesForm" name="coachForm" ng-submit="ic.sendMessage()" ng-if="ic.userObject.user_role === 'coach'">
         <div layout-gt-xl="row">
           <md-input-container class="md-block" flex-gt-xl>
             <label id="coach">Send to coach:</label>
@@ -41,7 +40,27 @@
             <md-button type="submit" class="md-raised md-primary" id="sendButton">Send Message</md-button>
           </div>
       </form>
-      </div>    
-</div>
-  
- 
+      </div>
+    
+      <form id = "gym_Parent" name="gym_parentForm" ng-submit="ic.sendCoachMessage()" ng-if="ic.userObject.user_role != 'coach'">
+        <div layout-gt-xl="row">
+          <md-input-container class="md-block" flex-gt-xl>
+            <label id="coach">Send to Coach:</label>
+            <input ng-model="ic.coach" disabled>
+          </md-input-container>
+          <div layout-gt-xl="row">
+            <md-input-container class="md-block" flex-gt-xl>
+              <label>Message Subject:</label>
+              <input ng-model="ic.coachMessage.subject">
+            </md-input-container>
+          </div>
+          <div layout-gt-xl="row">
+            <md-input-container class="md-block" flex-gt-xl>
+              <label>Message:</label>
+              <textarea ng-model="ic.coachMessage.message" md-maxlength="1000" rows="10" md-select-on-focus></textarea>
+            </md-input-container>
+            <md-button type="submit" class="md-raised md-primary" id="sendButton">Send Message</md-button>
+          </div>
+      </form>
+      </div>
+    </div>

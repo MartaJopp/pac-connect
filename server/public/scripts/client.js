@@ -52,15 +52,6 @@ myApp.config(function ($routeProvider, $locationProvider) {
         }
       }
     })
-    .when('/infoCoach', {
-      templateUrl: '/views/templates/infoCoach.html',
-      controller: 'InfoController as ic',
-      resolve: {
-        getuser: function (UserService) {
-          return UserService.getuser();
-        }
-      }
-    })
     .otherwise({
       redirectTo: 'home'
     });

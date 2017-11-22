@@ -31,6 +31,7 @@
                 <a href="#home">Already a user? Login here.</a>
             </div>
             <!--end show coach div-->
+            <!--show parent div-->
             <div ng-show="lc.user.user_role =='parent'">
                 <div>
                     <label for="name">Your Name:</label>
@@ -49,7 +50,7 @@
                 <div>
                     <label for="coach">My child's coach is:</label>
                     <select ng-model=lc.user.coach_id>
-                        <option type="coach" value={ {coach.id}} ng-repeat="coach in lc.coaches.data">{{coach.name}}</option>
+                        <option type="coach" value={{coach.id}} ng-repeat="coach in lc.coaches.data">{{coach.name}}</option>
                     </select>
                 </div>
                 <input class="btn btn-default" type="submit" name="submit" value="Register" />
@@ -74,7 +75,7 @@
                 <div>
                     <label for="parent">Registered parent/guardian name:</label>
                     <select ng-model=lc.user.parent_id>
-                        <option type="parent" value={ {parent.id}} ng-repeat="parent in lc.parents.data">{{parent.name}}</option>
+                        <option type="parent" value= {{parent.id}} ng-repeat="parent in lc.parents.data">{{parent.name}}</option>
                     </select>
                 </div>
                 <div>

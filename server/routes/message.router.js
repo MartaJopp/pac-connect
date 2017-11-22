@@ -84,6 +84,37 @@ router.post('/', function (req, res) {
 
 }); // end Parent/Gymnast POST ROUTE MESSAGES
 
+//get gymnast messages
+router.get('/gymnast/', function (req, res) {
+    if (req.isAuthenticated()) {
+        var loggedIn = req.user.id
+        console.log('The following is logged in /gymnast', req.user);
+        pool.connect(function (errorConnectingToDb, db, done) {
+            if (errorConnectingToDb) {
+                // No connection to database was made - error
+                console.log('Error connecting', errorConnectingToDb);
+                res.sendStatus(500);
+            } else {
+                var queryText = 'SELECT * FROM "message" JOIN "thread" on "thread"."thread_id" = "message"."thread_id" WHERE "user_id" = $1;';
+                db.query(queryText, [loggedIn], function (errorMakingQuery, result) {
+                    done(); // add + 1 to pool - we have received a result or error
+                    if (errorMakingQuery) {
+                        console.log('Error making query', errorMakingQuery);
+                        res.sendStatus(500);
+                    } 
+                    else {
+                    
+                        res.send(result.rows);
+                    }
+                }
+            ); // END QUERY
+            }
+        }); // END POOL
+    } // end req.authenticated if statement
+    else {
+        console.log('Not an authenticated user')
+    }
+});// end get messages route
 
 
 module.exports = router;

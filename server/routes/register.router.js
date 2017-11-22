@@ -88,9 +88,9 @@ router.post('/', function (req, res, next) {
               [gymnastId, coachId, parentId]);
 
 
-            var level = 0;
-            client.query("INSERT INTO gymnast_properties (user_id, level) VALUES ($1, $2);",
-              [gymnastId, level])
+            // var level = 0;
+            // client.query("INSERT INTO gymnast_properties (user_id, level) VALUES ($1, $2);",
+            //   [gymnastId, level])
           }
 
 
