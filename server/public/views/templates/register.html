@@ -10,7 +10,7 @@
                 <label for="role">I am a:</label>
                 <select ng-options="x for x in lc.roles" ng-change="lc.groupSelected(lc.user.user_role, lc.user.gym_id)" ng-model="lc.user.user_role"></select>
                 </select>
-            </div>  
+            </div>
             <div ng-show="lc.user.user_role =='coach'">
                 <!--start show coach form-->
                 <div>
@@ -47,9 +47,9 @@
                     <input type="password" ng-model="lc.user.password" />
                 </div>
                 <div>
-                    <label for = "coach">My child's coach is:</label>
+                    <label for="coach">My child's coach is:</label>
                     <select ng-model=lc.user.coach_id>
-                         <option type = "coach" value = {{coach.id}} ng-repeat="coach in lc.coaches.data">{{coach.name}}</option>
+                        <option type="coach" value={ {coach.id}} ng-repeat="coach in lc.coaches.data">{{coach.name}}</option>
                     </select>
                 </div>
                 <input class="btn btn-default" type="submit" name="submit" value="Register" />
@@ -74,15 +74,15 @@
                 <div>
                     <label for="parent">Registered parent/guardian name:</label>
                     <select ng-model=lc.user.parent_id>
-                        <option type = "parent" value = {{parent.id}} ng-repeat="parent in lc.parents.data">{{parent.name}}</option>
+                        <option type="parent" value={ {parent.id}} ng-repeat="parent in lc.parents.data">{{parent.name}}</option>
                     </select>
                 </div>
-            <div>
-                <label for = "coach1">My coach is:</label>
-                <select ng-model=lc.user.coach_id>
-                    <option type = "coach1" value={{coach.id}} ng-repeat="coach in lc.coaches.data">{{coach.name}}</option>
-                </select>
-            </div>
+                <div>
+                    <label for="coach1">My coach is:</label>
+                    <select ng-model=lc.user.coach_id>
+                        <option type="coach1" value={{coach.id}} ng-repeat="coach in lc.coaches.data">{{coach.name}}</option>
+                    </select>
+                </div>
                 <input class="btn btn-default" type="submit" name="submit" value="Register" />
                 <a href="#home">Already a user? Login here.</a>
             </div>

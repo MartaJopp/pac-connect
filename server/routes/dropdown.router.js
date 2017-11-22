@@ -31,7 +31,7 @@ router.get('/coach/:id', function (req, res) {
             }); // END QUERY
         }
     }); // END POOL
-});
+}); // end coaches dropdown
 
 //get the list of coaches with corresponding id
 router.get('/parent/:id', function (req, res) {
@@ -60,50 +60,45 @@ router.get('/parent/:id', function (req, res) {
             }); // END QUERY
         }
     }); // END POOL
-});
+}); // end parent dropdown
 
 //get list of gymnasts per logged in coach
 router.get('/coachesTeam/', function (req, res) {
     if (req.isAuthenticated()) {
-console.log('This is the User', req.user.id);
-var coachId = parseInt(req.user.id);
-    pool.connect(function (errorConnectingToDb, db, done) {
-        if (errorConnectingToDb) {
-            // No connection to database was made - error
-            console.log('Error connecting', errorConnectingToDb);
-            res.sendStatus(500);
-        } else {
-            var queryText = 'SELECT * FROM "user_gymnast" JOIN "users" on "users"."id" = "user_gymnast"."gymnast_id" JOIN "gymnast_properties" on "gymnast_properties"."user_id" = "user_gymnast"."gymnast_id" WHERE "user_gymnast"."coach_id" = $1;';
-            db.query(queryText, [coachId], function (errorMakingQuery, result) {
-                done();
-                // var gymnastNames = { name: '',
-                //     level:''};
-                var gymnastArray = []
-                for (var i = 0; i < result.rows.length; i++) {
-                    // gymnastNames.name = (result.rows[i].name);
-                    // gymnastNames.level = (result.rows[i].level);
-                    // gymnastArray.push(gymnastNames);
-                    gymnastArray.push({ name: (result.rows[i].name), level: (result.rows[i].level) })
+        console.log('This is the User', req.user.id);
+        var coachId = parseInt(req.user.id);
+        pool.connect(function (errorConnectingToDb, db, done) {
+            if (errorConnectingToDb) {
+                // No connection to database was made - error
+                console.log('Error connecting', errorConnectingToDb);
+                res.sendStatus(500);
+            } else {
+                var queryText = 'SELECT * FROM "user_gymnast" JOIN "users" on "users"."id" = "user_gymnast"."gymnast_id" JOIN "gymnast_properties" on "gymnast_properties"."user_id" = "user_gymnast"."gymnast_id" WHERE "user_gymnast"."coach_id" = $1;';
+                db.query(queryText, [coachId], function (errorMakingQuery, result) {
+                    done();
+                    var gymnastArray = []
+                    for (var i = 0; i < result.rows.length; i++) {
+                        gymnastArray.push({ name: (result.rows[i].name), level: (result.rows[i].level) })
 
-                }
+                    }
 
-                console.log('THIS STUFF', gymnastArray);
-                // console.log('result.rows', result.rows); // add + 1 to pool - we have received a result or error
-                if (errorMakingQuery) {
-                    console.log('Error making query', errorMakingQuery);
-                    res.sendStatus(500);
-                } else {
-                    res.send(gymnastArray);
-                }
-            }); // END QUERY
-}
-    }); // END POOL
-}
-else {
+                    console.log('THIS STUFF', gymnastArray);
+                    // console.log('result.rows', result.rows); // add + 1 to pool - we have received a result or error
+                    if (errorMakingQuery) {
+                        console.log('Error making query', errorMakingQuery);
+                        res.sendStatus(500);
+                    } else {
+                        res.send(gymnastArray);
+                    }
+                }); // END QUERY
+            }
+        }); // END POOL
+    }
+    else {
         res.sendStatus(403)
-}
+    }
 
-});
+}); //get route for Team information
 
 
 module.exports = router;

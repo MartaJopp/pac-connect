@@ -12,11 +12,15 @@
         <th>Edit</th>
         <th>Remove from Team?</th>
 
-    <tr ng-repeat = "gymnast in uc.gymnasts.data">
-        <td class = "name">{{gymnast.name}}</td>
-        <td>{{gymnast.level}}</td>
-        <td><i class="material-icons blue1">mode_edit</i></td>
-        <td><i class="material-icons red1">delete</i></td>
+        <tr ng-repeat="gymnast in uc.gymnasts.data">
+            <td class="name">{{gymnast.name}}</td>
+            <td>{{gymnast.level}}</td>
+            <td>
+                <i class="material-icons blue1">mode_edit</i>
+            </td>
+            <td>
+                <i class="material-icons red1">delete</i>
+            </td>
         </tr>
         <!-- <li>{{gymnast.level}}</li> -->
     </table>

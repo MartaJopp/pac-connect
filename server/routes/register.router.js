@@ -78,29 +78,22 @@ router.post('/', function (req, res, next) {
           console.log('result after registering', result);
           // res.sendStatus(201);
           if (saveUser.user_role === 'gymnast') {
-            
+
             // res.send(result.rows);
-         console.log('result.rows', result.rows[0].id, result.rows[0].coach_id, result.rows[0].parent_id);
+            console.log('result.rows', result.rows[0].id, result.rows[0].coach_id, result.rows[0].parent_id);
             var gymnastId = result.rows[0].id;
             var coachId = result.rows[0].coach_id;
             var parentId = result.rows[0].parent_id;
-         client.query("INSERT INTO user_gymnast (gymnast_id, coach_id, parent_id) VALUES ($1, $2, $3) returning gymnast_id;",
-         [gymnastId, coachId, parentId]);
+            client.query("INSERT INTO user_gymnast (gymnast_id, coach_id, parent_id) VALUES ($1, $2, $3) returning gymnast_id;",
+              [gymnastId, coachId, parentId]);
 
-        //  function (err, result) {
-        //    if (err) {
-        //      console.log("error inserging data", err);
-        //      res.sendStatus(500);
-        //    } else {
-            //  var gymnastId = result.rows[0].gymnast_id;
-             var level = 0;
-             client.query("INSERT INTO gymnast_properties (user_id, level) VALUES ($1, $2);",
-            [gymnastId, level])
-           }
-           
-            // query into user_gymnast using result.rows.id as gymnast_id and then 
-                 // corresponding fields from previous table 
-              
+
+            var level = 0;
+            client.query("INSERT INTO gymnast_properties (user_id, level) VALUES ($1, $2);",
+              [gymnastId, level])
+          }
+
+
           else {
             res.sendStatus(201);
           }
@@ -108,6 +101,6 @@ router.post('/', function (req, res, next) {
       }
     )
   });
-})
+}) // new user post
 
-  module.exports = router;
+module.exports = router;

@@ -98,10 +98,10 @@ myApp.controller('LoginController', function ($http, $location, UserService) {
         vm.message = "Please try again."
       });
     }
-  }; 
+  };
 
   vm.sendGymnast = function (id) {
-    $http.post('register/gymnastId/' + id).then(function (response){
+    $http.post('register/gymnastId/' + id).then(function (response) {
       console.log('success added gymnast', response)
       $location.path('/home');
     }).catch(function (response) {
