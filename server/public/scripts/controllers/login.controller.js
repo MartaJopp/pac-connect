@@ -104,15 +104,15 @@ vm.messageService = MessageService;
     }
   };
 
-  vm.sendGymnast = function (id) {
-    console.log('in sendGymnast')
-    $http.post('register/gymnastId/' + id).then(function (response) {
-      console.log('success added gymnast', response)
-      $location.path('/home');
-    }).catch(function (response) {
-      console.log('LoginController -- registerGymnast - error');
-      vm.message = "Please try again."
-    });
-  }
+  // vm.sendGymnast = function (id) {
+  //   console.log('in sendGymnast')
+  //   $http.post('register/gymnastId/' + id).then(function (response) {
+  //     console.log('success added gymnast', response)
+  //     $location.path('/home');
+  //   }).catch(function (response) {
+  //     console.log('LoginController -- registerGymnast - error');
+  //     vm.message = "Please try again."
+  //   });
+  // }
 
 });

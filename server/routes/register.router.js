@@ -10,31 +10,6 @@ router.get('/', function (req, res, next) {
   res.sendFile(path.resolve(__dirname, '../public/views/templates/register.html'));
 });
 
-router.post('/gymnastId/:id', function (req, res) {
-  console.log('req.params.id', req.params.id);
-  theId = req.params.id;
-  pool.connect(function (errorConnectingToDb, db, done) {
-    if (errorConnectingToDb) {
-      // There was an error and no connection was made
-      console.log('Error connecting', errorConnectingToDb);
-      res.sendStatus(500);
-    } else {
-      // We connected to the db!!!!! pool -1
-      var queryText = 'INSERT INTO "user_gymnast" ("gymnast_id") VALUES ($1);';
-      db.query(queryText, [theId], function (errorMakingQuery, result) {
-        done(); // pool +1
-        if (errorMakingQuery) {
-          console.log('Error making query', errorMakingQuery);
-          res.sendStatus(500);
-        } else {
-          // Send back success!
-          res.sendStatus(201);
-        }
-      }); // END QUERY
-    }
-  }); // END POOL
-});
-
 // Handles POST request with new user data
 router.post('/', function (req, res, next) {
   console.log('req.body', req.body);
@@ -111,6 +86,9 @@ router.post('/', function (req, res, next) {
           } // end function before 3rd client query
         ) // end 2nd client.query
       } // end if gymnast
+      else {
+        res.sendStatus(201);
+      }
     } // end first else
   } // end first function after query
 ) // end first query
