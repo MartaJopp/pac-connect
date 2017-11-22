@@ -3,11 +3,14 @@ myApp.service('MessageService', function ($http, $location, UserService) {
     var self = this;
 
 
-
     self.coachMessage = {
         subject: '',
         message: '',
-        date: new Date()
+        to: '',
+        from: '',
+// for parent/gymnast I can set the to field on the server side.  I think I will be able to pull the 
+// dropdown on the coach in the html form to set who it is to and then send it through here with
+// data binding.  I hope.
     }
 
     self.allMessages = { data: [] };
@@ -17,6 +20,7 @@ myApp.service('MessageService', function ($http, $location, UserService) {
         console.log(self.coachMessage);
         $http.post('/message/', self.coachMessage).then(function (response) {
             console.log('response', response);
+            $location.path('/user');
         }).catch(function (response) {
             console.log('Message to coach error.');
             self.message = "Error - please try to send message again."

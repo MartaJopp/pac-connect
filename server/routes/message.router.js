@@ -53,7 +53,7 @@ router.post('/', function (req, res) {
                                                 res.sendStatus(500);
                                             } else {
                                                 // inserting the sent message and corresponding threadId, user_id is that who will receive the message
-                                                var queryText = 'INSERT INTO "message" ("timestamp", "message", "received_id", "thread_id") VALUES ($1, $2, $3, $4);';
+                                                var queryText = 'INSERT INTO "message" ("timestamp", "message", "user_id", "thread_id") VALUES ($1, $2, $3, $4);';
                                                 db.query(queryText, [req.body.date, req.body.message, req.user.coach_id, threadId], function (errorMakingQuery, result) {
                                                     done(); // pool +1
                                                     if (errorMakingQuery) {
@@ -87,7 +87,7 @@ router.post('/', function (req, res) {
 //get gymnast messages
 router.get('/gymnast/', function (req, res) {
     if (req.isAuthenticated()) {
-        var loggedIn = req.user.id
+        var loggedIn = 53;
         console.log('The following is logged in /gymnast', req.user);
         pool.connect(function (errorConnectingToDb, db, done) {
             if (errorConnectingToDb) {

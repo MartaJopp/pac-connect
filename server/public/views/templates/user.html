@@ -5,21 +5,25 @@
     <button class="btn btn-default" ng-click="uc.userService.logout()">Log Out</button>
 
     {{uc.allMessages.data}}
+    
+    <div ng-repeat = "message in uc.allMessages.data">
+        
+        
+    
 
-</div>
-<div>
-<ul class="threads">
-    <li ng-repeat="threads in uc.allMessages.data">
+
+
+
         <h4>
-            <a href="#" ng-click="showMessages = ! showMessages">{{threads.subject}}</a>
+            <button class = "show1" ng-click="showMessages = ! showMessages">{{message.subject}}</button>
         </h4>
         <div class="messages" ng-show="showMessages">
             <md-list-item class="md-3-line md-long-text">
                 <div class="md-list-item-text">
-                    <h3>From: {{ threads.user_id}}</h3>
-                    <h3>Date Received: {{ x.timestamp}}</h3>
+                    <h3>From: {{ message.user_id}}</h3>
+                    <h3>Date Received: {{ message.timestamp}}</h3>
                     <p>
-                        {{x.message}}
+                        {{message.message}}
                     </p>
                 </div>
             </md-list-item>
