@@ -6,8 +6,9 @@ myApp.controller('UserController', function ($mdDialog, UserService, MessageServ
   vm.gymnasts = UserService.gymnasts;
   vm.messageService = MessageService;
   vm.allMessages = MessageService.allMessages;
- 
-  vm.status = '  ';
+ vm.messageSubject = MessageService.messageSubject;
+ vm.conversationId = MessageService.conversationId;
+  vm.status = '';
   vm.customFullscreen = false;
 
   vm.getGymnastList = function () { // calls getGymnast upon click of link in nav bar
@@ -21,11 +22,16 @@ vm.getMessage = function () {
 }
   vm.getMessage();
 
-vm.reply = function (conversationId) {
-  MessageService.reply(conversationId);
+vm.reply = function ($event, conversationId, messageSubject) {
+  MessageService.reply($event, conversationId, messageSubject);
 }
 
-vm.showAdvanced = function ($event) {
-MessageService.showAdvanced($event)
+vm.cancel = function () {
+  MessageService.cancel();
 }
+
+  vm.answer = function (conversationId, messageSubject) {
+    MessageService.answer(conversationId, messageSubject);
+}
+
 });

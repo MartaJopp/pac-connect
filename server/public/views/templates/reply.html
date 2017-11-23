@@ -1,0 +1,34 @@
+
+<md-dialog class = "replyDialog" aria-label="Mango (Fruit)">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h3>Subject: Re: {{uc.messageSubject}}</h3>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click = "uc.cancel()">
+                    <i class="material-icons" md-dialog-close aria-label="Close dialog">close</i>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+<md-input-container class="md-block">
+    <label>Reply:</label>
+    <textarea ng-model="uc.replyMessage" md-maxlength="1000" rows="10" md-select-on-focus></textarea>
+</md-input-container>
+</div>
+</md-dialog-content>
+
+<md-dialog-actions layout="row">
+    <md-button ng-click = "uc.cancel()">
+        Cancel
+    </md-button>
+    <span flex></span>
+   
+    <md-button ng-click="uc.answer(uc.replyMessage, uc.conversationId)" >
+        Send reply
+    </md-button>
+</md-dialog-actions>
+</form>
+</md-dialog>

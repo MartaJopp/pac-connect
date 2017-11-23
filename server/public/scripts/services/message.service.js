@@ -15,16 +15,16 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, UserServi
 // data binding.  I hope.
     }
 
-    self.replyMessage = {
+    self.theReplyMessage = {
         conversation_id: '',
         replyMessage: '',
-
     }
-
+    self.messageSubject = '';
+    self.conversationId = '';
     self.allMessages = { data: [] };
 
     self.sendCoachMessage = function () {
-        console.log('Send Message to Coach Clicked');
+        console.log('Send Message Clicked');
         console.log(self.coachMessage);
         $http.post('/message/', self.coachMessage).then(function (response) {
             console.log('response', response);
@@ -51,27 +51,57 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, UserServi
         })
     } // end getGymnastMessages function
 
-    self.reply = function (conversationId) {
+    self.reply = function ($event, conversationId, messageSubject) {
         console.log('reply clicked');
-        console.log('conversationId', conversationId )
-        
-    }
-
-    self.showAdvanced = function ($event) {
-        console.log('showAdvanced clicked'); 
+        self.messageSubject = messageSubject;
+        self.conversationId = conversationId;
+        console.log('this is the Id', conversationId);
         $mdDialog.show({
             controller: 'UserController as uc',
-            templateUrl: '/views/templates/dialog1.tmpl.html',
+            templateUrl: '/views/templates/reply.html',
             parent: angular.element(document.body),
             targetEvent: $event,
             clickOutsideToClose: true,
             fullscreen: self.customFullscreen // Only for -xs, -sm breakpoints.
-        })
-            .then(function (answer) {
-                self.status = 'You said the information was "' + answer + '".';
-            }, function () {
-                self.status = 'You cancelled the dialog.';
-            });
+        }) 
     }
+
+    self.answer = function (replyMessage, conversationId) {
+        console.log('reply', replyMessage, 'conversationId', conversationId)
+   self.closeDialog(); // close the dialog box
+   self.theReplyMessage.conversation_id = conversationId;
+   self.theReplyMessage.replyMessage = replyMessage;
+        $http('/message/reply/', self.theReplyMessage).then(function (response) {
+            console.log('response', response);
+            $location.path('/user');
+        }).catch(function (response) {
+            console.log('Reply error.');
+            self.message = "Error - please try to reply to message again."
+        });
+    };
+    
+    
+    self.closeDialog = function () {
+        $mdDialog.hide()
+    }
+    self.cancel = function() {
+        $mdDialog.cancel();
+    }
+    // self.showAdvanced = function ($event) {
+    //     console.log('showAdvanced clicked'); 
+    //     $mdDialog.show({
+    //         controller: 'UserController as uc',
+    //         templateUrl: '/views/templates/reply.html',
+    //         parent: angular.element(document.body),
+    //         targetEvent: $event,
+    //         clickOutsideToClose: true,
+    //         fullscreen: self.customFullscreen // Only for -xs, -sm breakpoints.
+    //     })
+    //         .then(function (answer) {
+    //             self.status = 'You said the information was "' + answer + '".';
+    //         }, function () {
+    //             self.status = 'You cancelled the dialog.';
+    //         });
+    // }
 
 })

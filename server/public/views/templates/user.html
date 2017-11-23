@@ -7,9 +7,9 @@
     {{uc.allMessages.data}}
     {{uc.status}}
     
-    <md-button class="md-primary md-raised" ng-click="uc.showAdvanced($event)">
+    <!-- <md-button class="md-primary md-raised" ng-click="uc.showAdvanced($event)">
         Custom Dialog
-    </md-button>
+    </md-button> -->
     <!-- <div ng-repeat = "message in uc.allMessages.data">
         <p>{{message.from_name}}</p>
         <p>{{message.to}}</p> -->
@@ -19,8 +19,8 @@
             <md-list-item class="md-3-line" ng-repeat="message in uc.allMessages.data" ng-click="null">
                 <p class="md-avatar"/>{{message.date}}</p>
                 <div class="md-list-item-text" layout="column">
-                    <h3>{{ message.from_name }}</h3>
-                    <h4>{{ message.subject }} <md-button ng-click="uc.reply(message.conversation_id)" class="md-raised md-primary">Reply</md-button> </h4>
+                    <h3>From: {{ message.from_name }}</h3>
+                    <h4>Subject: {{ message.subject }} <md-button ng-click="uc.reply($event, message.conversation_id, message.subject)" class="md-raised md-primary">Reply</md-button> </h4>
                     <p>{{ message.message }}</p>
                 </div>
             </md-list-item>
