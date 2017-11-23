@@ -3,6 +3,7 @@ myApp.service('UserService', function ($http, $location) {
   var self = this;
   self.userObject = {};
   self.gymnasts = { data: [] };
+  self.parents = { data: []};
 
   self.getuser = function () {
     console.log('UserService -- getuser');
@@ -37,16 +38,18 @@ myApp.service('UserService', function ($http, $location) {
     $http.get('/dropdown/coachesTeam/').then(function (response) {
       console.log('response', response)
       self.gymnasts.data = response.data;
-      console.log(self.gymnasts);
+    }).catch(function (response) {
+      console.log('Error getting dropdown');
     });
   }
 
   self.getCoachesParents = function () {
-    $http.get('/dropdown/coachesParents/').then(function(response){
+    console.log('get parents called')
+    $http.get('/dropdown/coachesParents/').then(function (response) {
       console.log('response', response)
       self.parents.data = response.data;
     }).catch(function (response) {
-      console.log('Error');
+      console.log('Error getting dropdown');
     });
   }
   // this.getMessage = function () {

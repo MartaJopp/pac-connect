@@ -78,11 +78,9 @@ router.get('/coachesTeam/', function (req, res) {
                     done();
                     var gymnastArray = []
                     for (var i = 0; i < result.rows.length; i++) {
-                        gymnastArray.push({ name: (result.rows[i].name), level: (result.rows[i].level) })
+                        gymnastArray.push({ name: (result.rows[i].name), level: (result.rows[i].level), gymnast_id: (result.rows[i].gymnast_id)})
 
                     }
-
-                    console.log('THIS STUFF', gymnastArray);
                     // console.log('result.rows', result.rows); // add + 1 to pool - we have received a result or error
                     if (errorMakingQuery) {
                         console.log('Error making query', errorMakingQuery);
@@ -98,7 +96,43 @@ router.get('/coachesTeam/', function (req, res) {
         res.sendStatus(403)
     }
 
-}); //get route for Team information
+}); //end get route for Team information
 
+//get list of parents per logged in coach
+router.get('/coachesParents/', function (req, res) {
+    if (req.isAuthenticated()) {
+        console.log('This is the User', req.user.id);
+        var coachId = parseInt(req.user.id);
+        pool.connect(function (errorConnectingToDb, db, done) {
+            if (errorConnectingToDb) {
+                // No connection to database was made - error
+                console.log('Error connecting', errorConnectingToDb);
+                res.sendStatus(500);
+            } else {
+                var queryText = 'SELECT * FROM "user_gymnast" JOIN "users" on "users"."id" = "user_gymnast"."parent_id" WHERE "user_gymnast"."coach_id" = $1;';
+                db.query(queryText, [coachId], function (errorMakingQuery, result) {
+                    done();
+                    console.log('result', result);
+                    var parentArray = []
+                    for (var i = 0; i < result.rows.length; i++) {
+                        parentArray.push({ name: (result.rows[i].name), parent_id: (result.rows[i].id) })
+
+                    }
+                    // console.log('result.rows', result.rows); // add + 1 to pool - we have received a result or error
+                    if (errorMakingQuery) {
+                        console.log('Error making query', errorMakingQuery);
+                        res.sendStatus(500);
+                    } else {
+                        res.send(parentArray);
+                    }
+                }); // END QUERY
+            }
+        }); // END POOL
+    }
+    else {
+        res.sendStatus(403) //req is not authenticated
+    }
+
+}); //end get route for parent information
 
 module.exports = router;

@@ -6,6 +6,7 @@ myApp.controller('InfoController', function (UserService, MessageService) {
   vm.userObject = UserService.userObject;
   vm.coachMessage = MessageService.coachMessage;
   vm.gymnasts = UserService.gymnasts;
+  vm.parents = UserService.parents;
 
   console.log('user', vm.userObject);
 
@@ -28,7 +29,7 @@ myApp.controller('InfoController', function (UserService, MessageService) {
   vm.getGymnastList(); // calls get gymnast when coach is sending new message - shows as dropdown 
   
   vm.getCoachesParents = function () { 
-    UserService.getGymnastList();
+    UserService.getCoachesParents();
   }
 
   vm.getCoachesParents();
