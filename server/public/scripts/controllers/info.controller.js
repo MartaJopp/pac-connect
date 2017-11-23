@@ -6,7 +6,6 @@ myApp.controller('InfoController', function (UserService, MessageService) {
   vm.userObject = UserService.userObject;
   vm.coachMessage = MessageService.coachMessage;
 
-  vm.userObject.coach_id = MessageService.userObject.coach_id
 
   console.log('user', vm.userObject);
 
