@@ -20,7 +20,7 @@
     
     <div id="forms">
  
-<form id = "coachesForm" name="coachForm" ng-submit="ic.sendMessage()" ng-if="ic.userObject.user_role === 'coach'">
+<form id = "coachesForm" name="coachForm" ng-submit="ic.sendCoachMessage()" ng-if="ic.userObject.user_role === 'coach'">
         <div layout-gt-xl="row">
           <md-input-container class="md-block" flex=50>
           <label>Send To:</label>

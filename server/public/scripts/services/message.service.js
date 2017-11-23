@@ -30,9 +30,11 @@ myApp.service('MessageService', function ($http, $location, UserService) {
     };
 
 
-    self.sendMessage = function () {
-        console.log('Send Message from Coach Clicked')
-    }
+    // self.sendMessage = function () {
+    //     console.log('Send Message from Coach Clicked')
+    //     console.log('this is the message', self.coachMessage);
+    //     $http.post('/message/', self.coachMessage)
+    // }
 
     self.getMessage = function () {
         console.log('get Messages called')

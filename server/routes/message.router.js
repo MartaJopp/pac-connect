@@ -12,10 +12,17 @@ router.post('/', function (req, res) {
         console.log('This is the body', req.body);
         var from = req.user.id;
         var from_name = req.user.name;
-        var to = req.user.coach_id;
+        
         var message = req.body;
 
         console.log('to', to);
+
+        if (req.body.to_id === '') {
+            var to = req.user.coach_id;
+        }
+        else {
+            var to = req.body.to_id;
+        }
 
         pool.connect(function (errorConnectingToDb, db, done) {
             if (errorConnectingToDb) {
