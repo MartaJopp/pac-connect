@@ -70,7 +70,7 @@ router.post('/', function (req, res) {
 //get gymnast messages
 router.get('/gymnast/', function (req, res) {
     if (req.isAuthenticated()) {
-        var loggedIn = 53;
+        var loggedIn = req.user.id;
         console.log('The following is logged in /gymnast', req.user);
         pool.connect(function (errorConnectingToDb, db, done) {
             if (errorConnectingToDb) {
@@ -78,7 +78,7 @@ router.get('/gymnast/', function (req, res) {
                 console.log('Error connecting', errorConnectingToDb);
                 res.sendStatus(500);
             } else {
-                var queryText = 'SELECT * FROM "message" JOIN "thread" on "thread"."thread_id" = "message"."thread_id" WHERE "user_id" = $1;';
+                var queryText = 'SELECT * FROM "messages" JOIN "users" on "users"."id" = "messages"."to_user_id" WHERE "messages"."to_user_id" = $1 OR "messages"."from_user_id" = $1;';
                 db.query(queryText, [loggedIn], function (errorMakingQuery, result) {
                     done(); // add + 1 to pool - we have received a result or error
                     if (errorMakingQuery) {

@@ -7,14 +7,15 @@
     {{uc.allMessages.data}}
     
     <div ng-repeat = "message in uc.allMessages.data">
-        
+        <p>{{message.subject}}</p>
+        <p>{{message.to}}</p>
         
     
 
 
 
 
-        <h4>
+        <!-- <h4>
             <button class = "show1" ng-click="showMessages = ! showMessages">{{message.subject}}</button>
         </h4>
         <div class="messages" ng-show="showMessages">
@@ -29,5 +30,5 @@
             </md-list-item>
         </div>
     </li>
-</ul>
+</ul> -->
 </div>
