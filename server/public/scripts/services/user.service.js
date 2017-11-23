@@ -41,6 +41,14 @@ myApp.service('UserService', function ($http, $location) {
     });
   }
 
+  self.getCoachesParents = function () {
+    $http.get('/dropdown/coachesParents/').then(function(response){
+      console.log('response', response)
+      self.parents.data = response.data;
+    }).catch(function (response) {
+      console.log('Error');
+    });
+  }
   // this.getMessage = function () {
   //   console.log('get Messages called')
   //   $http.get('/message/gymnast/').then(function (response) {

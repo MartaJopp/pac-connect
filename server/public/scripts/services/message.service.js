@@ -7,8 +7,8 @@ myApp.service('MessageService', function ($http, $location, UserService) {
     self.coachMessage = {
         subject: '',
         message: '',
-        to: '',
-        from: '',
+        to_id: '',
+        from_id: '',
         from_name: ''
 // for parent/gymnast I can set the to field on the server side.  I think I will be able to pull the 
 // dropdown on the coach in the html form to set who it is to and then send it through here with
@@ -19,8 +19,6 @@ myApp.service('MessageService', function ($http, $location, UserService) {
 
     self.sendCoachMessage = function () {
         console.log('Send Message to Coach Clicked');
-        console.log(self.coachMessage);
-        self.coachMessage.from_name = self.userObject.username;
         console.log(self.coachMessage);
         $http.post('/message/', self.coachMessage).then(function (response) {
             console.log('response', response);

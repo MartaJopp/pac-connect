@@ -11,6 +11,7 @@ router.post('/', function (req, res) {
         console.log('This is everything about the user', req.user.coach_id);
         console.log('This is the body', req.body);
         var from = req.user.id;
+        var from_name = req.user.name;
         var to = req.user.coach_id;
         var message = req.body;
 
@@ -42,8 +43,8 @@ router.post('/', function (req, res) {
                             } else {
                                 //connected to the database
 
-                                var queryText = 'INSERT INTO "messages" ("message", "to_user_id", "from_user_id", "conversation_id") VALUES ($1, $2, $3, $4);';
-                                db.query(queryText, [message.message, to, from, conversationId], function (errorMakingQuery, result) {
+                                var queryText = 'INSERT INTO "messages" ("message", "to_user_id", "from_user_id", "conversation_id", "from_name") VALUES ($1, $2, $3, $4, $5);';
+                                db.query(queryText, [message.message, to, from, conversationId, from_name], function (errorMakingQuery, result) {
                                     console.log('req.body after inserting', req.body);
                                     done(); // pool +1
                                     if (errorMakingQuery) {
@@ -78,7 +79,7 @@ router.get('/gymnast/', function (req, res) {
                 console.log('Error connecting', errorConnectingToDb);
                 res.sendStatus(500);
             } else {
-                var queryText = 'SELECT * FROM "messages" JOIN "users" on "users"."id" = "messages"."to_user_id" WHERE "messages"."to_user_id" = $1 OR "messages"."from_user_id" = $1;';
+                var queryText = 'SELECT * FROM "messages" JOIN "users" on "users"."id" = "messages"."to_user_id" JOIN "conversations" ON "conversations"."conversation_id" = "messages"."conversation_id" WHERE "messages"."to_user_id" = $1 OR "messages"."from_user_id" = $1;';
                 db.query(queryText, [loggedIn], function (errorMakingQuery, result) {
                     done(); // add + 1 to pool - we have received a result or error
                     if (errorMakingQuery) {
