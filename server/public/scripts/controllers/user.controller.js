@@ -1,4 +1,4 @@
-myApp.controller('UserController', function (UserService, MessageService) {
+myApp.controller('UserController', function ($mdDialog, UserService, MessageService) {
   console.log('UserController created');
   var vm = this;
   vm.userService = UserService;
@@ -7,6 +7,8 @@ myApp.controller('UserController', function (UserService, MessageService) {
   vm.messageService = MessageService;
   vm.allMessages = MessageService.allMessages;
  
+  vm.status = '  ';
+  vm.customFullscreen = false;
 
   vm.getGymnastList = function () { // calls getGymnast upon click of link in nav bar
     UserService.getGymnastList();
@@ -19,6 +21,11 @@ vm.getMessage = function () {
 }
   vm.getMessage();
 
+vm.reply = function (conversationId) {
+  MessageService.reply(conversationId);
+}
 
-
+vm.showAdvanced = function ($event) {
+MessageService.showAdvanced($event)
+}
 });

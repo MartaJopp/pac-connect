@@ -1,4 +1,4 @@
-myApp.service('MessageService', function ($http, $location, UserService) {
+myApp.service('MessageService', function ($http, $location, $mdDialog, UserService) {
     console.log('MessageService Loaded');
     var self = this;
 
@@ -13,6 +13,12 @@ myApp.service('MessageService', function ($http, $location, UserService) {
 // for parent/gymnast I can set the to field on the server side.  I think I will be able to pull the 
 // dropdown on the coach in the html form to set who it is to and then send it through here with
 // data binding.  I hope.
+    }
+
+    self.replyMessage = {
+        conversation_id: '',
+        replyMessage: '',
+
     }
 
     self.allMessages = { data: [] };
@@ -44,5 +50,28 @@ myApp.service('MessageService', function ($http, $location, UserService) {
             console.log('threads', self.allMessages);
         })
     } // end getGymnastMessages function
+
+    self.reply = function (conversationId) {
+        console.log('reply clicked');
+        console.log('conversationId', conversationId )
+        
+    }
+
+    self.showAdvanced = function ($event) {
+        console.log('showAdvanced clicked'); 
+        $mdDialog.show({
+            controller: 'UserController as uc',
+            templateUrl: '/views/templates/dialog1.tmpl.html',
+            parent: angular.element(document.body),
+            targetEvent: $event,
+            clickOutsideToClose: true,
+            fullscreen: self.customFullscreen // Only for -xs, -sm breakpoints.
+        })
+            .then(function (answer) {
+                self.status = 'You said the information was "' + answer + '".';
+            }, function () {
+                self.status = 'You cancelled the dialog.';
+            });
+    }
 
 })
