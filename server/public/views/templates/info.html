@@ -22,13 +22,14 @@
  
 <form id = "coachesForm" name="coachForm" ng-submit="ic.sendMessage()" ng-if="ic.userObject.user_role === 'coach'">
         <div layout-gt-xl="row">
-          <md-input-container class="md-block" flex-gt-xl>
+          <md-input-container class="md-block" flex=50>
           <label>Send To:</label>
           <md-select name="type" ng-model="ic.coachMessage.to_id" >
-            <md-divider>
+            <md-option label class = "cool">Select a Gymnast:</md-option>
             <md-option ng-repeat ="gymnast in ic.gymnasts.data" value = {{gymnast.gymnast_id}}>{{gymnast.name}}</md-option> <!--shows gymnasts set to that coach-->
-          </md-divider>
-          <md-option ng-repeat = "parent in ic.parents.data" value= {{parent.parentid}}>{{parent.name}}</md-option>
+          <md-divider></md-divider> 
+          <md-option label class = "cool">Select a Parent:</md-option>
+          <md-option ng-repeat = "parent in ic.parents.data" value= {{parent.parent_id}}>{{parent.name}}</md-option>
           </md-select>
         </md-input-container>
         </div>
