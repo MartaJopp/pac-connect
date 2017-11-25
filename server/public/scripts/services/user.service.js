@@ -1,4 +1,4 @@
-myApp.service('UserService', function ($http, $location, $mdDialog) {
+myApp.service('UserService', function ($http, $location, $mdDialog, $mdToast) {
   console.log('UserService Loaded');
   var self = this;
   self.userObject = {};
@@ -54,21 +54,13 @@ myApp.service('UserService', function ($http, $location, $mdDialog) {
   }
 // delete gymnast - this deletes it as a user
   self.deleteGymnast = function (gymnastId) {
-    console.log('Delete gymnast clicked, ID', gymnastId)
-    swal({
-      title: 'Are you sure you would like to remove this gymnast from your team?',
-      text: "You cannot revert this!",
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete the gymnast!'
-    })
-    return $http.delete('/team/delete' + gymnastId).then(function (response) {
-      return response
-    }).catch(function (response){
-      console.log('Error deleting gymnast');
-    })
-  }
-});
+        return $http.delete('/team/delete' + gymnastId).then(function (response) {
+          return response
+        }).catch(function (response) {
+          console.log('Error deleting gymnast');
+        })
+     }
+    } 
+  
+)
 

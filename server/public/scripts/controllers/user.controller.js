@@ -51,16 +51,31 @@ vm.cancel = function () {
   }
 
   vm.deleteGymnast = function (gymnastId) {
-    UserService.deleteGymnast(gymnastId).then(function (response){
-      swal(
-        'Deleted!',
-        'The gymnast has been removed.',
-        'success'
-      )
-    })
-  }
-  // vm.sendNewMessage = function (toId, subject, message) {
-  //   MessageService.sendNewMessage(toId, subject, message)
-  // }
+    var toast = $mdToast.simple()
+      .textContent('Marked as read')
+      .action('UNDO')
+      .highlightAction(true)
+      .highlightClass('md-accent');
 
+    $mdToast.show(toast).then(function (response) {
+      if (response == 'ok') {
+        alert('You clicked the \'UNDO\' action.')}
+        else {
+    UserService.deleteGymnast(gymnastId).then(function (response){
+    
+      UserService.getGymnastList();
+
+      $mdToast.show(
+        $mdToast.simple()
+          .textContent('Gymnast Deleted!')
+          .hideDelay(2500)
+      );
+      
+    })
+  
+  }
+ // vm.sendNewMessage = function (toId, subject, message) {
+ } //   MessageService.sendNewMessage(toId, subject, message)
+ ) // }
+  }
 });
