@@ -11,6 +11,7 @@ var userRouter = require('./routes/user.router');
 var registerRouter = require('./routes/register.router');
 var dropdownRouter = require('./routes/dropdown.router.js');
 var messageRouter = require('./routes/message.router.js');
+var teamRouter = require('./routes/team.router');
 
 var port = process.env.PORT || 5000;
 
@@ -33,6 +34,7 @@ app.use('/register', registerRouter);
 app.use('/user', userRouter);
 app.use('/dropdown', dropdownRouter);
 app.use('/message', messageRouter);
+app.use('/team', teamRouter);
 
 // Catch all bucket, must be last!
 app.use('/', indexRouter);

@@ -51,7 +51,13 @@ vm.cancel = function () {
   }
 
   vm.deleteGymnast = function (gymnastId) {
-    UserService.deleteGymnast(gymnastId)
+    UserService.deleteGymnast(gymnastId).then(function (response){
+      swal(
+        'Deleted!',
+        'The gymnast has been removed.',
+        'success'
+      )
+    })
   }
   // vm.sendNewMessage = function (toId, subject, message) {
   //   MessageService.sendNewMessage(toId, subject, message)
