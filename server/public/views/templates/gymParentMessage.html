@@ -1,0 +1,46 @@
+<md-dialog class="replyDialog" aria-label="Mango (Fruit)">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h3>Send New Message To Coach</h3>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="ic.cancel()">
+                    <i class="material-icons" md-dialog-close aria-label="Close dialog">close</i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+<form id="gym_Parent" name="gym_parentForm" ng-if="ic.userObject.user_role != 'coach'">
+    <!-- <div layout-gt-xl="row">
+        <md-input-container class="md-block" flex-gt-xl>
+            <label id="coach">Send to Coach:</label>
+            <input ng-model="ic.userObject.user" disabled>
+        </md-input-container> -->
+        <div layout-gt-xl="row">
+            <md-input-container class="md-block" flex-gt-xl>
+                <label>Message Subject:</label>
+                <input ng-model="ic.coachMessage.subject">
+            </md-input-container>
+        </div>
+        <div layout-gt-xl="row">
+            <md-input-container class="md-block" flex-gt-xl>
+                <label>Message:</label>
+                <textarea ng-model="ic.coachMessage.message" md-maxlength="1000" rows="10" md-select-on-focus></textarea>
+            </md-input-container>
+        </div>
+</form>
+</div>
+</md-dialog-content>
+
+<md-dialog-actions layout="row">
+    <md-button ng-click="ic.cancel()">
+        Cancel
+    </md-button>
+    <span flex></span>
+
+   <md-button ng-click="ic.sendNewMessage(ic.user.coach_id, ic.coachMessage.subject, ic.coachMessage.message)"> 
+        Send Message
+    </md-button> 
+</md-dialog-actions>
+</md-dialog>

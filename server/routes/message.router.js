@@ -18,12 +18,12 @@ router.post('/', function (req, res) {
         console.log('to', to);
 
         if (req.body.to_id === '') {
-            var to = req.user.coach_id;
+            var to = parseInt(req.user.coach_id);
         }
         else {
             var to = req.body.to_id;
         }
-
+console.log('should be setting to a number var to', to);
         pool.connect(function (errorConnectingToDb, db, done) {
             if (errorConnectingToDb) {
                 console.log('Error connecting', errorConnectingToDb);

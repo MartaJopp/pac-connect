@@ -18,7 +18,14 @@
   <h1 id="welcome" class="lead">Welcome, {{ic.userObject.userName}}!</h1>
   <div class="container">
     
+<md-button ng-click="ic.startNewMessage($event)" ng-if="ic.userObject.user_role === 'coach'" class="md-raised md-primary">Send Message</md-button>
+
+
+<md-button ng-click="ic.startCoachMessage($event)" ng-if="ic.userObject.user_role != 'coach'" class="md-raised md-primary">Send Message</md-button>
+
     <div id="forms">
+
+       
  
 <form id = "coachesForm" name="coachForm" ng-submit="ic.sendCoachMessage()" ng-if="ic.userObject.user_role === 'coach'">
         <div layout-gt-xl="row">

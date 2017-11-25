@@ -1,4 +1,4 @@
-myApp.controller('InfoController', function (UserService, MessageService) {
+myApp.controller('InfoController', function ($mdDialog, $mdToast, UserService, MessageService) {
   console.log('InfoController created');
   var vm = this;
   vm.userService = UserService;
@@ -33,4 +33,30 @@ myApp.controller('InfoController', function (UserService, MessageService) {
   }
 
   vm.getCoachesParents();
+
+  // vm.startNewMessage = function ($event) {
+  //   MessageService.startNewMessage($event)
+  // }
+
+  // vm.startCoachMessage = function ($event) {
+  //   MessageService.startCoachMessage($event)
+  // }
+
+  vm.sendNewMessage = function (toId, subject, message) {
+    MessageService.sendNewMessage(toId, subject, message).then(function (response){
+      MessageService.getMessage();
+      
+      $mdToast.show(
+        $mdToast.simple()
+          .textContent('Message Sent!')
+          .hideDelay(2500)
+      );
+
+
+    })
+  }
+
+  vm.cancel = function () {
+    MessageService.cancel()
+  }
 });

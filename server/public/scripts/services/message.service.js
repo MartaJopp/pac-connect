@@ -26,18 +26,58 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, UserServi
     self.fromId = '';
     self.allMessages = { data: [] };
 
-    self.sendCoachMessage = function () {
-        console.log('Send Message Clicked');
-        console.log(self.coachMessage);
-        $http.post('/message/', self.coachMessage).then(function (response) {
+    // self.sendCoachMessage = function () {
+    //     console.log('Send Message Clicked');
+    //     console.log(self.coachMessage);
+    //     $http.post('/message/', self.coachMessage).then(function (response) {
+    //         console.log('response', response);
+    //         $location.path('/user');
+    //     }).catch(function (response) {
+    //         console.log('Message to coach error.');
+    //         self.message = "Error - please try to send message again."
+    //     });
+    // };
+
+    self.startNewMessage = function ($event) {
+        console.log('startNewMessage clicked');
+       
+        $mdDialog.show({
+            controller: 'InfoController as ic',
+            templateUrl: '/views/templates/coachMessage.html',
+            parent: angular.element(document.body),
+            targetEvent: $event,
+            clickOutsideToClose: true,
+            fullscreen: self.customFullscreen // Only for -xs, -sm breakpoints.
+        })
+    } // end pop up dialog/form for startNewMessage from Coach
+
+    self.startCoachMessage = function ($event) {
+        console.log('startCoachMessage clicked');
+
+        $mdDialog.show({
+            controller: 'InfoController as ic',
+            templateUrl: '/views/templates/gymParentMessage.html',
+            parent: angular.element(document.body),
+            targetEvent: $event,
+            clickOutsideToClose: true,
+            fullscreen: self.customFullscreen // Only for -xs, -sm breakpoints.
+        })
+    }
+
+    self.sendNewMessage = function (toId, subject, message) {
+        console.log('Send New Message Clicked')
+        console.log (toId, subject, message)
+        self.closeDialog();
+        self.coachMessage.subject = subject;
+        self.coachMessage.message = message;
+        return $http.post('/message/', self.coachMessage).then(function (response) {
             console.log('response', response);
-            $location.path('/user');
+            return response
         }).catch(function (response) {
             console.log('Message to coach error.');
             self.message = "Error - please try to send message again."
         });
     };
-
 
     // self.sendMessage = function () {
     //     console.log('Send Message from Coach Clicked')
@@ -80,9 +120,10 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, UserServi
    self.theReplyMessage.replyTo = fromId;
    var reply = self.theReplyMessage;
    console.log('the reply', self.theReplyMessage);
-        $http.post('/message/reply/', reply).then(function (response) {
+        return $http.post('/message/reply/', reply).then(function (response) {
             console.log('response', response);
-            self.getMessage();//send back to user home after message sent
+            return response
+            // self.getMessage();//send back to user home after message sent
         }).catch(function (response) {
             console.log('Reply error.');
             self.message = "Error - please try to reply to message again."

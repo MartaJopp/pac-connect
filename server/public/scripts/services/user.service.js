@@ -1,4 +1,4 @@
-myApp.service('UserService', function ($http, $location) {
+myApp.service('UserService', function ($http, $location, $mdDialog) {
   console.log('UserService Loaded');
   var self = this;
   self.userObject = {};

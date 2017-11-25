@@ -1,4 +1,4 @@
-myApp.controller('UserController', function ($mdDialog, UserService, MessageService) {
+myApp.controller('UserController', function ($mdDialog, $mdToast, UserService, MessageService) {
   console.log('UserController created');
   var vm = this;
   vm.userService = UserService;
@@ -32,7 +32,26 @@ vm.cancel = function () {
 }
 
   vm.answer = function (conversationId, messageSubject, fromId) {
-    MessageService.answer(conversationId, messageSubject, fromId);
+    MessageService.answer(conversationId, messageSubject, fromId).then(function (response){
+      MessageService.getMessage();
+      $mdToast.show(
+        $mdToast.simple()
+          .textContent('Reply Sent!')
+          .hideDelay(2500)
+      );
+    })
 }
+
+  vm.startNewMessage = function ($event) {
+    MessageService.startNewMessage($event)
+  }
+
+  vm.startCoachMessage = function ($event) {
+    MessageService.startCoachMessage($event)
+  }
+
+  // vm.sendNewMessage = function (toId, subject, message) {
+  //   MessageService.sendNewMessage(toId, subject, message)
+  // }
 
 });

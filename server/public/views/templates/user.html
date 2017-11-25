@@ -3,9 +3,12 @@
 
     <h1 id="welcome" class="lead">Welcome, {{uc.userObject.userName}}!</h1>
     <button class="btn btn-default" ng-click="uc.userService.logout()">Log Out</button>
+    <md-button ng-click="uc.startNewMessage($event)" ng-if="uc.userObject.user_role === 'coach'" class="md-raised md-primary">Send Message</md-button>
+<md-button ng-click="ic.startCoachMessage($event)" ng-if="uc.userObject.user_role != 'coach'" class="md-raised md-primary">Send Message</md-button>
 
-    {{uc.allMessages.data}}
-    {{uc.status}}
+
+    <!-- {{uc.allMessages.data}} -->
+  
     
     <!-- <md-button class="md-primary md-raised" ng-click="uc.showAdvanced($event)">
         Custom Dialog
