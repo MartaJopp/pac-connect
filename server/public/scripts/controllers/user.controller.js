@@ -52,14 +52,14 @@ vm.cancel = function () {
 
   vm.deleteGymnast = function (gymnastId) {
     var toast = $mdToast.simple()
-      .textContent('Marked as read')
-      .action('UNDO')
+      .textContent('Are you sure you want to delete?')
+      .action('Cancel')
       .highlightAction(true)
       .highlightClass('md-accent');
 
     $mdToast.show(toast).then(function (response) {
       if (response == 'ok') {
-        alert('You clicked the \'UNDO\' action.')}
+        alert('Delete cancelled.')}
         else {
     UserService.deleteGymnast(gymnastId).then(function (response){
     
