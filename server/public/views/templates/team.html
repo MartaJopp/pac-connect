@@ -16,10 +16,15 @@
             <td class="name">{{gymnast.name}}</td>
             <td>{{gymnast.level}}</td>
             <td>
-                <i class="material-icons blue1">mode_edit</i>
+                <md-button class="md-icon-button" aria-label="Edit">
+                    <md-icon class="material-icons blue1" ng-click="uc.editGymnast(gymnast.gymnast_id)">edit</md-icon>
+                </md-button>
+
             </td>
             <td>
-                <i class="material-icons red1">delete</i>
+                <md-button class="md-icon-button" aria-label="Delete">
+                    <md-icon class="material-icons red1" ng-click="uc.deleteGymnast(gymnast.gymnast_id)">delete</md-icon>
+                </md-button>
             </td>
         </tr>
         <!-- <li>{{gymnast.level}}</li> -->

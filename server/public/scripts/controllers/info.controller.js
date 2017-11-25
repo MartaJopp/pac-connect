@@ -52,7 +52,6 @@ myApp.controller('InfoController', function ($mdDialog, $mdToast, UserService, M
           .hideDelay(2500)
       );
 
-
     })
   }
 

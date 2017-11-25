@@ -52,11 +52,10 @@ myApp.service('UserService', function ($http, $location, $mdDialog) {
       console.log('Error getting dropdown');
     });
   }
-  // this.getMessage = function () {
-  //   console.log('get Messages called')
-  //   $http.get('/message/gymnast/').then(function (response) {
-  //     console.log('getGymnastMessages response', response);
-  //   })
-  // } // end getGymnastMessages function
+
+  self.deleteGymnast = function (gymnastId) {
+    console.log('Delete gymnast clicked, ID', gymnastId)
+    
+  }
 });
 

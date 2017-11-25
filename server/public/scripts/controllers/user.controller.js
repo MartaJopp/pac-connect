@@ -50,6 +50,9 @@ vm.cancel = function () {
     MessageService.startCoachMessage($event)
   }
 
+  vm.deleteGymnast = function (gymnastId) {
+    UserService.deleteGymnast(gymnastId)
+  }
   // vm.sendNewMessage = function (toId, subject, message) {
   //   MessageService.sendNewMessage(toId, subject, message)
   // }
