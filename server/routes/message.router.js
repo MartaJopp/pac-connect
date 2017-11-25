@@ -86,7 +86,7 @@ router.get('/gymnast/', function (req, res) {
                 console.log('Error connecting', errorConnectingToDb);
                 res.sendStatus(500);
             } else {
-                var queryText = 'SELECT * FROM "messages" JOIN "users" on "users"."id" = "messages"."to_user_id" JOIN "conversations" ON "conversations"."conversation_id" = "messages"."conversation_id" WHERE "messages"."to_user_id" = $1 OR "messages"."from_user_id" = $1;';
+                var queryText = 'SELECT * FROM "messages" JOIN "users" on "users"."id" = "messages"."to_user_id" JOIN "conversations" ON "conversations"."conversation_id" = "messages"."conversation_id" WHERE "messages"."to_user_id" = $1 OR "messages"."from_user_id" = $1 ORDER BY "messages"."message_id" DESC, "messages"."conversation_id" DESC;';
                 db.query(queryText, [loggedIn], function (errorMakingQuery, result) {
                     done(); // add + 1 to pool - we have received a result or error
                     if (errorMakingQuery) {
@@ -106,6 +106,47 @@ router.get('/gymnast/', function (req, res) {
         console.log('Not an authenticated user')
     }
 });// end get messages route
+
+//post reply messages
+router.post('/reply/', function (req, res){
+console.log('reply being sent', req.body);
+console.log('req.user id', req.user.id)
+if (req.isAuthenticated()){
+var fromId = req.user.id;
+var fromName = req.user.name;
+var replyMessage = req.body
+
+    pool.connect(function (errorConnectingToDb, db, done) {
+        if (errorConnectingToDb) {
+            // No connection to database was made - error
+            console.log('Error connecting', errorConnectingToDb);
+            res.sendStatus(500);
+        } //end if error connection to db
+        else {
+            var queryText = 'INSERT INTO "messages" ("message", "to_user_id", "from_user_id", "conversation_id", "from_name") VALUES ($1, $2, $3, $4, $5) ;';
+            db.query(queryText, [replyMessage.replyMessage, replyMessage.replyTo, fromId, replyMessage.conversation_id, fromName ], function (errorMakingQuery, result) {
+                done(); // add + 1 to pool - we have received a result or error
+                if (errorMakingQuery) {
+                    console.log('Error making query', errorMakingQuery);
+                    res.sendStatus(500);
+                }
+                else {
+
+                    res.send(result.rows);
+                }
+            }
+            ); // END QUERY
+
+        }
+
+    }); // end pool connect
+
+
+} // end req.isAuthenticated
+else {
+    console.log('User is not authenticated')
+}
+}) // end POST route for reply messages
 
 
 module.exports = router;

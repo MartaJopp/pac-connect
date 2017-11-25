@@ -18,9 +18,12 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, UserServi
     self.theReplyMessage = {
         conversation_id: '',
         replyMessage: '',
+        replyTo: ''
     }
+
     self.messageSubject = '';
     self.conversationId = '';
+    self.fromId = '';
     self.allMessages = { data: [] };
 
     self.sendCoachMessage = function () {
@@ -49,12 +52,14 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, UserServi
             self.allMessages.data = response.data;
             console.log('threads', self.allMessages);
         })
-    } // end getGymnastMessages function
+    } // end getMessages function
 
-    self.reply = function ($event, conversationId, messageSubject) {
+    self.reply = function ($event, conversationId, messageSubject, fromId) {
         console.log('reply clicked');
         self.messageSubject = messageSubject;
         self.conversationId = conversationId;
+        self.fromId = fromId;
+        console.log('fromId in reply function', fromId)
         console.log('this is the Id', conversationId);
         $mdDialog.show({
             controller: 'UserController as uc',
@@ -64,21 +69,25 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, UserServi
             clickOutsideToClose: true,
             fullscreen: self.customFullscreen // Only for -xs, -sm breakpoints.
         }) 
-    }
+    } // end pop up dialog
 
-    self.answer = function (replyMessage, conversationId) {
+    // send response from popup reply
+    self.answer = function (replyMessage, conversationId, fromId) {
         console.log('reply', replyMessage, 'conversationId', conversationId)
-   self.closeDialog(); // close the dialog box
+   self.closeDialog(); // close the dialog box once send reply 
    self.theReplyMessage.conversation_id = conversationId;
    self.theReplyMessage.replyMessage = replyMessage;
-        $http('/message/reply/', self.theReplyMessage).then(function (response) {
+   self.theReplyMessage.replyTo = fromId;
+   var reply = self.theReplyMessage;
+   console.log('the reply', self.theReplyMessage);
+        $http.post('/message/reply/', reply).then(function (response) {
             console.log('response', response);
-            $location.path('/user');
+            self.getMessage();//send back to user home after message sent
         }).catch(function (response) {
             console.log('Reply error.');
             self.message = "Error - please try to reply to message again."
         });
-    };
+    }; //end send popup reply function
     
     
     self.closeDialog = function () {

@@ -8,6 +8,7 @@ myApp.controller('UserController', function ($mdDialog, UserService, MessageServ
   vm.allMessages = MessageService.allMessages;
  vm.messageSubject = MessageService.messageSubject;
  vm.conversationId = MessageService.conversationId;
+ vm.fromId = MessageService.fromId;
   vm.status = '';
   vm.customFullscreen = false;
 
@@ -22,16 +23,16 @@ vm.getMessage = function () {
 }
   vm.getMessage();
 
-vm.reply = function ($event, conversationId, messageSubject) {
-  MessageService.reply($event, conversationId, messageSubject);
+vm.reply = function ($event, conversationId, messageSubject, fromId) {
+  MessageService.reply($event, conversationId, messageSubject, fromId);
 }
 
 vm.cancel = function () {
   MessageService.cancel();
 }
 
-  vm.answer = function (conversationId, messageSubject) {
-    MessageService.answer(conversationId, messageSubject);
+  vm.answer = function (conversationId, messageSubject, fromId) {
+    MessageService.answer(conversationId, messageSubject, fromId);
 }
 
 });
