@@ -1,80 +1,23 @@
-<div class="navbar">
-  <div class="container">
-    <ul>
-      <li>
-        <a href="#/user">User Home</a>
-        <li>
-          <a href="#/info">Send Message</a>
-        </li>
+<div ng-include="'views/partials/nav.html'"></div>
+<div class="container">
 
-        <li ng-if="ic.userObject.user_role === 'coach'" ng-click="ic.getGymnastList()">
-          <a href="#/team">Team</a>
-        </li>
-        <li md-button="submit" id="logout" class="logout" ng-click="ic.userService.logout()">Logout</li>
-    </ul>
-  </div>
+  <h1 id="welcome" class="lead">Welcome, {{uc.userObject.userName}}!</h1>
 </div>
-<!-- <div class="container">
-  <h1 id="welcome" class="lead">Welcome, {{ic.userObject.userName}}!</h1>
-  <div class="container">
-    
-<md-button ng-click="ic.startNewMessage($event)" ng-if="ic.userObject.user_role === 'coach'" class="md-raised md-primary">Send Message</md-button>
+<div>
 
-
-<md-button ng-click="ic.startCoachMessage($event)" ng-if="ic.userObject.user_role != 'coach'" class="md-raised md-primary">Send Message</md-button>
-
-    <div id="forms">
-
-       
- 
-<form id = "coachesForm" name="coachForm" ng-submit="ic.sendCoachMessage()" ng-if="ic.userObject.user_role === 'coach'">
-        <div layout-gt-xl="row">
-          <md-input-container class="md-block" flex=50>
-          <label>Send To:</label>
-          <md-select name="type" ng-model="ic.coachMessage.to_id" >
-            <md-option label class = "cool">Select a Gymnast:</md-option>
-            <md-option ng-repeat ="gymnast in ic.gymnasts.data" value = {{gymnast.gymnast_id}}>{{gymnast.name}}</md-option> <!--shows gymnasts set to that coach-->
-          <!-- <md-divider></md-divider> 
-          <md-option label class = "cool">Select a Parent:</md-option>
-          <md-option ng-repeat = "parent in ic.parents.data" value= {{parent.parent_id}}>{{parent.name}}</md-option>
-          </md-select>
-        </md-input-container>
-        </div>
-          <div layout-gt-xl="row">
-            <md-input-container class="md-block" flex-gt-xl>
-              <label>Message Subject:</label>
-              <input ng-model="ic.coachMessage.subject">
-            </md-input-container>
-          </div>
-          <div layout-gt-xl="row">
-            <md-input-container class="md-block" flex-gt-xl>
-              <label>Message:</label>
-              <textarea ng-model="ic.coachMessage.message" md-maxlength="1000" rows="10" md-select-on-focus></textarea>
-            </md-input-container>
-            <md-button type="submit" class="md-raised md-primary" id="sendButton">Send Message</md-button>
-          </div>
-      </form>
-      </div>
+  <table>
+    <th>Date Received</th>
+    <th>From</th>
+    <th>To</th>
+    <th>Subject</th>
+    <th>Message</th>
+   
   
-      <form id = "gym_Parent" name="gym_parentForm" ng-submit="ic.sendCoachMessage()" ng-if="ic.userObject.user_role != 'coach'">
-        <div layout-gt-xl="row">
-          <md-input-container class="md-block" flex-gt-xl>
-            <label id="coach">Send to Coach:</label>
-            <input ng-model="ic.user.coach_id" disabled>
-          </md-input-container>
-          <div layout-gt-xl="row">
-            <md-input-container class="md-block" flex-gt-xl>
-              <label>Message Subject:</label>
-              <input ng-model="ic.coachMessage.subject">
-            </md-input-container>
-          </div>
-          <div layout-gt-xl="row">
-            <md-input-container class="md-block" flex-gt-xl>
-              <label>Message:</label>
-              <textarea ng-model="ic.coachMessage.message" md-maxlength="1000" rows="10" md-select-on-focus></textarea>
-            </md-input-container>
-            <md-button type="submit" class="md-raised md-primary" id="sendButton">Send Message</md-button>
-          </div>
-      </form>
-      </div>
-    </div> -->  
+    <tr ng-repeat="message in uc.athleteCoachMessages.data" }}'">
+      <td>{{message.date | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a'}}</td>
+      <td>{{message.from_name}}</td>
+      <td>{{message.subject}}</td>
+      <td>{{message.message}}</td>
+     
+    </tr>
+  </table>

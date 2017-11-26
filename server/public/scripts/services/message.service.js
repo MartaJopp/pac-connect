@@ -25,18 +25,9 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, UserServi
     self.fromId = '';
     self.allMessages = { data: [] };
 
-    // self.sendCoachMessage = function () {
-    //     console.log('Send Message Clicked');
-    //     console.log(self.coachMessage);
-    //     $http.post('/message/', self.coachMessage).then(function (response) {
-    //         console.log('response', response);
-    //         $location.path('/user');
-    //     }).catch(function (response) {
-    //         console.log('Message to coach error.');
-    //         self.message = "Error - please try to send message again."
-    //     });
-    // };
+self.athleteCoachMessages = { data: [] };
 
+    
     self.startNewMessage = function ($event) {
         console.log('startNewMessage clicked');
        
@@ -61,7 +52,7 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, UserServi
             clickOutsideToClose: true,
             fullscreen: self.customFullscreen // Only for -xs, -sm breakpoints.
         })
-    }
+    } //start new message to coach from parent/gymnast
 
     self.sendNewMessage = function (toId, subject, message) {
         console.log('Send New Message Clicked')
@@ -76,13 +67,8 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, UserServi
             console.log('Message to coach error.');
             self.message = "Error - please try to send message again."
         });
-    };
+    }; //send message from the popup
 
-    // self.sendMessage = function () {
-    //     console.log('Send Message from Coach Clicked')
-    //     console.log('this is the message', self.coachMessage);
-    //     $http.post('/message/', self.coachMessage)
-    // }
 
     self.getMessage = function () {
        
@@ -133,25 +119,21 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, UserServi
     
     self.closeDialog = function () {
         $mdDialog.hide()
-    }
+    } //close dialog function
     self.cancel = function() {
         $mdDialog.cancel();
-    }
-    // self.showAdvanced = function ($event) {
-    //     console.log('showAdvanced clicked'); 
-    //     $mdDialog.show({
-    //         controller: 'UserController as uc',
-    //         templateUrl: '/views/templates/reply.html',
-    //         parent: angular.element(document.body),
-    //         targetEvent: $event,
-    //         clickOutsideToClose: true,
-    //         fullscreen: self.customFullscreen // Only for -xs, -sm breakpoints.
-    //     })
-    //         .then(function (answer) {
-    //             self.status = 'You said the information was "' + answer + '".';
-    //         }, function () {
-    //             self.status = 'You cancelled the dialog.';
-    //         });
-    // }
+    } //cancel dialog function
+
+    self.getAthleteCoachMessages = function () {
+        console.log('getting all of the messages')
+        $http.get('/message/athCoach').then(function (response) {
+            console.log('getGymnastMessages response', response);
+            self.athleteCoachMessages.data = response.data;
+        }).catch(function (response) {
+        console.log('Error getting messages.');
+        self.message = "Error - please try to send message again."
+    });
+    };      // end get messages betweeen athlete and coach
+
 
 })

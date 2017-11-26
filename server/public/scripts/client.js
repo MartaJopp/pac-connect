@@ -36,7 +36,7 @@ myApp.config(function ($routeProvider, $locationProvider) {
     })
     .when('/info', {
       templateUrl: '/views/templates/info.html',
-      controller: 'InfoController as ic',
+      controller: 'UserController as uc',
       resolve: {
         getuser: function (UserService) {
           return UserService.getuser();

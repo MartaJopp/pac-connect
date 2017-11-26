@@ -148,5 +148,36 @@ else {
 }
 }) // end POST route for reply messages
 
+//get athlete and coach messages
+router.get('/athCoach', function (req, res) {
+    if (req.isAuthenticated()) {
+        var loggedIn = req.user.id;
+        console.log('The following is logged in /gymnast', req.user);
+        pool.connect(function (errorConnectingToDb, db, done) {
+            if (errorConnectingToDb) {
+                // No connection to database was made - error
+                console.log('Error connecting', errorConnectingToDb);
+                res.sendStatus(500);
+            } else {
+                var queryText = 'SELECT * FROM "messages" JOIN "user_gymnast" on "messages"."to_user_id" = "user_gymnast"."gymnast_id" OR "messages"."from_user_id" = "user_gymnast"."gymnast_id" JOIN "conversations" on "conversations"."conversation_id" = "messages"."conversation_id" WHERE "user_gymnast"."parent_id" = $1 ORDER BY "messages"."message_id" DESC;';
+                db.query(queryText, [loggedIn], function (errorMakingQuery, result) {
+                    done(); // add + 1 to pool - we have received a result or error
+                    if (errorMakingQuery) {
+                        console.log('Error making query', errorMakingQuery);
+                        res.sendStatus(500);
+                    }
+                    else {
+
+                        res.send(result.rows);
+                    }
+                }
+                ); // END QUERY
+            }
+        }); // END POOL
+    } // end req.authenticated if statement
+    else {
+        console.log('Not an authenticated user')
+    }
+});// end get messages for coach and athlete route
 
 module.exports = router;

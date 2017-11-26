@@ -14,6 +14,7 @@ myApp.controller('UserController', function ($mdDialog, $mdToast, moment, UserSe
   vm.updateGymnast = UserService.updateGymnast;
 vm.gymnastId = UserService.gymnastId;
 vm.gymnastName = UserService.gymnastName;
+vm.athleteCoachMessages = MessageService.athleteCoachMessages;
 
 vm.getGymnastList = function () { // calls getGymnast upon click of link in nav bar
     UserService.getGymnastList();
@@ -110,5 +111,10 @@ vm.cancel = function () {
       );
   }
     )
-} 
+} // end saveEdit function
+
+vm.getAthleteCoachMessages = function() {
+  MessageService.getAthleteCoachMessages();
+}
+vm.getAthleteCoachMessages();
 });
