@@ -115,7 +115,7 @@ router.get('/coachesParents/', function (req, res) {
                     console.log('result', result);
                     var parentArray = []
                     for (var i = 0; i < result.rows.length; i++) {
-                        parentArray.push({ name: (result.rows[i].name), parent_id: (result.rows[i].id) })
+                        parentArray.push({ name: (result.rows[i].name), parent_id: (result.rows[i].parent_id) })
 
                     }
                     // console.log('result.rows', result.rows); // add + 1 to pool - we have received a result or error

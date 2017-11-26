@@ -1,7 +1,6 @@
 myApp.service('MessageService', function ($http, $location, $mdDialog, UserService) {
     console.log('MessageService Loaded');
     var self = this;
-
     
 
     self.coachMessage = {
@@ -86,6 +85,7 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, UserServi
     // }
 
     self.getMessage = function () {
+       
         console.log('get Messages called')
         $http.get('/message/gymnast/', ).then(function (response) {
             console.log('getGymnastMessages response', response);

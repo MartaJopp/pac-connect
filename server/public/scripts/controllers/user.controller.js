@@ -1,4 +1,4 @@
-myApp.controller('UserController', function ($mdDialog, $mdToast, UserService, MessageService) {
+myApp.controller('UserController', function ($mdDialog, $mdToast, moment, UserService, MessageService) {
   console.log('UserController created');
   var vm = this;
   vm.userService = UserService;

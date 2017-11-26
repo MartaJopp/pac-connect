@@ -2,50 +2,27 @@
 <div class="container">
 
     <h1 id="welcome" class="lead">Welcome, {{uc.userObject.userName}}!</h1>
-    <button class="btn btn-default" ng-click="uc.userService.logout()">Log Out</button>
     <md-button ng-click="uc.startNewMessage($event)" ng-if="uc.userObject.user_role === 'coach'" class="md-raised md-primary">Send Message</md-button>
 <md-button ng-click="uc.startCoachMessage($event)" ng-if="uc.userObject.user_role != 'coach'" class="md-raised md-primary">Send Message</md-button>
 
 
-    <!-- {{uc.allMessages.data}} -->
-  
-    
-    <!-- <md-button class="md-primary md-raised" ng-click="uc.showAdvanced($event)">
-        Custom Dialog
-    </md-button> -->
-    <!-- <div ng-repeat = "message in uc.allMessages.data">
-        <p>{{message.from_name}}</p>
-        <p>{{message.to}}</p> -->
+
         
-        <md-list flex>
-            <!-- <md-subheader class="md-no-sticky">Messages</md-subheader> -->
-            <md-list-item class="md-3-line" ng-repeat="message in uc.allMessages.data" ng-click="null">
-                <p class="md-avatar"/>{{message.date}}</p>
-                <div class="md-list-item-text" layout="column">
-                    <h3>From: {{ message.from_name }}</h3>
-                    <h4>Subject: {{ message.subject }} <md-button ng-click="uc.reply($event, message.conversation_id, message.subject, message.from_user_id)" class="md-raised md-primary">Reply</md-button> </h4>
-                    <p>{{ message.message }}</p>
-                </div>
-            </md-list-item>
-            <md-divider></md-divider>
+<table>
+    <th>Date Received</th>
+    <th>From</th>
+    <th>Subject</th>
+    <th>Message</th>
+    <th>Reply</th>
+
+    <tr ng-repeat="message in uc.allMessages.data" ng-class="'{{uc.userObject.name===message.from_name}}'">
+        <td >{{message.date | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a'}}</td>
+        <td>{{message.from_name}}</td>
+        <td>{{message.subject}}</td>
+        <td>{{message.message}}</td>
+        <td><md-button ng-click="uc.reply($event, message.conversation_id, message.subject, message.from_user_id)" class="md-raised md-primary">Reply</md-button></td>
+</tr>
+</table>
 
 
-
-
-        <!-- <h4>
-            <button class = "show1" ng-click="showMessages = ! showMessages">{{message.subject}}</button>
-        </h4>
-        <div class="messages" ng-show="showMessages">
-            <md-list-item class="md-3-line md-long-text">
-                <div class="md-list-item-text">
-                    <h3>From: {{ message.user_id}}</h3>
-                    <h3>Date Received: {{ message.timestamp}}</h3>
-                    <p>
-                        {{message.message}}
-                    </p>
-                </div>
-            </md-list-item>
-        </div>
-    </li>
-</ul> -->
 </div>

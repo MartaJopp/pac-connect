@@ -21,6 +21,7 @@ myApp.service('UserService', function ($http, $location, $mdDialog, $mdToast) {
         // user has a curret session on the server
         self.userObject.userName = response.data.username;
         self.userObject.user_role = response.data.user_role;
+        self.userObject.name = response.data.name;
         console.log('UserService -- getuser -- User Data: ', self.userObject.userName);
       } else {
         console.log('UserService -- getuser -- failure');

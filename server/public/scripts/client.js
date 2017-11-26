@@ -1,5 +1,5 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial']);
-
+var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'angularMoment']);
+myApp.constant('moment', moment);
 /// Routes ///
 myApp.config(function ($routeProvider, $locationProvider) {
   $locationProvider.hashPrefix('');
