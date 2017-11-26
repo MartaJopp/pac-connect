@@ -127,7 +127,7 @@ self.athleteCoachMessages = { data: [] };
     self.getAthleteCoachMessages = function () {
         console.log('getting all of the messages')
         $http.get('/message/athCoach').then(function (response) {
-            console.log('getGymnastMessages response', response);
+            console.log('response', response);
             self.athleteCoachMessages.data = response.data;
         }).catch(function (response) {
         console.log('Error getting messages.');
