@@ -134,3 +134,66 @@ tr:hover {background-color: #f5f5f5;}
 .true {
   background-color: lightblue;
 }
+
+.navbar {
+  background-color: #4EA8C2
+}
+
+.instructions {
+  background-color: white
+}
+
+#pWelcome {
+  float: right;
+  font-weight: bold;
+  margin-right: 50PX;
+}
+
+#replyButton {
+  border-radius: 5px;
+}
+
+#homeLogo {
+  text-align: center;
+}
+
+#theLogo {
+  float: left;
+  padding: 10px
+}
+
+.homeHeader {
+  background-color: #4EA8C2
+}
+
+#homeLogin {
+  margin-top: 60px
+}
+
+
+#usernameInput {
+  padding-bottom: 10px;
+  padding-right: 10px;
+}
+
+#passwordInput {
+   padding-bottom: 10px;
+  padding-right: 10px;
+}
+
+#loginButton {
+  float: right;
+  padding-right: 10px
+}
+
+#theButton {
+  color: #365B8F
+}
+
+.slideshow {
+  margin-top: 25PX
+}
+
+#homeWelcome {
+  text-align: center
+}

@@ -1,4 +1,25 @@
 <div class="container">
+    <div layout="row" class="homeHeader" layout-align="space-between center">
+
+        <img src="images/smaller logo.png" id="theLogo">
+
+        <form ng-submit="lc.login()" id="homeLogin">
+            <div id="usernameInput">
+                <label for="username">USERNAME:</label>
+                <input type="text" ng-model="lc.user.username" />
+            </div>
+
+            <div id="passwordInput">
+                <label for="password"> PASSWORD: </label>
+                <input type="password" ng-model="lc.user.password" />
+            </div>
+            <div id="loginButton">
+                <input class="btn btn-default" id="theButton" type="submit" name="submit" value="LOG IN" />
+                <a href="#register">Register</a>
+            </div>
+        </form>
+        </div>
+<div class="container">
     <h1 class="lead">Register</h1>
     <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h2>
         <form ng-submit="lc.registerUser()">
@@ -28,7 +49,7 @@
                     <input type="password" ng-model="lc.user.password" />
                 </div>
                 <input class="btn btn-default" type="submit" name="submit" value="Register" />
-                <a href="#home">Already a user? Login here.</a>
+                <!-- <a href="#home">Already a user? Login here.</a> -->
             </div>
             <!--end show coach div-->
             <!--show parent div-->
@@ -54,8 +75,10 @@
                     </select>
                 </div>
                 <input class="btn btn-default" type="submit" name="submit" value="Register" />
-                <a href="#home">Already a user? Login here.</a>
+                            <!-- <a href="#home">Already a user? Login here.</a> -->
+    
             </div>
+        
             <!--end show parent div-->
             <div ng-show="lc.user.user_role =='gymnast'">
                 <div>
@@ -85,8 +108,10 @@
                     </select>
                 </div>
                 <input class="btn btn-default" type="submit" name="submit" value="Register" />
-                <a href="#home">Already a user? Login here.</a>
+                <!-- <a href="#home">Already a user? Login here.</a> -->
             </div>
+                            <a href="#home">Already a user? Login here.</a>
+
         </form>
         <!--end form for all-->
 </div>

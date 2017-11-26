@@ -26,7 +26,7 @@ myApp.controller('InfoController', function ($mdDialog, $mdToast, UserService, M
     UserService.getGymnastList();
   }
 
-  vm.getGymnastList(); // calls get gymnast when coach is sending new message - shows as dropdown 
+  // vm.getGymnastList(); // calls get gymnast when coach is sending new message - shows as dropdown 
   
   vm.getCoachesParents = function () { 
     UserService.getCoachesParents();

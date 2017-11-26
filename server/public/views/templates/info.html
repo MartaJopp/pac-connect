@@ -1,10 +1,11 @@
+<header ng-include="'/views/partials/header.html'"></header>
 <div ng-include="'views/partials/nav.html'"></div>
 <div class="container">
 
-  <h1 id="welcome" class="lead">Welcome, {{uc.userObject.userName}}!</h1>
+  <p id="pWelcome" class="lead">Welcome, {{uc.userObject.userName}}!</p>
 </div>
-<div>
-
+<div layout-gt-xl = "row" class = "athleteTable">
+  
   <table>
     <th>Date Received</th>
     <th>From</th>
@@ -20,3 +21,5 @@
      
     </tr>
   </table>
+
+  </div>

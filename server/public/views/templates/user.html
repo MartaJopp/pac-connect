@@ -1,7 +1,9 @@
+<header ng-include="'/views/partials/header.html'"></header>
+
 <div ng-include="'views/partials/nav.html'"></div>
 <div class="container">
 
-    <h1 id="welcome" class="lead">Welcome, {{uc.userObject.userName}}!</h1>
+    <p id="pWelcome" class="lead">Logged In: {{uc.userObject.userName}}</p>
     <md-button ng-click="uc.startNewMessage($event)" ng-if="uc.userObject.user_role === 'coach'" class="md-raised md-primary">Send Message</md-button>
 <md-button ng-click="uc.startCoachMessage($event)" ng-if="uc.userObject.user_role != 'coach'" class="md-raised md-primary">Send Message</md-button>
 
@@ -22,7 +24,7 @@
         <!-- <td ng-if = "uc.userObject.user_role==='coach'">{{message.to_name}}</td> -->
         <td>{{message.subject}}</td>
         <td>{{message.message}}</td>
-        <td><md-button ng-click="uc.reply($event, message.conversation_id, message.subject, message.from_user_id)" class="md-raised md-primary">Reply</md-button></td>
+        <td><md-button ng-click="uc.reply($event, message.conversation_id, message.subject, message.from_user_id)" id="replyButton" class="md-raised md-primary">Reply</md-button></td>
 </tr>
 </table>
 

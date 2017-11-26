@@ -1,7 +1,45 @@
 <div class="container">
-    <h1 class="lead">Login</h1>
-    <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h2>
-        <form ng-submit="lc.login()">
+    <div layout="row" class = "homeHeader" layout-align="space-between center">
+    
+    <img src="images/smaller logo.png" id="theLogo">
+   
+<form ng-submit="lc.login()" id = "homeLogin">
+    <div id="usernameInput">
+        <label for="username">USERNAME:</label>
+        <input type="text" ng-model="lc.user.username" />
+    </div>
+    
+    <div id="passwordInput">
+        <label for="password"> PASSWORD: </label>
+        <input type="password" ng-model="lc.user.password" />
+    </div>
+    <div id="loginButton">
+        <input class="btn btn-default" id="theButton" type="submit" name="submit" value="LOG IN" />
+        <a href="#register">Register</a>
+    </div>
+</form>
+
+    </div>
+    <div layout="row" layout-align="center center" class="slideshow">
+    <md-card layout="column" layout-align="center center" style="padding-bottom: 10px">
+        <jk-carousel 
+        data="lc.arrayData" 
+        item-template-url="'views/templates/item-template.html'"
+        max-width="400" max-height="250" 
+        auto-slide="true"
+        auto-slide-time="2000">
+        </jk-carousel>
+    </md-card>
+    </div>
+    <div layout="row" layout-align="center center">
+    <H1 id="homeWelcome">Welcome to PAC Connect where communication is key in the Parent, Athlete, Coach Triangle!</H1>
+    </div>
+    <div layout="row" layout-align="center center">
+    <H3> Don't already have an account?  Click here to <a href="#register">register</a>!</H3>  
+    </div>
+    <div layout="row" layout-align="center center">
+    <!-- <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h2>
+          <form ng-submit="lc.login()">
             <div>
                 <label for="username">Username:</label>
                 <input type="text" ng-model="lc.user.username" />
@@ -14,5 +52,6 @@
                 <input class="btn btn-default" type="submit" name="submit" value="Log In" />
                 <a href="#register">Register</a>
             </div>
-        </form>
+        </form> -->
+</div>
 </div>
