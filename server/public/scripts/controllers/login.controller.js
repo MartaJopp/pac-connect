@@ -105,10 +105,9 @@ vm.messageService = MessageService;
   };
 
   vm.arrayData = [
-    {src: 'images/smaller logo.png'},
-    {src: 'images/image1.jpg'},
-    { src: 'images/image2.jpg'},
-  
+    { src: 'images/Parent.JPG'},
+    { src: 'images/Athlete.jpg'},
+    { src: 'images/smaller logo.png'}
   ]
 
 });
