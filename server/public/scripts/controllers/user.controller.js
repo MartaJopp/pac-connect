@@ -11,8 +11,11 @@ myApp.controller('UserController', function ($mdDialog, $mdToast, UserService, M
  vm.fromId = MessageService.fromId;
   vm.status = '';
   vm.customFullscreen = false;
+  vm.updateGymnast = UserService.updateGymnast;
+vm.gymnastId = UserService.gymnastId;
+vm.gymnastName = UserService.gymnastName;
 
-  vm.getGymnastList = function () { // calls getGymnast upon click of link in nav bar
+vm.getGymnastList = function () { // calls getGymnast upon click of link in nav bar
     UserService.getGymnastList();
   }
 
@@ -51,6 +54,7 @@ vm.cancel = function () {
   }
 
   vm.deleteGymnast = function (gymnastId) {
+    console.log('delete', gymnastId)
     var toast = $mdToast.simple()
       .textContent('Are you sure you want to delete?')
       .action('Cancel')
@@ -59,7 +63,18 @@ vm.cancel = function () {
 
     $mdToast.show(toast).then(function (response) {
       if (response == 'ok') {
-        alert('Delete cancelled.')}
+        // alert ('Delete cancelled.')
+        $mdDialog.show(
+          $mdDialog.alert()
+            .parent(angular.element(document.querySelector('#popupContainer')))
+            .clickOutsideToClose(true)
+            .title('Cancel!')
+            .textContent('You cancelled removing the gymnast.')
+            .ariaLabel('Alert Dialog Demo')
+            .ok('Thanks')
+            .targetEvent(event)
+        );
+      }
         else {
     UserService.deleteGymnast(gymnastId).then(function (response){
     
@@ -77,5 +92,23 @@ vm.cancel = function () {
  // vm.sendNewMessage = function (toId, subject, message) {
  } //   MessageService.sendNewMessage(toId, subject, message)
  ) // }
+  } //end delete gymnast function 
+
+  vm.editGymnast = function (gymnastId, gymnastName)  {
+    UserService.editGymnast(gymnastId, gymnastName) 
+  } //end editGymnast Function
+
+  vm.saveEdit = function (gymnastId, level) {
+    UserService.saveEdit(gymnastId, level).then(function (response) {
+
+      UserService.getGymnastList();
+
+      $mdToast.show(
+        $mdToast.simple()
+          .textContent('Update Complete!')
+          .hideDelay(2500)
+      );
   }
+    )
+} 
 });

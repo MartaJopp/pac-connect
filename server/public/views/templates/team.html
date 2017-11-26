@@ -9,7 +9,7 @@
     <table>
         <th>Gymnast Name</th>
         <th>Level</th>
-        <th>Edit</th>
+        <th>Edit Level</th>
         <th>Remove from Team?</th>
 
         <tr ng-repeat="gymnast in uc.gymnasts.data">
@@ -17,7 +17,7 @@
             <td>{{gymnast.level}}</td>
             <td>
                 <md-button class="md-icon-button" aria-label="Edit">
-                    <md-icon class="material-icons blue1" ng-click="uc.editGymnast(gymnast.gymnast_id)">edit</md-icon>
+                    <md-icon class="material-icons blue1" ng-click="uc.editGymnast(gymnast.gymnast_id, gymnast.name)">edit</md-icon>
                 </md-button>
 
             </td>

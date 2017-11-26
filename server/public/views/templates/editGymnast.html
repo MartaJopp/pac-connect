@@ -1,0 +1,59 @@
+<md-dialog class="editDialog" aria-label="editGymnast">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h3>Update {{uc.gymnastName}}'s Level</h3>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="uc.cancel()">
+                    <i class="material-icons" md-dialog-close aria-label="Close dialog">close</i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <form id="editingForm" name="editForm">
+                    <!-- <div layout-gt-xl="row">
+                        <md-input-container class="md-block" flex-gt-xl>
+                            <label>Name</label>
+                            <input ng-model="ic.editGymnast.namet">
+                        </md-input-container>
+                    </div> -->
+                    <div layout-gt-xl="row">
+                        <md-input-container class="md-block" flex=50>
+                            <label>Level</label>
+                            <md-select name = "type" ng-model="uc.gymnast.level">
+                                <md-option value = "3">Level 3</md-option>
+                                <md-option value = "4">Level 4</md-option>
+                                <md-option value= "5">Level 5</md-option>
+                                <md-option value= "6" >Level 6</md-option>
+                                <md-option value= "7" >Level 7</md-option>
+                                <md-option value="8">Level 8</md-option>
+                                <md-option value="9">Level 9</md-option>
+                                <md-option value="10">Level 10</md-option>
+                                <!-- <md-divider></md-divider> -->
+                                
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <!-- <div layout-gt-xl="row">
+                        <md-input-container class="md-block" flex-gt-xl>
+                            <label>Level:</label>
+                            <input ng-model="uc.gymnast.level" type = "number">
+                        </md-input-container>
+                        <!-- <md-button type="submit" class="md-raised md-primary" id="sendButton">Send Message</md-button> -->
+                    <!-- </div> --> 
+                </form>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <md-button ng-click="uc.cancel()">
+                Cancel
+            </md-button>
+            <span flex></span>
+
+            <md-button ng-click="uc.saveEdit(uc.gymnastId, uc.gymnast.level)">
+                Save
+            </md-button>
+        </md-dialog-actions>
+</md-dialog>
