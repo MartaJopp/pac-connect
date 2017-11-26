@@ -109,7 +109,7 @@ router.get('/coachesParents/', function (req, res) {
                 console.log('Error connecting', errorConnectingToDb);
                 res.sendStatus(500);
             } else {
-                var queryText = 'SELECT * FROM "user_gymnast" JOIN "users" on "users"."id" = "user_gymnast"."parent_id" WHERE "user_gymnast"."coach_id" = $1;';
+                var queryText = 'SELECT DISTINCT ON (parent_id) "user_gymnast"."parent_id", "users"."name" from "user_gymnast" JOIN "users" on "users"."id" = "user_gymnast"."parent_id" WHERE "user_gymnast"."coach_id" = $1;';
                 db.query(queryText, [coachId], function (errorMakingQuery, result) {
                     done();
                     console.log('result', result);
