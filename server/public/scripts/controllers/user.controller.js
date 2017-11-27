@@ -15,6 +15,8 @@ myApp.controller('UserController', function ($mdDialog, $mdToast, moment, UserSe
 vm.gymnastId = UserService.gymnastId;
 vm.gymnastName = UserService.gymnastName;
 vm.athleteCoachMessages = MessageService.athleteCoachMessages;
+vm.selected_item = null;
+vm.thisMessage = MessageService.thisMessage;
 
 vm.getGymnastList = function () { // calls getGymnast upon click of link in nav bar
     UserService.getGymnastList();
@@ -27,8 +29,8 @@ vm.getMessage = function () {
 }
   vm.getMessage();
 
-vm.reply = function ($event, conversationId, messageSubject, fromId) {
-  MessageService.reply($event, conversationId, messageSubject, fromId);
+vm.reply = function ($event, conversationId, thisMessage, messageSubject, fromId) {
+  MessageService.reply($event, conversationId, thisMessage, messageSubject, fromId);
 }
 
 vm.cancel = function () {
@@ -121,7 +123,14 @@ vm.getAthleteCoachMessages();
 // vm.openPicker = function (){
 //   MessageService.openPicker();
 // }
-
-
+vm.setItem = function(i){
+  if (vm.selected_item === i) {
+    vm.selected_item = null;
+  }
+  else {
+    vm.selected_item = i;
+  
+}
+}
 })//end user controller
 

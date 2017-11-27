@@ -20,13 +20,13 @@
         <div layout-gt-xl="row">
             <md-input-container class="md-block" flex-gt-xl>
                 <label>Message Subject:</label>
-                <input ng-model="ic.coachMessage.subject">
+                <input ng-model="ic.coachMessage.subject" placeholder = "This is the subject!">
             </md-input-container>
         </div>
         <div layout-gt-xl="row">
             <md-input-container class="md-block" flex-gt-xl>
                 <label>Message:</label>
-                <textarea ng-model="ic.coachMessage.message" md-maxlength="1000" rows="10" md-select-on-focus></textarea>
+                <textarea ng-model="ic.coachMessage.message" md-maxlength="1000" rows="10" md-select-on-focus placeholder="Write your message here."></textarea>
             </md-input-container>
         </div>
 </form>

@@ -10,10 +10,10 @@
 
 
         
-<table>
+<!-- <table>
     <th>Date Received</th>
     <th>From</th>
-    <!-- <th ng-if ="uc.userObject.user_role==='coach'">To</th> -->
+     <th ng-if ="uc.userObject.user_role==='coach'">To</th>
     <th>Subject</th>
     <th>Message</th>
     <th>Reply</th>
@@ -21,12 +21,58 @@
     <tr ng-repeat="message in uc.allMessages.data" ng-class="'{{uc.userObject.name===message.from_name}}'">
         <td >{{message.date | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a'}}</td>
         <td>{{message.from_name}}</td>
-        <!-- <td ng-if = "uc.userObject.user_role==='coach'">{{message.to_name}}</td> -->
+         <td ng-if = "uc.userObject.user_role==='coach'">{{message.to_name}}</td>
         <td>{{message.subject}}</td>
         <td>{{message.message}}</td>
         <td><md-button ng-click="uc.reply($event, message.conversation_id, message.subject, message.from_user_id)" id="replyButton" class="md-raised md-primary">Reply</md-button></td>
 </tr>
-</table>
+</table>  -->
 
-
+<!-- <div ng-repeat="message in uc.allMessages.data track by $index">
+    <button ng-click="uc.setItem(index)">Show</button>
 </div>
+    <div ng-show = '$index === uc.selected_item'>
+<p>{{message.subject}}</p>
+    </div> -->
+<!-- {{uc.allMessages.data }} -->
+
+<!-- <div data-ng-repeat="message in uc.allMessages.data track by $index">
+<div layout = "row" class = "conversation" ng-click="uc.setItem($index)">
+    Date: {{message.date | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a'}}
+    From: {{message.from_name}}
+    Subject: {{message.subject}}
+</div> -->
+
+    <!-- <li id="titleHelp" ng-click="uc.setItem($index)"> -->
+<!-- <div ng-show="$index === uc.selected_item">
+    {{message.subject}}</div>    
+    </li>
+</div>  end repeat   -->
+
+<md-card class = "messages" data-ng-repeat="message in uc.allMessages.data track by $index">
+    <md-card-header ng-click="uc.setItem($index)">
+        <!-- <md-card-avatar>
+            <img src="img/logo.svg" />
+        </md-card-avatar> -->
+        <md-card-header-text>
+            <span class="md-title" "subject">Subject: {{message.subject}} </span>
+            <span class ="md-subhead" "from">From: {{message.from_name}}</span>
+            <span class="md-subhead">{{message.date | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a'}}</span>
+        </md-card-header-text>
+    </md-card-header>
+    <!-- <img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out"> -->
+    <!-- <md-card-title>
+        <md-card-title-text>
+            <span class="md-headline">Subject: {{message.subject}}</span>
+        </md-card-title-text>
+    </md-card-title> -->
+    <md-card-content ng-show="$index === uc.selected_item">
+        <p>
+            {{message.message}}
+        </p>
+        <md-button ng-click="uc.reply($event, message.conversation_id, message, message.subject, message.from_user_id)" id="replyButton"
+            class="md-raised md-primary">Reply</md-button>
+    </md-card-content>
+</md-card>
+</div>
+

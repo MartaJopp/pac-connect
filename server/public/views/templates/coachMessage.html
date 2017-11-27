@@ -15,7 +15,7 @@
     <div layout-gt-xl="row">
         <md-input-container class="md-block" flex=50>
             <label>Send To:</label>
-            <md-select name="type" ng-model="ic.coachMessage.to_id">
+            <md-select name="type" ng-model="ic.coachMessage.to_id" placeholder="Select who to send">
                 <md-option label class="cool">Select a Gymnast:</md-option>
                 <md-option ng-repeat="gymnast in ic.gymnasts.data" value={{gymnast.gymnast_id}}>{{gymnast.name}}</md-option>
                 <!--shows gymnasts set to that coach-->
@@ -28,13 +28,13 @@
     <div layout-gt-xl="row">
         <md-input-container class="md-block" flex-gt-xl>
             <label>Message Subject:</label>
-            <input ng-model="ic.coachMessage.subject">
+            <input ng-model="ic.coachMessage.subject" placeholder="This is the subject!">
         </md-input-container>
     </div>
     <div layout-gt-xl="row">
         <md-input-container class="md-block" flex-gt-xl>
             <label>Message:</label>
-            <textarea ng-model="ic.coachMessage.message" md-maxlength="1000" rows="10" md-select-on-focus></textarea>
+            <textarea ng-model="ic.coachMessage.message" md-maxlength="1000" rows="10" md-select-on-focus placeholder="Write your message here."></textarea>
         </md-input-container>
         <!-- <md-button type="submit" class="md-raised md-primary" id="sendButton">Send Message</md-button> -->
     </div>

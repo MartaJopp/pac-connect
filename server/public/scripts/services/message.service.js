@@ -27,10 +27,12 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, $mdToast,
     self.messageSubject = '';
     self.conversationId = '';
     self.fromId = '';
+    self.thisMessage = '';
     self.allMessages = { data: [] };
+    
 
     self.athleteCoachMessages = { data: [] };
-
+self.selected_item = null;
 
     self.startNewMessage = function ($event) {
         console.log('startNewMessage clicked');
@@ -61,11 +63,12 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, $mdToast,
     self.sendNewMessage = function (toId, subject, message) {
         console.log('Send New Message Clicked')
         console.log(toId, subject, message)
-        self.closeDialog();
         self.coachMessage.subject = subject;
         self.coachMessage.message = message;
         return $http.post('/message/', self.coachMessage).then(function (response) {
             console.log('response', response);
+            self.closeDialog();
+
             return response
             self.getMessage();
         }).catch(function (response) {
@@ -85,11 +88,12 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, $mdToast,
         })
     } // end getMessages function
 
-    self.reply = function ($event, conversationId, messageSubject, fromId) {
+    self.reply = function ($event, conversationId, messageSubject, thisMessage, fromId) {
         console.log('reply clicked');
         self.messageSubject = messageSubject;
         self.conversationId = conversationId;
         self.fromId = fromId;
+        self.thisMessage = thisMessage;
         console.log('fromId in reply function', fromId)
         console.log('this is the Id', conversationId);
         $mdDialog.show({
@@ -110,6 +114,7 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, $mdToast,
         self.theReplyMessage.replyMessage = replyMessage;
         self.theReplyMessage.replyTo = fromId;
         var reply = self.theReplyMessage;
+        
         console.log('the reply', self.theReplyMessage);
         return $http.post('/message/reply/', reply).then(function (response) {
             console.log('response', response);
@@ -163,7 +168,10 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, $mdToast,
         });
     }
 
-
-
+    // self.setItem = function (i) {
+    //     console.log('clicked');
+    //     console.log('i', i);
+    //     self.selected_item = i;
+    // }
 
 })
