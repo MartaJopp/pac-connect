@@ -1,4 +1,4 @@
-myApp.service('MessageService', function ($http, $location, $mdDialog, UserService) {
+myApp.service('MessageService', function ($http, $location, $mdDialog, $mdToast, UserService) {
     console.log('MessageService Loaded');
     var self = this;
 
@@ -142,16 +142,23 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, UserServi
 
     self.fsClient = filestack.init('A1JwDWLRvRvgGNT0VV1LBz');
     self.openPicker = function () {
+        console.log(self.uploadShow);
         self.fsClient.pick({
             fromSources: ["local_file_system"],
             accept: ["image/*", "video/*"]
         }).then(function (response) {
             // declare this function to handle response
+            $mdToast.show(
+                $mdToast.simple()
+                    .textContent('File uploaded!')
+                    .hideDelay(2500)
+            );
             console.log('this is the picture', response.filesUploaded[0])
             self.coachMessage.picture.url = response.filesUploaded[0].url;
             self.coachMessage.picture.filename = response.filesUploaded[0].filename;
             console.log('what does this say?', self.coachMessage.picture.url);
-            
+            self.uploadShow = true;
+            console.log(self.uploadShow);
         });
     }
 

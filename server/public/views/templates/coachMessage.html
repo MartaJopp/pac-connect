@@ -41,19 +41,13 @@
     <div layout-gt-xl="row">
         <md-input-container class="md-block" flex-gt-xl>
     <md-button class="md-raised" ng-click="ic.openPicker()">Upload <span class="caret"></span></md-button> 
-    
-        <!-- <md-button type="submit" class="md-raised md-primary" id="sendButton">Send Message</md-button> -->
-     <div style="margin-top:10px;"> 
-       <!--  Show the thumbnail only when the picture is uploaded -->
-       <a href="{{ic.coachMessage.picture.url}}" class="thumbnail" ng-if="ic.coachMessage.picture"> 
-            <!-- the picture is rendered with width: 500 and sharpened -->
-            <img ng-src="{{ic.coachMessage.picture.url | fpConvert: {filter:'sharpen'} }}">
-        </a>
-    </div>   
     </md-input-container>
     </div>
+ 
+    
 </form>
 </div>
+
 </md-dialog-content>
 
 <md-dialog-actions layout="row">

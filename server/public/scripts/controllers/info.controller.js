@@ -7,6 +7,7 @@ myApp.controller('InfoController', function ($mdDialog, $mdToast, UserService, M
   vm.coachMessage = MessageService.coachMessage;
   vm.gymnasts = UserService.gymnasts;
   vm.parents = UserService.parents;
+  vm.uploadShow = MessageService.uploadShow;
 
   console.log('user', vm.userObject);
 
