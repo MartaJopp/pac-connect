@@ -19,12 +19,16 @@
     <script src="vendors/moment.min.js"></script>
     <script src="vendors/angular-moment.js"</script></script>
     <script src="vendors/jk-carousel.js"></script>
-    <script type="text/javascript" src="scripts/client.js"></script>
+<script type="text/javascript" src="scripts/client.js"></script>
     <script type="text/javascript" src="scripts/controllers/info.controller.js"></script>
     <script type="text/javascript" src="scripts/controllers/login.controller.js"></script>
     <script type="text/javascript" src="scripts/controllers/user.controller.js"></script>
     <script type="text/javascript" src="scripts/services/user.service.js"></script>
     <script type="text/javascript" src="scripts/services/message.service.js"></script>
+    <!-- <script src="https://static.filestackapi.com/v3/filestack.js"></script> -->
+<script src="//static.filestackapi.com/v3/filestack-0.9.12.js"></script>
+<script src="vendors/filestack.js"></script>
+<script src = "vendors/angular_filepicker.js"></script>
     <script src="vendors/sweetalert.min.js"></script>
 </head>
 
@@ -32,6 +36,11 @@
     <!-- <header ng-include="'/views/partials/header.html'"></header> -->
 
     <main ng-view></main>
+    <script src="//static.filestackapi.com/v3/filestack-0.9.12.js"></script>
+    <script>
+        const apikey = 'A1JwDWLRvRvgGNT0VV1LBz';
+        const client = filestack.init(apikey);
+    </script>
 <!-- <md-checkbox>Angular Material is working!</md-checkbox> -->
 </body>
 

@@ -104,6 +104,11 @@ self.closeDialog = function () {
     $mdDialog.hide()
   } // end close dialog function
 
+
+  
+
+
+
 } //end service function 
 ) //end service
 

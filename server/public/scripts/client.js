@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'angularMoment', 'jkAngularCarousel']);
+var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'angularMoment', 'jkAngularCarousel', 'angular-filepicker']);
 // myApp.constant('moment', moment);
 /// Routes ///
 myApp.config(function ($routeProvider, $locationProvider) {

@@ -58,4 +58,8 @@ myApp.controller('InfoController', function ($mdDialog, $mdToast, UserService, M
   vm.cancel = function () {
     MessageService.cancel()
   }
+  vm.openPicker = function () {
+    MessageService.openPicker();
+  }
+
 });

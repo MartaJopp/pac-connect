@@ -1,17 +1,21 @@
 myApp.service('MessageService', function ($http, $location, $mdDialog, UserService) {
     console.log('MessageService Loaded');
     var self = this;
-    
+
 
     self.coachMessage = {
         subject: '',
         message: '',
         to_id: '',
         from_id: '',
-        from_name: ''
-// for parent/gymnast I can set the to field on the server side.  I think I will be able to pull the 
-// dropdown on the coach in the html form to set who it is to and then send it through here with
-// data binding.  I hope.
+        from_name: '',
+        picture: {
+            url: '',
+            filename: ''
+        }
+        // for parent/gymnast I can set the to field on the server side.  I think I will be able to pull the 
+        // dropdown on the coach in the html form to set who it is to and then send it through here with
+        // data binding.  I hope.
     }
 
     self.theReplyMessage = {
@@ -25,12 +29,12 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, UserServi
     self.fromId = '';
     self.allMessages = { data: [] };
 
-self.athleteCoachMessages = { data: [] };
+    self.athleteCoachMessages = { data: [] };
 
-    
+
     self.startNewMessage = function ($event) {
         console.log('startNewMessage clicked');
-       
+
         $mdDialog.show({
             controller: 'InfoController as ic',
             templateUrl: '/views/templates/coachMessage.html',
@@ -56,7 +60,7 @@ self.athleteCoachMessages = { data: [] };
 
     self.sendNewMessage = function (toId, subject, message) {
         console.log('Send New Message Clicked')
-        console.log (toId, subject, message)
+        console.log(toId, subject, message)
         self.closeDialog();
         self.coachMessage.subject = subject;
         self.coachMessage.message = message;
@@ -71,7 +75,7 @@ self.athleteCoachMessages = { data: [] };
 
 
     self.getMessage = function () {
-       
+
         console.log('get Messages called')
         $http.get('/message/gymnast/', ).then(function (response) {
             console.log('getGymnastMessages response', response);
@@ -94,18 +98,18 @@ self.athleteCoachMessages = { data: [] };
             targetEvent: $event,
             clickOutsideToClose: true,
             fullscreen: self.customFullscreen // Only for -xs, -sm breakpoints.
-        }) 
+        })
     } // end pop up dialog
 
     // send response from popup reply
     self.answer = function (replyMessage, conversationId, fromId) {
         console.log('reply', replyMessage, 'conversationId', conversationId)
-   self.closeDialog(); // close the dialog box once send reply 
-   self.theReplyMessage.conversation_id = conversationId;
-   self.theReplyMessage.replyMessage = replyMessage;
-   self.theReplyMessage.replyTo = fromId;
-   var reply = self.theReplyMessage;
-   console.log('the reply', self.theReplyMessage);
+        self.closeDialog(); // close the dialog box once send reply 
+        self.theReplyMessage.conversation_id = conversationId;
+        self.theReplyMessage.replyMessage = replyMessage;
+        self.theReplyMessage.replyTo = fromId;
+        var reply = self.theReplyMessage;
+        console.log('the reply', self.theReplyMessage);
         return $http.post('/message/reply/', reply).then(function (response) {
             console.log('response', response);
             return response
@@ -115,12 +119,12 @@ self.athleteCoachMessages = { data: [] };
             self.message = "Error - please try to reply to message again."
         });
     }; //end send popup reply function
-    
-    
+
+
     self.closeDialog = function () {
         $mdDialog.hide()
     } //close dialog function
-    self.cancel = function() {
+    self.cancel = function () {
         $mdDialog.cancel();
     } //cancel dialog function
 
@@ -130,10 +134,28 @@ self.athleteCoachMessages = { data: [] };
             console.log('response', response);
             self.athleteCoachMessages.data = response.data;
         }).catch(function (response) {
-        console.log('Error getting messages.');
-        self.message = "Error - please try to send message again."
-    });
+            console.log('Error getting messages.');
+            self.message = "Error - please try to send message again."
+        });
     };      // end get messages betweeen athlete and coach
+
+
+    self.fsClient = filestack.init('A1JwDWLRvRvgGNT0VV1LBz');
+    self.openPicker = function () {
+        self.fsClient.pick({
+            fromSources: ["local_file_system"],
+            accept: ["image/*", "video/*"]
+        }).then(function (response) {
+            // declare this function to handle response
+            console.log('this is the picture', response.filesUploaded[0])
+            self.coachMessage.picture.url = response.filesUploaded[0].url;
+            self.coachMessage.picture.filename = response.filesUploaded[0].filename;
+            console.log('what does this say?', self.coachMessage.picture.url);
+            
+        });
+    }
+
+
 
 
 })

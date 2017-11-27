@@ -117,4 +117,11 @@ vm.getAthleteCoachMessages = function() {
   MessageService.getAthleteCoachMessages();
 }
 vm.getAthleteCoachMessages();
-});
+
+// vm.openPicker = function (){
+//   MessageService.openPicker();
+// }
+
+
+})//end user controller
+
