@@ -67,6 +67,7 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, $mdToast,
         return $http.post('/message/', self.coachMessage).then(function (response) {
             console.log('response', response);
             return response
+            self.getMessage();
         }).catch(function (response) {
             console.log('Message to coach error.');
             self.message = "Error - please try to send message again."

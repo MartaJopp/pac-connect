@@ -107,6 +107,7 @@ vm.messageService = MessageService;
   vm.arrayData = [
     { src: 'images/Parent.JPG'},
     { src: 'images/Athlete.jpg'},
+    { src: 'images/dylan.jpg' }, //placeholder for coach picture
     { src: 'images/smaller logo.png'}
   ]
 
