@@ -19,6 +19,13 @@
     <textarea ng-model="rc.replyMessage" rows="10" md-select-on-focus placeholder="Write message here."> </textarea>
 </md-input-container>
 </div>
+<div layout-gt-xl="row">
+    <md-input-container class="md-block" flex-gt-xl>
+        <md-button class="md-raised" ng-click="rc.replyPicker()">Upload
+            <span class="caret"></span>
+        </md-button>
+    </md-input-container>
+    </div>
 </md-dialog-content>
 
 <md-dialog-actions layout="row">
@@ -27,7 +34,7 @@
     </md-button>
     <span flex></span>
    
-    <md-button ng-click="rc.answer(rc.replyMessage, rc.conversationId, rc.fromId)" >
+    <md-button ng-click="rc.answer(rc.replyMessage, rc.conversationId, rc.fromId, rc.pictureUrl)" >
         Send reply
     </md-button>
 </md-dialog-actions>

@@ -24,8 +24,12 @@
         </md-card-title> -->
         <md-card-content ng-show="$index === uc.sentSelected_item">
             <p>
-                {{message.message}}
+                <pre>{{message.message}}</pre>
             </p>
+            <span ng-show="message.picture_url != ''">
+                Sent Image was not blank!
+                <img id="uploadImage" ng-src="{{message.picture_url}}" alt="image uploaded with filestack" title="{{message.picture_filename}}">
+            </span>
             <!-- <md-button ng-click="uc.reply($event, message.conversation_id, message, message.subject, message.from_user_id)" id="replyButton"
                 class="md-raised md-primary">Reply</md-button> -->
         </md-card-content>

@@ -15,9 +15,10 @@ myApp.controller('InfoController', function ($mdDialog, $mdToast, UserService, M
     MessageService.sendCoachMessage();
   }
 
-  vm.sendMessage = function () {
-    MessageService.sendMessage();
-  }
+  // commented this out because not sure this exists - but just in case not deleting it quite yet:)
+  // vm.sendMessage = function () {
+  //   MessageService.sendMessage();
+  // }
 
   vm.getCoachesParents = function () {
     UserService.getCoachesParents();

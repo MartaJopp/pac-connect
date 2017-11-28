@@ -29,6 +29,13 @@
                 <textarea ng-model="ic.coachMessage.message" md-maxlength="1000" rows="10" md-select-on-focus placeholder="Write your message here."></textarea>
             </md-input-container>
         </div>
+        <div layout-gt-xl="row">
+            <md-input-container class="md-block" flex-gt-xl>
+                <md-button class="md-raised" ng-click="ic.openPicker()">Upload
+                    <span class="caret"></span>
+                </md-button>
+            </md-input-container>
+            </div>
 </form>
 </div>
 </md-dialog-content>
@@ -39,7 +46,7 @@
     </md-button>
     <span flex></span>
 
-   <md-button ng-click="ic.sendNewMessage(ic.user.coach_id, ic.coachMessage.subject, ic.coachMessage.message)"> 
+   <md-button ng-click="ic.sendNewMessage(ic.user.coach_id, ic.coachMessage.subject, ic.coachMessage.message, ic.coachMessage.url)"> 
         Send Message
     </md-button> 
 </md-dialog-actions>

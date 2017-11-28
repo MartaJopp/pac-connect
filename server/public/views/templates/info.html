@@ -22,28 +22,31 @@
     </tr>
   </table> -->
 
-  <md-card class="parentMessages" data-ng-repeat="message in uc.athleteCoachMessages.data track by $index">
-    <md-card-header ng-click="uc.setItem($index)">
-      <!-- <md-card-avatar>
+<md-card class="parentMessages" data-ng-repeat="message in uc.athleteCoachMessages.data track by $index">
+  <md-card-header ng-click="uc.setItem($index)">
+    <!-- <md-card-avatar>
               <img src="img/logo.svg" />
           </md-card-avatar> -->
-      <md-card-header-text>
-        <span class="md-title" "subject">Subject: {{message.subject}} </span>
-        <span class="md-subhead" "from">From: {{message.from_name}}</span>
-        <span class="md-subhead">{{message.date | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a'}}</span>
-      </md-card-header-text>
-    </md-card-header>
-    <!-- <img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out"> -->
-    <!-- <md-card-title>
+    <md-card-header-text>
+      <span class="md-title" "subject">Subject: {{message.subject}} </span>
+      <span class="md-subhead" "from">From: {{message.from_name}}</span>
+      <span class="md-subhead">{{message.date | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a'}}</span>
+    </md-card-header-text>
+  </md-card-header>
+  <!-- <img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out"> -->
+  <!-- <md-card-title>
           <md-card-title-text>
               <span class="md-headline">Subject: {{message.subject}}</span>
           </md-card-title-text>
       </md-card-title> -->
-    <md-card-content ng-show="$index === uc.selected_item">
-      <p>
-        {{message.message}}
-      </p>
-    </md-card-content>
-  </md-card>
+  <md-card-content ng-show="$index === uc.selected_item">
+    <p>
+      {{message.message}}
+    </p>
+    <span ng-show="message.picture_url != ''">
+      <img id="uploadImage" ng-src="{{message.picture_url}}" alt="image uploaded with filestack" title="{{message.picture_filename}}"> Picture is not blank - info parent/athlete.
+    </span>
+  </md-card-content>
+</md-card>
 
-  </div>
+</div>

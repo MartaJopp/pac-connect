@@ -157,8 +157,8 @@ var replyMessage = req.body
             res.sendStatus(500);
         } //end if error connection to db
         else {
-            var queryText = 'INSERT INTO "messages" ("message", "to_user_id", "from_user_id", "conversation_id", "from_name") VALUES ($1, $2, $3, $4, $5) ;';
-            db.query(queryText, [replyMessage.replyMessage, replyMessage.replyTo, fromId, replyMessage.conversation_id, fromName ], function (errorMakingQuery, result) {
+            var queryText = 'INSERT INTO "messages" ("message", "to_user_id", "from_user_id", "conversation_id", "from_name", "picture_url", "picture_filename") VALUES ($1, $2, $3, $4, $5, $6, $7) ;';
+            db.query(queryText, [replyMessage.replyMessage, replyMessage.replyTo, fromId, replyMessage.conversation_id, fromName, replyMessage.picture.url, replyMessage.picture.filename], function (errorMakingQuery, result) {
                 done(); // add + 1 to pool - we have received a result or error
                 if (errorMakingQuery) {
                     console.log('Error making query', errorMakingQuery);

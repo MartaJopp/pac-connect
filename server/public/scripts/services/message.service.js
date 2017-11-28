@@ -19,7 +19,11 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, $mdToast,
     self.theReplyMessage = {
         conversation_id: '',
         replyMessage: '',
-        replyTo: ''
+        replyTo: '',
+        picture: {
+            url: '',
+            filename: ''
+        }
     }
 
     self.messageSubject = '';
@@ -114,12 +118,13 @@ self.selected_item = null;
     } // end pop up dialog
 
     // send response from popup reply
-    self.answer = function (replyMessage, conversationId, fromId) {
+    self.answer = function (replyMessage, conversationId, fromId, pictureUrl) {
         console.log('reply', replyMessage, 'conversationId', conversationId)
         self.closeDialog(); // close the dialog box once send reply 
         self.theReplyMessage.conversation_id = conversationId;
         self.theReplyMessage.replyMessage = replyMessage;
         self.theReplyMessage.replyTo = fromId;
+    
         var reply = self.theReplyMessage;
         
         console.log('the reply', self.theReplyMessage);
@@ -152,6 +157,7 @@ self.selected_item = null;
         });
     };      // end get messages betweeen athlete and coach
 
+    
 
     self.fsClient = filestack.init('A1JwDWLRvRvgGNT0VV1LBz');
     self.openPicker = function () {
@@ -172,6 +178,28 @@ self.selected_item = null;
             console.log('what does this say?', self.coachMessage.picture.url);
             self.uploadShow = true;
             console.log(self.uploadShow);
+        });
+    }
+    // self.replyClient = filestack.init('A1JwDWLRvRvgGNT0VV1LBz');
+
+    //file picker for reply message
+    self.replyPicker = function () {
+        console.log('in reply picker')
+        self.fsClient.pick({
+            fromSources: ["local_file_system"],
+            accept: ["image/*", "video/*"]
+        }).then(function (response) {
+            // declare this function to handle response
+            $mdToast.show(
+                $mdToast.simple()
+                    .textContent('File uploaded!')
+                    .hideDelay(2500)
+            );
+            console.log('this is the picture', response.filesUploaded[0])
+            self.theReplyMessage.picture.url = response.filesUploaded[0].url;
+            self.theReplyMessage.picture.filename = response.filesUploaded[0].filename;
+            console.log('what does this say?', self.theReplyMessage.picture.url);
+           
         });
     }
 
