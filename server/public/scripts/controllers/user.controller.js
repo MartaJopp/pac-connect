@@ -6,9 +6,10 @@ myApp.controller('UserController', function ($mdDialog, $mdToast, moment, UserSe
   vm.gymnasts = UserService.gymnasts;
   vm.messageService = MessageService;
   vm.allMessages = MessageService.allMessages;
- vm.messageSubject = MessageService.messageSubject;
- vm.conversationId = MessageService.conversationId;
- vm.fromId = MessageService.fromId;
+  vm.sentMessages = MessageService.sentMessages;
+//  vm.messageSubject = MessageService.messageSubject;
+//  vm.conversationId = MessageService.conversationId;
+//  vm.fromId = MessageService.fromId;
   vm.status = '';
   vm.customFullscreen = false;
   vm.updateGymnast = UserService.updateGymnast;
@@ -16,7 +17,12 @@ vm.gymnastId = UserService.gymnastId;
 vm.gymnastName = UserService.gymnastName;
 vm.athleteCoachMessages = MessageService.athleteCoachMessages;
 vm.selected_item = null;
-vm.thisMessage = MessageService.thisMessage;
+  vm.sentSelected_item = null;
+// vm.thisMessage = MessageService.thisMessage;
+//   console.log('MessageService.thisMessage', MessageService.thisMessage);
+
+
+//   vm.replyMessage = '\n\n-------------\n' + MessageService.thisMessage.message;
 
 vm.getGymnastList = function () { // calls getGymnast upon click of link in nav bar
     UserService.getGymnastList();
@@ -27,9 +33,10 @@ vm.getGymnastList = function () { // calls getGymnast upon click of link in nav 
 vm.getMessage = function () {
   MessageService.getMessage();
 }
-  vm.getMessage();
+  
 
 vm.reply = function ($event, conversationId, thisMessage, messageSubject, fromId) {
+  // console.log('\n\n-------------\n' + thisMessage.message);
   MessageService.reply($event, conversationId, thisMessage, messageSubject, fromId);
 }
 
@@ -37,16 +44,16 @@ vm.cancel = function () {
   MessageService.cancel();
 }
 
-  vm.answer = function (conversationId, messageSubject, fromId) {
-    MessageService.answer(conversationId, messageSubject, fromId).then(function (response){
-      MessageService.getMessage();
-      $mdToast.show(
-        $mdToast.simple()
-          .textContent('Reply Sent!')
-          .hideDelay(2500)
-      );
-    })
-}
+//   vm.answer = function (conversationId, messageSubject, fromId) {
+//     MessageService.answer(conversationId, messageSubject, fromId).then(function (response){
+//       MessageService.getMessage();
+//       $mdToast.show(
+//         $mdToast.simple()
+//           .textContent('Reply Sent!')
+//           .hideDelay(2500)
+//       );
+//     })
+// }
 
   vm.startNewMessage = function ($event) {
     MessageService.startNewMessage($event)
@@ -128,9 +135,24 @@ vm.setItem = function(i){
     vm.selected_item = null;
   }
   else {
-    vm.selected_item = i;
-  
+    vm.selected_item = i;  
 }
 }
+
+  vm.sentSetItem = function (i) {
+    if (vm.sentSelected_item === i) {
+      vm.sentSelected_item = null;
+    }
+    else {
+      vm.sentSelected_item = i;
+    }
+  }
+
+  vm.getSent = function () {
+    MessageService.getSent();
+  }
+  vm.getSent();
+  vm.getMessage();
+
 })//end user controller
 

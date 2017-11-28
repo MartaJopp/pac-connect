@@ -1,0 +1,33 @@
+<header ng-include="'/views/partials/header.html'"></header>
+
+<div ng-include="'views/partials/nav.html'"></div>
+<div class="container">
+
+    <p id="pWelcome" class="lead">Logged In: {{uc.userObject.userName}}</p>
+
+    <md-card class="messages" data-ng-repeat="message in uc.sentMessages.data track by $index">
+        <md-card-header ng-click="uc.sentSetItem($index)">
+            <!-- <md-card-avatar>
+                <img src="img/logo.svg" />
+            </md-card-avatar> -->
+            <md-card-header-text>
+                <span class="md-title" "subject">Subject: {{message.subject}} </span>
+                <span class="md-subhead" "from">To: {{message.name}}</span>
+                <span class="md-subhead">{{message.date | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a'}}</span>
+            </md-card-header-text>
+        </md-card-header>
+        <!-- <img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out"> -->
+        <!-- <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Subject: {{message.subject}}</span>
+            </md-card-title-text>
+        </md-card-title> -->
+        <md-card-content ng-show="$index === uc.sentSelected_item">
+            <p>
+                {{message.message}}
+            </p>
+            <!-- <md-button ng-click="uc.reply($event, message.conversation_id, message, message.subject, message.from_user_id)" id="replyButton"
+                class="md-raised md-primary">Reply</md-button> -->
+        </md-card-content>
+    </md-card>
+    </div>

@@ -52,6 +52,15 @@ myApp.config(function ($routeProvider, $locationProvider) {
         }
       }
     })
+    .when('/sent', {
+      templateUrl: '/views/templates/sent.html',
+      controller: 'UserController as uc',
+      resolve: {
+        getuser: function (UserService) {
+          return UserService.getuser();
+        }
+      }
+    })
     .otherwise({
       redirectTo: 'home'
     });

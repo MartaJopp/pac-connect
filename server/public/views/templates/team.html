@@ -2,8 +2,7 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <div class="container">
 
-    <h1 id="welcome" class="lead">Welcome, {{uc.userObject.userName}}!</h1>
-    <button class="btn btn-default" ng-click="uc.userService.logout()">Log Out</button>
+<p id="pWelcome" class="lead">Welcome, {{uc.userObject.userName}}!</p>
 </div>
 <div>
     <!-- {{uc.gymnasts.data}} -->
@@ -30,4 +29,37 @@
         </tr>
         <!-- <li>{{gymnast.level}}</li> -->
     </table>
+    <div layout = "row">
+<md-card class = "gymnasts" ng-repeat="gymnast in uc.gymnasts.data">
+    <md-card-header>
+    <md-card-avatar>
+        <img class="md-user-avatar" src="images/Calonna.jpg" />
+    </md-card-avatar>
+    <md-card-header-text>
+        <span class="md-title">Level: {{gymnast.level}}</span>
+        <span class="md-subhead">Parent: GYMNAST PARENT - NEED TO SEND</span>
+    </md-card-header-text>
+    </md-card-header>
+    <!-- <img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out"> -->
+    <md-card-title>
+        <md-card-title-text>
+            <span class="md-headline gymnast">{{gymnast.name}}</span>
+        </md-card-title-text>
+    </md-card-title>
+    <md-card-actions layout="row" layout-align="start center">
+        <md-button class="md-icon-button" aria-label="Edit">
+            <md-icon class="material-icons blue1" ng-click="uc.editGymnast(gymnast.gymnast_id, gymnast.name)">edit</md-icon>
+        </md-button>
+        <md-button class="md-icon-button" aria-label="Delete">
+            <md-icon class="material-icons red1" ng-click="uc.deleteGymnast(gymnast.gymnast_id)">delete</md-icon>
+        </md-button>
+    </md-card-actions>
+    <!-- <md-card-content> -->
+        <!-- <p>
+            The titles of Washed Out's breakthrough song and the first single from Paracosm share the two most important words in Ernest
+            Greene's musical language: feel it. It's a simple request, as well...
+        </p> -->
+    <!-- </md-card-content> -->
+    </md-card>
+</div>
 </div>

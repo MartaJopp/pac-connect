@@ -2,7 +2,6 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, $mdToast,
     console.log('MessageService Loaded');
     var self = this;
 
-
     self.coachMessage = {
         subject: '',
         message: '',
@@ -17,7 +16,6 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, $mdToast,
         // dropdown on the coach in the html form to set who it is to and then send it through here with
         // data binding.  I hope.
     }
-
     self.theReplyMessage = {
         conversation_id: '',
         replyMessage: '',
@@ -29,7 +27,7 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, $mdToast,
     self.fromId = '';
     self.thisMessage = '';
     self.allMessages = { data: [] };
-    
+    self.sentMessages = {data: []};
 
     self.athleteCoachMessages = { data: [] };
 self.selected_item = null;
@@ -81,14 +79,23 @@ self.selected_item = null;
     self.getMessage = function () {
 
         console.log('get Messages called')
-        $http.get('/message/gymnast/', ).then(function (response) {
+        $http.get('/message/gymnast/').then(function (response) {
             console.log('getGymnastMessages response', response);
             self.allMessages.data = response.data;
+            console.log('inbox', response.data)
             console.log('threads', self.allMessages);
         })
     } // end getMessages function
 
-    self.reply = function ($event, conversationId, messageSubject, thisMessage, fromId) {
+    self.getSent = function () {
+        console.log('get sent called');
+        $http.get('/message/sent/').then(function (response){
+            console.log('sent', response.data)
+            self.sentMessages.data = response.data;
+        })
+    }
+
+    self.reply = function ($event, conversationId, thisMessage, messageSubject, fromId) {
         console.log('reply clicked');
         self.messageSubject = messageSubject;
         self.conversationId = conversationId;
@@ -97,7 +104,7 @@ self.selected_item = null;
         console.log('fromId in reply function', fromId)
         console.log('this is the Id', conversationId);
         $mdDialog.show({
-            controller: 'UserController as uc',
+            controller: 'ReplyController as rc',
             templateUrl: '/views/templates/reply.html',
             parent: angular.element(document.body),
             targetEvent: $event,
