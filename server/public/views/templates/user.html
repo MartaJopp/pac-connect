@@ -4,8 +4,13 @@
 <div class="container">
 
     <p id="pWelcome" class="lead">Logged In: {{uc.userObject.userName}}</p>
-    <md-button ng-click="uc.startNewMessage($event)" ng-if="uc.userObject.user_role === 'coach'" class="md-raised md-primary">Send Message</md-button>
-<md-button ng-click="uc.startCoachMessage($event)" ng-if="uc.userObject.user_role != 'coach'" class="md-raised md-primary">Send Message</md-button>
+
+<div class = "leftColumn" layout = "row">
+    <div flex ="15" class = "sideBar">
+    <md-button ng-click="uc.startNewMessage($event)" ng-if="uc.userObject.user_role === 'coach'" class="md-raised md-primary" id="startButton">Send Message</md-button>
+<md-button ng-click="uc.startCoachMessage($event)" ng-if="uc.userObject.user_role != 'coach'" class="md-raised md-primary" id="startButton">Send Message</md-button>
+</div>
+<div flex = "80" class = "box1">
 
 
 
@@ -77,5 +82,6 @@
             class="md-raised md-primary">Reply</md-button>
     </md-card-content>
 </md-card>
+</div>
 </div>
 
