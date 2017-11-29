@@ -2,25 +2,13 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <div class="container">
 
-  <p id="pWelcome" class="lead">Welcome, {{uc.userObject.userName}}!</p>
-</div>
-<!-- <div layout-gt-xl = "row" class = "athleteTable">
-  
-  <table>
-    <th>Date Received</th>
-    <th>From</th>
-    <th>Subject</th>
-    <th>Message</th>
+  <p id="pWelcome" class="lead">Logged In: {{uc.userObject.userName}}</p>
+  <div class="leftColumn" layout="row">
+    <div flex="15" class="sideBar">
    
-  
-    <tr ng-repeat="message in uc.athleteCoachMessages.data" }}'">
-      <td>{{message.date | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a'}}</td>
-      <td>{{message.from_name}}</td>
-      <td>{{message.subject}}</td>
-      <td>{{message.message}}</td>
-     
-    </tr>
-  </table> -->
+    </div>
+    <div flex="80" class="box1">
+
 
 <md-card class="parentMessages" data-ng-repeat="message in uc.athleteCoachMessages.data track by $index">
   <md-card-header ng-click="uc.setItem($index)">
@@ -41,7 +29,7 @@
       </md-card-title> -->
   <md-card-content ng-show="$index === uc.selected_item">
     <p>
-      {{message.message}}
+      <pre>{{message.message}}</pre>
     </p>
     <span ng-show="message.picture_url != ''">
       <img id="uploadImage" ng-src="{{message.picture_url}}" alt="image uploaded with filestack" title="{{message.picture_filename}}"> Picture is not blank - info parent/athlete.

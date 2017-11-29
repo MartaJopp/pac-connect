@@ -44,10 +44,12 @@ myApp.controller('InfoController', function ($mdDialog, $mdToast, UserService, M
   //   MessageService.startCoachMessage($event)
   // }
 
+  
   vm.sendNewMessage = function (toId, subject, message) {
     MessageService.sendNewMessage(toId, subject, message).then(function (response){
-      MessageService.getMessage();
       
+      MessageService.getMessage();
+      $mdDialog.hide();
       $mdToast.show(
         $mdToast.simple()
           .textContent('Message Sent!')

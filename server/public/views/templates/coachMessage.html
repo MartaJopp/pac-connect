@@ -11,7 +11,7 @@
         </md-toolbar>
         <md-dialog-content>
             <div class="md-dialog-content">
-<form id="coachesForm" name="coachForm" ng-if="ic.userObject.user_role === 'coach'">
+<form ng-cloak name="ic.coachForm" ng-if="ic.userObject.user_role === 'coach'">
     <div layout-gt-xl="row">
         <md-input-container class="md-block" flex=50>
             <label>Send To:</label>
@@ -34,7 +34,7 @@
     <div layout-gt-xl="row">
         <md-input-container class="md-block" flex-gt-xl>
             <label>Message:</label>
-            <textarea ng-model="ic.coachMessage.message" md-maxlength="1000" rows="10" md-select-on-focus placeholder="Write your message here."></textarea>
+            <textarea ng-model="ic.coachMessage.message" rows="10" md-select-on-focus placeholder="Write your message here."></textarea>
         </md-input-container>
         <!-- <md-button type="submit" class="md-raised md-primary" id="sendButton">Send Message</md-button> -->
     </div>

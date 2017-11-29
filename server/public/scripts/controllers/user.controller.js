@@ -154,5 +154,9 @@ vm.setItem = function(i){
   vm.getSent();
   vm.getMessage();
 
+  vm.clickImage = function(event, pictureUrl) {
+    MessageService.clickImage(event, pictureUrl)
+  }
+
 })//end user controller
 

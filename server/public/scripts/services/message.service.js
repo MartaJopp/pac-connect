@@ -69,7 +69,7 @@ self.selected_item = null;
         self.coachMessage.message = message;
         return $http.post('/message/', self.coachMessage).then(function (response) {
             console.log('response', response);
-            self.closeDialog();
+            
 
             return response
             self.getMessage();
@@ -88,6 +88,7 @@ self.selected_item = null;
             self.allMessages.data = response.data;
             console.log('inbox', response.data)
             console.log('threads', self.allMessages);
+            self.getSent();
         })
     } // end getMessages function
 
@@ -121,6 +122,7 @@ self.selected_item = null;
     self.answer = function (replyMessage, conversationId, fromId, pictureUrl) {
         console.log('reply', replyMessage, 'conversationId', conversationId)
         self.closeDialog(); // close the dialog box once send reply 
+        
         self.theReplyMessage.conversation_id = conversationId;
         self.theReplyMessage.replyMessage = replyMessage;
         self.theReplyMessage.replyTo = fromId;
@@ -203,6 +205,22 @@ self.selected_item = null;
         });
     }
 
+    self.pictureUrl = ''
+    self.clickImage = function (event, pictureUrl) {
+        self.pictureUrl = pictureUrl
+        console.log(pictureUrl)
+        console.log('image clicked');
+        $mdDialog.show({
+            controller: 'ImageController as img',
+            templateUrl: '/views/templates/image.html',
+            parent: angular.element(document.body),
+            targetEvent: event,
+            clickOutsideToClose: true,
+            fullscreen: self.customFullscreen // Only for -xs, -sm breakpoints.
+        })
+    } // end pop up dialog
+
+  // end clickImage
     // self.setItem = function (i) {
     //     console.log('clicked');
     //     console.log('i', i);

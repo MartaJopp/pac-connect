@@ -5,6 +5,15 @@
 
     <p id="pWelcome" class="lead">Logged In: {{uc.userObject.userName}}</p>
 
+        <div class="leftColumn" layout="row">
+            <div flex="15" class="sideBar">
+                <md-button ng-click="uc.startNewMessage($event)" ng-if="uc.userObject.user_role === 'coach'" class="md-raised md-primary"
+                    id="startButton">Send Message</md-button>
+                <md-button ng-click="uc.startCoachMessage($event)" ng-if="uc.userObject.user_role != 'coach'" class="md-raised md-primary"
+                    id="startButton">Send Message</md-button>
+            </div>
+            <div flex="80" class="box1">
+
     <md-card class="messages" data-ng-repeat="message in uc.sentMessages.data track by $index">
         <md-card-header ng-click="uc.sentSetItem($index)">
             <!-- <md-card-avatar>
@@ -23,15 +32,15 @@
             </md-card-title-text>
         </md-card-title> -->
         <md-card-content ng-show="$index === uc.sentSelected_item">
-            <p>
-                <pre>{{message.message}}</pre>
+            <p class="test">
+               <pre> {{message.message}}</pre>
             </p>
             <span ng-show="message.picture_url != ''">
-                Sent Image was not blank!
                 <img id="uploadImage" ng-src="{{message.picture_url}}" alt="image uploaded with filestack" title="{{message.picture_filename}}">
             </span>
             <!-- <md-button ng-click="uc.reply($event, message.conversation_id, message, message.subject, message.from_user_id)" id="replyButton"
                 class="md-raised md-primary">Reply</md-button> -->
         </md-card-content>
     </md-card>
+    </div>
     </div>
