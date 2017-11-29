@@ -35,11 +35,10 @@
             <p class="test">
                <pre> {{message.message}}</pre>
             </p>
-            <span ng-show="message.picture_url != ''">
-                <img id="uploadImage" ng-src="{{message.picture_url}}" alt="image uploaded with filestack" title="{{message.picture_filename}}">
-            </span>
-            <!-- <md-button ng-click="uc.reply($event, message.conversation_id, message, message.subject, message.from_user_id)" id="replyButton"
-                class="md-raised md-primary">Reply</md-button> -->
+            <div ng-show="message.picture_url != ''">
+                <img ng-click="uc.clickImage($event, message.picture_url)" id="uploadImage" ng-src="{{message.picture_url}}" alt="{{message.picture_filename}}">
+                </div>
+           
         </md-card-content>
     </md-card>
     </div>

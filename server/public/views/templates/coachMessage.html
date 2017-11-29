@@ -1,46 +1,46 @@
 <md-dialog class="replyDialog" aria-label="Mango (Fruit)">
-    <form ng-cloak>
+    <form ng-cloak name="coachForm" ng-if="nm.userObject.user_role === 'coach'">
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h3>Send New Message</h3>
                 <span flex></span>
-                <md-button class="md-icon-button" ng-click="ic.cancel()">
+                <md-button class="md-icon-button" ng-click="nm.cancel()">
                     <i class="material-icons" md-dialog-close aria-label="Close dialog">close</i>
                 </md-button>
             </div>
         </md-toolbar>
         <md-dialog-content>
             <div class="md-dialog-content">
-<form ng-cloak name="ic.coachForm" ng-if="ic.userObject.user_role === 'coach'">
+
     <div layout-gt-xl="row">
         <md-input-container class="md-block" flex=50>
             <label>Send To:</label>
-            <md-select name="type" ng-model="ic.coachMessage.to_id" placeholder="Select who to send">
+            <md-select name="type" ng-model="nm.coachMessage.to_id" placeholder="Select who to send">
                 <md-option label class="cool">Select a Gymnast:</md-option>
-                <md-option ng-repeat="gymnast in ic.gymnasts.data" value={{gymnast.gymnast_id}}>{{gymnast.name}}</md-option>
+                <md-option ng-repeat="gymnast in nm.gymnasts.data" value={{gymnast.gymnast_id}}>{{gymnast.name}}</md-option>
                 <!--shows gymnasts set to that coach-->
                 <md-divider></md-divider>
                 <md-option label class="cool">Select a Parent:</md-option>
-                <md-option ng-repeat="parent in ic.parents.data" value={{parent.parent_id}}>{{parent.name}}</md-option>
+                <md-option ng-repeat="parent in nm.parents.data" value={{parent.parent_id}}>{{parent.name}}</md-option>
             </md-select>
         </md-input-container>
     </div>
     <div layout-gt-xl="row">
         <md-input-container class="md-block" flex-gt-xl>
             <label>Message Subject:</label>
-            <input ng-model="ic.coachMessage.subject" placeholder="This is the subject!">
+            <input ng-model="nm.coachMessage.subject" placeholder="This is the subject!">
         </md-input-container>
     </div>
     <div layout-gt-xl="row">
         <md-input-container class="md-block" flex-gt-xl>
             <label>Message:</label>
-            <textarea ng-model="ic.coachMessage.message" rows="10" md-select-on-focus placeholder="Write your message here."></textarea>
+            <textarea ng-model="nm.coachMessage.message" rows="10" md-select-on-focus placeholder="Write your message here."></textarea>
         </md-input-container>
         <!-- <md-button type="submit" class="md-raised md-primary" id="sendButton">Send Message</md-button> -->
     </div>
     <div layout-gt-xl="row">
         <md-input-container class="md-block" flex-gt-xl>
-    <md-button class="md-raised" ng-click="ic.openPicker()">Upload <span class="caret"></span></md-button> 
+    <md-button class="md-raised" ng-click="nm.openPicker()">Upload <span class="caret"></span></md-button> 
     </md-input-container>
     </div>
 </form>
@@ -49,13 +49,13 @@
 </md-dialog-content>
 
 <md-dialog-actions layout="row">
-    <md-button ng-click="ic.cancel()">
+    <md-button ng-click="nm.cancel()">
         Cancel
     </md-button>
     <span flex></span>
   
 
-   <md-button ng-click="ic.sendNewMessage(ic.coachMessage.to_id, ic.coachMessage.subject, ic.coachMessage.message, ic.coachMessage.picture.url)"> 
+   <md-button ng-click="nm.sendNewMessage(nm.coachMessage.to_id, nm.coachMessage.subject, nm.coachMessage.message, nm.coachMessage.picture.url, nm.coachMessage.picture.filename)"> 
         Send Message
     </md-button> 
 </md-dialog-actions>

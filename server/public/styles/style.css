@@ -268,9 +268,22 @@ border-bottom-color: #6D3586
 
 
 
+
 pre {white-space: pre-wrap;       /* css-3 */
  white-space: -moz-pre-wrap; 
  white-space: -pre-wrap;      /* Opera 4-6 */
  white-space: -o-pre-wrap;    
  word-wrap: break-word;  
+}
+
+#popupImage {
+  max-height: 500PX;
+  width: auto;
+}
+
+
+.imageDialog {
+  max-height: 650PX;
+  width: auto;
+
 }

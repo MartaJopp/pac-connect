@@ -45,19 +45,19 @@ myApp.controller('InfoController', function ($mdDialog, $mdToast, UserService, M
   // }
 
   
-  vm.sendNewMessage = function (toId, subject, message) {
-    MessageService.sendNewMessage(toId, subject, message).then(function (response){
+  // vm.sendNewMessage = function (toId, subject, message) {
+  //   MessageService.sendNewMessage(toId, subject, message).then(function (response){
       
-      MessageService.getMessage();
-      $mdDialog.hide();
-      $mdToast.show(
-        $mdToast.simple()
-          .textContent('Message Sent!')
-          .hideDelay(2500)
-      );
+  //     MessageService.getMessage();
+  //     $mdDialog.hide();
+  //     $mdToast.show(
+  //       $mdToast.simple()
+  //         .textContent('Message Sent!')
+  //         .hideDelay(2500)
+  //     );
 
-    })
-  }
+  //   })
+  // }
 
   vm.cancel = function () {
     MessageService.cancel()

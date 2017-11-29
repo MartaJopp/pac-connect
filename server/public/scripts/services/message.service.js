@@ -40,7 +40,7 @@ self.selected_item = null;
         console.log('startNewMessage clicked');
 
         $mdDialog.show({
-            controller: 'InfoController as ic',
+            controller: 'NewMessageController as nm',
             templateUrl: '/views/templates/coachMessage.html',
             parent: angular.element(document.body),
             targetEvent: $event,
@@ -53,7 +53,7 @@ self.selected_item = null;
         console.log('startCoachMessage clicked');
 
         $mdDialog.show({
-            controller: 'InfoController as ic',
+            controller: 'NewMessageController as nm',
             templateUrl: '/views/templates/gymParentMessage.html',
             parent: angular.element(document.body),
             targetEvent: $event,
