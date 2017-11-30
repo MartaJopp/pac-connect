@@ -30,6 +30,8 @@ vm.getGymnastList = function () { // calls getGymnast upon click of link in nav 
 
   vm.getGymnastList();
 
+
+
 vm.getMessage = function () {
   MessageService.getMessage();
 }
@@ -56,6 +58,7 @@ vm.cancel = function () {
 // }
 
   vm.startNewMessage = function ($event) {
+    UserService.getCoachesParents();
     MessageService.startNewMessage($event)
   }
 

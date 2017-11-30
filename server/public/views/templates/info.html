@@ -11,12 +11,14 @@
 
 
 <md-card class="parentMessages" data-ng-repeat="message in uc.athleteCoachMessages.data track by $index" ng-click="uc.parentRead(message.message_id)">
-  <md-card-header ng-click="uc.setItem($index)">
+  <md-card-header ng-click="uc.setItem($index)" ng-style = "message.parentRead != true && {'background-color':'#f1f1f1'}" >
     <!-- <md-card-avatar>
               <img src="img/logo.svg" />
           </md-card-avatar> -->
     <md-card-header-text>
-      <span class="md-body-1" "subject"><p ng-show="message.parentRead != true" class="material-icons">star_border</p>Subject: {{message.subject}} </span>
+    <span class="true" ng-show="message.parentRead != true">
+      Subject: {{message.subject}} </span>
+      <span class="md-body-1" "subject" ng-show="message.parentRead === true">Subject: {{message.subject}} </span>
       <span class="md-subhead" "from">From: {{message.from_name}}</span>
       <span class="md-subhead">{{message.date | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a'}}</span>
     </md-card-header-text>

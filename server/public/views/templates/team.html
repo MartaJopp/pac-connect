@@ -1,9 +1,17 @@
 <header ng-include="'/views/partials/header.html'"></header>
 <div ng-include="'views/partials/nav.html'"></div>
 <div class="container">
-
 <p id="pWelcome" class="lead">Welcome, {{uc.userObject.userName}}!</p>
-</div>
+<div class="leftColumn" layout="row">
+    <div flex="15" class="sideBar">
+        
+
+    </div>
+    <div flex="80" class="box1">
+    
+       
+
+
 <div>
     <!-- {{uc.gymnasts.data}} -->
     <table>
@@ -29,7 +37,7 @@
         </tr>
         <!-- <li>{{gymnast.level}}</li> -->
     </table>
-    <div layout = "row">
+    <!-- <div layout = "row">
 <md-card class = "gymnasts" ng-repeat="gymnast in uc.gymnasts.data">
     <md-card-header>
     <md-card-avatar>
@@ -41,7 +49,7 @@
     </md-card-header-text>
     </md-card-header>
     <!-- <img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out"> -->
-    <md-card-title>
+    <!-- <md-card-title>
         <md-card-title-text>
             <span class="md-headline gymnast">{{gymnast.name}}</span>
         </md-card-title-text>
@@ -53,13 +61,14 @@
         <md-button class="md-icon-button" aria-label="Delete">
             <md-icon class="material-icons red1" ng-click="uc.deleteGymnast(gymnast.gymnast_id)">delete</md-icon>
         </md-button>
-    </md-card-actions>
+    </md-card-actions> --> 
     <!-- <md-card-content> -->
         <!-- <p>
             The titles of Washed Out's breakthrough song and the first single from Paracosm share the two most important words in Ernest
             Greene's musical language: feel it. It's a simple request, as well...
         </p> -->
     <!-- </md-card-content> -->
-    </md-card>
+    <!-- </md-card> -->
+</div>
 </div>
 </div>
