@@ -11,11 +11,15 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, $mdToast,
         picture: {
             url: '',
             filename: ''
-        }
+        },
+        read: '',
+        parentRead: ''
         // for parent/gymnast I can set the to field on the server side.  I think I will be able to pull the 
         // dropdown on the coach in the html form to set who it is to and then send it through here with
         // data binding.  I hope.
     }
+
+
     self.theReplyMessage = {
         conversation_id: '',
         replyMessage: '',
@@ -31,10 +35,10 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, $mdToast,
     self.fromId = '';
     self.thisMessage = '';
     self.allMessages = { data: [] };
-    self.sentMessages = {data: []};
+    self.sentMessages = { data: [] };
 
     self.athleteCoachMessages = { data: [] };
-self.selected_item = null;
+    self.selected_item = null;
 
     self.startNewMessage = function ($event) {
         console.log('startNewMessage clicked');
@@ -69,7 +73,7 @@ self.selected_item = null;
         self.coachMessage.message = message;
         return $http.post('/message/', self.coachMessage).then(function (response) {
             console.log('response', response);
-            
+
 
             return response
             self.getMessage();
@@ -94,7 +98,7 @@ self.selected_item = null;
 
     self.getSent = function () {
         console.log('get sent called');
-        $http.get('/message/sent/').then(function (response){
+        $http.get('/message/sent/').then(function (response) {
             console.log('sent', response.data)
             self.sentMessages.data = response.data;
         })
@@ -122,13 +126,13 @@ self.selected_item = null;
     self.answer = function (replyMessage, conversationId, fromId, pictureUrl) {
         console.log('reply', replyMessage, 'conversationId', conversationId)
         self.closeDialog(); // close the dialog box once send reply 
-        
+
         self.theReplyMessage.conversation_id = conversationId;
         self.theReplyMessage.replyMessage = replyMessage;
         self.theReplyMessage.replyTo = fromId;
-    
+
         var reply = self.theReplyMessage;
-        
+
         console.log('the reply', self.theReplyMessage);
         return $http.post('/message/reply/', reply).then(function (response) {
             console.log('response', response);
@@ -159,7 +163,7 @@ self.selected_item = null;
         });
     };      // end get messages betweeen athlete and coach
 
-    
+
 
     self.fsClient = filestack.init('A1JwDWLRvRvgGNT0VV1LBz');
     self.openPicker = function () {
@@ -201,7 +205,7 @@ self.selected_item = null;
             self.theReplyMessage.picture.url = response.filesUploaded[0].url;
             self.theReplyMessage.picture.filename = response.filesUploaded[0].filename;
             console.log('what does this say?', self.theReplyMessage.picture.url);
-           
+
         });
     }
 
@@ -220,7 +224,25 @@ self.selected_item = null;
         })
     } // end pop up dialog
 
-  // end clickImage
+    self.messageRead = function (messageId) {
+        console.log(messageId);
+       return $http.put('/message/read/' + messageId).then(function (response) {
+        return response
+
+        }).catch(function (response) {
+            console.log('Error updating messages.');
+
+        });
+    } //end messageRead
+
+    self.parentRead = function (messageId) {
+return $http.put('/message/parentRead/' + messageId).then(function(response){
+    return response
+}).catch(function (response){
+    console.log('Error updating.');
+})
+    }//end parentRead
+    // end clickImage
     // self.setItem = function (i) {
     //     console.log('clicked');
     //     console.log('i', i);

@@ -1,4 +1,4 @@
-myApp.controller('LoginController', function ($http, $location, UserService, MessageService) {
+myApp.controller('LoginController', function ($http, $mdDialog, $location, UserService, MessageService) {
   console.log('LoginController created');
   var vm = this;
   vm.user = {
@@ -110,5 +110,18 @@ vm.messageService = MessageService;
     { src: 'images/unnamed.jpg' }, //placeholder for coach picture
     { src: 'images/smaller logo.png'}
   ]
+
+  vm.register = function (event) {
+    console.log('register clicked')
+
+    $mdDialog.show({
+      controller: 'RegisterController as reg',
+      templateUrl: '/views/templates/aregister.html',
+      parent: angular.element(document.body),
+      targetEvent: event,
+      clickOutsideToClose: true,
+      fullscreen: self.customFullscreen // Only for -xs, -sm breakpoints.
+    })
+  }
 
 });

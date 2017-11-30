@@ -13,16 +13,19 @@
                 id="startButton">Send Message</md-button>
         </div>
         <div flex="80" class="box1">
-
-            <md-card class="messages" data-ng-repeat="message in uc.allMessages.data track by $index">
+            <md-card class="messages" data-ng-repeat="message in uc.allMessages.data track by $index" ng-click="uc.messageRead(message.message_id)">
                 <md-card-header ng-click="uc.setItem($index)">
-                    <!-- <md-card-avatar>
-            <img src="img/logo.svg" />
-        </md-card-avatar> -->
-                    <md-card-header-text>
-                        <span class="md-title" "subject">Subject: {{message.subject}} </span>
+                    
+                    
+                    <!-- <md-card-avatar class="readSymbol" ng-show = "message.read === true">
+                        <p ng-show = "message.read === true" class="material-icons">star_border</p>
+        </md-card-avatar>  -->
+                   
+        <md-card-header-text >
+                        <span class="md-body-1" "subject" ><p ng-show="message.read != true" class="material-icons">star_border</p>
+Subject: {{message.subject}} </span>
                         <span class="md-subhead" "from">From: {{message.from_name}}</span>
-                        <span class="md-subhead">{{message.date | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a'}}</span>
+                        <span class="md-subhead" "date">{{message.date | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a'}}</span>
                     </md-card-header-text>
                 </md-card-header>
                 <!-- <img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out"> -->

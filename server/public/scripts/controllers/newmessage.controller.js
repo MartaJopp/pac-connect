@@ -1,4 +1,4 @@
-myApp.controller('NewMessageController', function ($mdDialog, $mdToast, moment, UserService, MessageService) {
+myApp.controller('NewMessageController', function ($scope, $mdDialog, $mdToast, moment, UserService, MessageService) {
     var vm = this;
     vm.messageService = MessageService;
     vm.userService = UserService;
@@ -17,9 +17,12 @@ myApp.controller('NewMessageController', function ($mdDialog, $mdToast, moment, 
 
     vm.sendNewMessage = function (toId, subject, message) {
         MessageService.sendNewMessage(toId, subject, message).then(function (response) {
-           
+            
             MessageService.getMessage();
             vm.closeDialog();
+            vm.coachMessage.message = '';
+            vm.coachMessage.to_id = '';
+            vm.coachMessage.subject = '';
             $mdToast.show(
                 $mdToast.simple()
                     .textContent('Message Sent!')

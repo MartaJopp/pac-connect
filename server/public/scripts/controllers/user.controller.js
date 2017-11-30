@@ -131,6 +131,7 @@ vm.getAthleteCoachMessages();
 //   MessageService.openPicker();
 // }
 vm.setItem = function(i){
+  console.log('clicked')
   if (vm.selected_item === i) {
     vm.selected_item = null;
   }
@@ -140,6 +141,7 @@ vm.setItem = function(i){
 }
 
   vm.sentSetItem = function (i) {
+    
     if (vm.sentSelected_item === i) {
       vm.sentSelected_item = null;
     }
@@ -156,6 +158,21 @@ vm.setItem = function(i){
 
   vm.clickImage = function(event, pictureUrl) {
     MessageService.clickImage(event, pictureUrl)
+  }
+
+  vm.messageRead = function (messageId) {
+  
+    MessageService.messageRead(messageId).then(function(response){
+      vm.getMessage();
+      vm.getSent();
+    })
+}
+
+  vm.parentRead = function (messageId) {
+
+    MessageService.parentRead(messageId).then(function(response){
+      vm.getAthleteCoachMessages();
+    })
   }
 
 })//end user controller

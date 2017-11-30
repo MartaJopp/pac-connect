@@ -22,11 +22,12 @@
 <div class="container">
     <h1 class="lead">Register</h1>
     <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h2>
+       
         <form ng-submit="lc.registerUser()">
             <div>
                 <label for="gym_id">What is your USA Gymnastics Member Club Id?</label>
                 <input type="number" ng-model="lc.user.gym_id" />
-            </div>
+            </div> 
             <div>
                 <label for="role">I am a:</label>
                 <select ng-options="x for x in lc.roles" ng-change="lc.groupSelected(lc.user.user_role, lc.user.gym_id)" ng-model="lc.user.user_role"></select>

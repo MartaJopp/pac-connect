@@ -1,0 +1,96 @@
+<md-dialog class="regDialog" id ="regDialog" aria-label="Register Pop Up">
+    <form ng-cloak name="regForm" id="regForm" ng-submit="reg.registerUser()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h3>PAC Connect Registration</h3>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="reg.cancel()">
+                    <i class="material-icons" md-dialog-close aria-label="Close dialog">close</i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content id="regFormContent">
+            <div class="md-dialog-content">
+                <div layout-gt-xl="row">
+                    <md-input-container class="md-block" flex-gt-xl>
+                        <label>What is your USA Gymnastics Club Member Id?</label>
+                        <input id="reginput" ng-model="reg.user.gym_id">
+                    </md-input-container>
+                </div>
+                <div layout-gt-xl="row">
+                    <md-input-container class="md-block" flex=50>
+                        <label>I am a:</label>
+                        <md-select id = "regroledrop" ng-model="reg.user.user_role" ng-change="reg.groupSelected(reg.user.user_role, reg.user.gym_id)">
+                            <md-option id="regroledrop" ng-value="role" ng-repeat="role in reg.roles">{{role}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+        <!-- </md-dialog-content> -->
+            <!-- <div ng-show="reg.user.user_role =='coach'"> -->
+    <div layout-gt-xl="row">
+        <md-input-container class="md-block" flex-gt-xl>
+            <label>Name</label>
+            <input id="regname" ng-model="reg.user.name">
+        </md-input-container>
+    </div>
+    <div layout-gt-xl="row">
+        <md-input-container class="md-block" flex-gt-xl>
+            <label>Username</label>
+            <input id="regusername" ng-model="reg.user.username">
+        </md-input-container>
+    </div>
+    <div layout-gt-xl="row">
+        <md-input-container class="md-block" flex-gt-xl>
+            <label>Password</label>
+            <input id="regpassword" type="password" ng-model="reg.user.password">
+        </md-input-container>
+    </div>
+    <!-- </div>  -->
+    <!-- end show coach form -->
+<div ng-show="reg.user.user_role =='parent'">
+
+<div layout-gt-xl="row">
+    <md-input-container class="md-block" flex=50>
+        <label>My child's coach is:</label>
+        <md-select name="type" ng-model="reg.user.coach_id">
+            <md-option ng-repeat="coach in reg.coaches.data" value={{coach.id}}>{{coach.name}}</md-option>
+</md-select>
+    </md-input-container>
+</div>
+</div> <!-- end show parent form -->
+
+<div ng-show="reg.user.user_role =='gymnast'">
+
+    <div layout-gt-xl="row">
+        <md-input-container class="md-block" flex=50>
+            <label>My registered parent/guardian is:</label>
+            <md-select name="type" ng-model="reg.user.parent_id">
+                <md-option ng-repeat="parent in reg.parents.data" value={{parent.id}}>{{parent.name}}</md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+
+    <div layout-gt-xl="row">
+        <md-input-container class="md-block" flex=50>
+            <label>My coach is:</label>
+            <md-select name="type" ng-model="reg.user.coach_id">
+                <md-option ng-repeat="coach in reg.coaches.data" value={{coach.id}}>{{coach.name}}</md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+</div><!-- end show gymnast form -->
+</div> <!--end md-dialog-content div-->
+</md-dialog-content>
+<md-dialog-actions class="regDiagAct" layout="row">
+    <md-button ng-click="reg.cancel()">
+        Cancel
+    </md-button>
+    <span flex></span>
+    <!-- <input class="btn btn-default" type="submit" name="submit" value="submit" /> -->
+    <md-button class="md-raised" type="submit" name="submit" value="submit">
+        Register
+    </md-button>
+</md-dialog-actions>
+            
+    </form>
+</md-dialog>

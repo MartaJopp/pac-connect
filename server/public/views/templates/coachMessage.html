@@ -1,5 +1,5 @@
-<md-dialog class="replyDialog" aria-label="Mango (Fruit)">
-    <form ng-cloak name="coachForm" ng-if="nm.userObject.user_role === 'coach'">
+<md-dialog class="replyDialog" aria-label="Reply Pop Up">
+    <form ng-cloak name="coachForm" id="coachForm" ng-if="nm.userObject.user_role === 'coach'">
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h3>Send New Message</h3>
@@ -43,7 +43,7 @@
     <md-button class="md-raised" ng-click="nm.openPicker()">Upload <span class="caret"></span></md-button> 
     </md-input-container>
     </div>
-</form>
+
 </div>
 
 </md-dialog-content>
@@ -59,4 +59,5 @@
         Send Message
     </md-button> 
 </md-dialog-actions>
+</form>
 </md-dialog>

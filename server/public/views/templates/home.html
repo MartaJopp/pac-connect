@@ -2,7 +2,7 @@
     <div layout="row" class = "homeHeader" layout-align="space-between center">
     
     <img src="images/smaller logo.png" id="theLogo">
-   
+    
 <form ng-submit="lc.login()" id = "homeLogin">
     <div id="usernameInput">
         <label for="username">USERNAME:</label>
@@ -15,7 +15,7 @@
     </div>
     <div id="loginButton">
         <md-button type = "submit" value="LOG IN" name="submit" id = "logButton">LOGIN</md-button>
-        <a href="#register">Register</a>
+        <a class = "link" ng-click="lc.register($event)">Register</a>
         
         <!-- <input class="btn btn-default" id="theButton" type="submit" name="submit" value="LOG IN" />
         <a href="#register">Register</a> -->
@@ -39,7 +39,7 @@
     <H1 id="homeWelcome">Welcome to PAC Connect where communication is key in the Parent, Athlete, Coach Triangle!</H1>
     </div>
     <div layout="row" layout-align="center center">
-    <H3> Don't already have an account?  Click here to <a href="#register">register</a>!</H3>  
+    <H3> Don't already have an account?  Click here to <a class = "link" ng-click="lc.register($event)">register</a>!</H3>  
     </div>
     <div layout="row" layout-align="center center">
     <!-- <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h2>

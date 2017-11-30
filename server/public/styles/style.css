@@ -132,7 +132,6 @@ tr:hover {background-color: #f5f5f5;}
 }
 
 .true {
-  background-color: lightblue;
 }
 
 .navbar {
@@ -256,6 +255,7 @@ border-bottom-color: #6D3586
 #uploadImage {
   width: 100PX;
   height: auto;
+  cursor: pointer;
 }
 
 #logButton {
@@ -286,4 +286,45 @@ pre {white-space: pre-wrap;       /* css-3 */
   max-height: 650PX;
   width: auto;
 
+}
+
+#clubId {
+  width: 300px;
+}
+
+#roleInput {
+  margin-top: -20px;
+  width: 300PX;
+}
+
+.regDialog {
+  width: 500PX;
+  min-height: 300PX;
+}
+
+.link {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.material-icons {
+  height: 20px;
+  width: auto;
+  padding: 5px;
+ color: #3D86A7;
+}
+
+#reginput, #regname, #regusername, #regpassword {
+  width: 310px;
+}
+
+
+
+#regroledrop {
+  width: 310px;
+}
+
+#regDialog {
+  width: 350px;
 }
