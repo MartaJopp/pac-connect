@@ -165,49 +165,49 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, $mdToast,
 
 
 
-    self.fsClient = filestack.init('A1JwDWLRvRvgGNT0VV1LBz');
-    self.openPicker = function () {
-        console.log(self.uploadShow);
-        self.fsClient.pick({
-            fromSources: ["local_file_system"],
-            accept: ["image/*", "video/*"]
-        }).then(function (response) {
-            // declare this function to handle response
-            $mdToast.show(
-                $mdToast.simple()
-                    .textContent('File uploaded!')
-                    .hideDelay(2500)
-            );
-            console.log('this is the picture', response.filesUploaded[0])
-            self.coachMessage.picture.url = response.filesUploaded[0].url;
-            self.coachMessage.picture.filename = response.filesUploaded[0].filename;
-            console.log('what does this say?', self.coachMessage.picture.url);
-            self.uploadShow = true;
-            console.log(self.uploadShow);
-        });
-    }
+    // self.fsClient = filestack.init('A1JwDWLRvRvgGNT0VV1LBz');
+    // self.openPicker = function () {
+    //     console.log(self.uploadShow);
+    //     self.fsClient.pick({
+    //         fromSources: ["local_file_system"],
+    //         accept: ["image/*", "video/*"]
+    //     }).then(function (response) {
+    //         // declare this function to handle response
+    //         $mdToast.show(
+    //             $mdToast.simple()
+    //                 .textContent('File uploaded!')
+    //                 .hideDelay(2500)
+    //         );
+    //         console.log('this is the picture', response.filesUploaded[0])
+    //         self.coachMessage.picture.url = response.filesUploaded[0].url;
+    //         self.coachMessage.picture.filename = response.filesUploaded[0].filename;
+    //         console.log('what does this say?', self.coachMessage.picture.url);
+    //         self.uploadShow = true;
+    //         console.log(self.uploadShow);
+    //     });
+    // }
     // self.replyClient = filestack.init('A1JwDWLRvRvgGNT0VV1LBz');
 
     //file picker for reply message
-    self.replyPicker = function () {
-        console.log('in reply picker')
-        self.fsClient.pick({
-            fromSources: ["local_file_system"],
-            accept: ["image/*", "video/*"]
-        }).then(function (response) {
-            // declare this function to handle response
-            $mdToast.show(
-                $mdToast.simple()
-                    .textContent('File uploaded!')
-                    .hideDelay(2500)
-            );
-            console.log('this is the picture', response.filesUploaded[0])
-            self.theReplyMessage.picture.url = response.filesUploaded[0].url;
-            self.theReplyMessage.picture.filename = response.filesUploaded[0].filename;
-            console.log('what does this say?', self.theReplyMessage.picture.url);
+    // self.replyPicker = function () {
+    //     console.log('in reply picker')
+    //     self.fsClient.pick({
+    //         fromSources: ["local_file_system"],
+    //         accept: ["image/*", "video/*"]
+    //     }).then(function (response) {
+    //         // declare this function to handle response
+    //         $mdToast.show(
+    //             $mdToast.simple()
+    //                 .textContent('File uploaded!')
+    //                 .hideDelay(2500)
+    //         );
+    //         console.log('this is the picture', response.filesUploaded[0])
+    //         self.theReplyMessage.picture.url = response.filesUploaded[0].url;
+    //         self.theReplyMessage.picture.filename = response.filesUploaded[0].filename;
+    //         console.log('what does this say?', self.theReplyMessage.picture.url);
 
-        });
-    }
+    //     });
+    // }
 
     self.pictureUrl = ''
     self.clickImage = function (event, pictureUrl) {
@@ -248,5 +248,16 @@ return $http.put('/message/parentRead/' + messageId).then(function(response){
     //     console.log('i', i);
     //     self.selected_item = i;
     // }
+
+    self.attendance = function (event){
+        $mdDialog.show({
+            controller: 'AttendanceController as ac',
+            templateUrl: '/views/templates/attendance.html',
+            parent: angular.element(document.body),
+            targetEvent: event,
+            clickOutsideToClose: true,
+            fullscreen: self.customFullscreen // Only for -xs, -sm breakpoints.
+        })
+    }
 
 })

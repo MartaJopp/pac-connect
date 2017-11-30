@@ -18,6 +18,7 @@ myApp.controller('RegisterController', function ($http, $mdDialog, $mdToast, mom
     vm.parents = { data: [] };
 
     vm.groupSelected = function (selectedGroup, gymId) {
+        console.log('running the change!!')
         console.log('selected', selectedGroup);
         console.log('gymId', gymId);
         if (selectedGroup === 'parent') {

@@ -1,0 +1,98 @@
+<md-dialog class="replyDialog" id="replyDialog" aria-label="Attendance Pop Up">
+    <form ng-cloak name="attendanceForm" id="attendanceForm" ng-submit="ac.sendAttendance()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h3>Attendance</h3>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="ac.cancel()">
+                    <i class="material-icons" md-dialog-close aria-label="Close dialog">close</i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content id="attendance Content">
+            <div class="md-dialog-content">
+                <md-datepicker ng-model="ac.attendanceStatus.date" md-placeholder="Enter date"></md-datepicker>
+    <md-card class="gymnasts" ng-repeat="gymnast in ac.gymnasts.data track by $index">
+        <md-card-header>
+            <md-card-header-text>
+                <span class="md-subhead" value={{gymnast.gymnast_id}}>{{gymnast.name}}</span>
+<label ng-repeat="choice in ac.choices track by $index"></label>
+
+<span ng-repeat="choice in ac.choices">
+    <label class="checkbox" for="{{choice.selected}}">
+        <input type="checkbox" ng-model="selection.ids[choice.selected]" name="group" id="{{choice.selected}}" /> {{choice.name}}
+    </label>
+</span>
+    <!--
+    - Use `value="{{fruit.name}}"` to give the input a real value, in case the form gets submitted
+      traditionally
+
+    - Use `ng-checked="fruit.selected"` to have the checkbox checked based on some angular expression
+      (no two-way-data-binding)
+
+    - Use `ng-model="fruit.selected"` to utilize two-way-data-binding. Note that `.selected`
+      is arbitrary. The property name could be anything and will be created on the object if not present.
+  -->
+    <!-- <input type="checkbox" value="{{choice.name}}" ng-model="choice.selected"> {{choice.name}}
+</label> -->
+                
+        <!-- <div layout-gt-xl="row">
+            <div flex="50" ng-repeat="choice in ac.statusChoices">
+                <md-checkbox ng-checked="ac.attendanceStatus.status">
+                    {{ choice }}
+                </md-checkbox>
+            </div>
+        </div> -->
+    <!-- <div flex="50" ng-repeat = "choice in ac.statusChoices">
+        <md-checkbox ng-model="ac.attendanceStatus.status" aria-label="Checkbox {{ac.choice}}" ng-true-value="{{choice}}" >
+            
+            <br>
+            <br> {{ choice }}
+        </md-checkbox>
+    </div> -->
+        </div>
+            </md-card-header-text>
+            
+        <!-- </md-card-header>
+        <img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline gymnast">{{gymnast.name}}</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="start center">
+            <md-button class="md-icon-button" aria-label="Edit">
+                <md-icon class="material-icons blue1" ng-click="uc.editGymnast(gymnast.gymnast_id, gymnast.name)">edit</md-icon>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="Delete">
+                <md-icon class="material-icons red1" ng-click="uc.deleteGymnast(gymnast.gymnast_id)">delete</md-icon>
+            </md-button>
+        </md-card-actions> 
+        <md-card-content>
+         </md-card-content> -->
+        </md-card>
+
+
+
+        </md-dialog-content>
+
+            
+
+
+     
+        <md-dialog-actions class="" layout="row">
+            <md-button ng-click="ac.cancel()">
+                Cancel
+            </md-button>
+            <span flex></span>
+            <!-- <input class="btn btn-default" type="submit" name="submit" value="submit" /> -->
+            <md-button class="md-raised" type="submit" name="submit" value="submit">
+                Save
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
+
+
+
+

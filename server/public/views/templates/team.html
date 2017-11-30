@@ -4,7 +4,8 @@
 <p id="pWelcome" class="lead">Welcome, {{uc.userObject.userName}}!</p>
 <div class="leftColumn" layout="row">
     <div flex="15" class="sideBar">
-        
+        <md-button ng-click="uc.attendance($event)" class="md-raised md-alert"
+            id="startButton">Attendance</md-button>
 
     </div>
     <div flex="80" class="box1">

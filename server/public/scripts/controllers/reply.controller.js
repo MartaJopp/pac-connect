@@ -1,4 +1,4 @@
-myApp.controller('ReplyController', function ($mdDialog, $mdToast, moment, UserService, MessageService) {
+myApp.controller('ReplyController', function ($scope, $mdDialog, $mdToast, moment, UserService, MessageService) {
     var vm = this;
     vm.messageService = MessageService;
     vm.thisMessage = MessageService.thisMessage;
@@ -6,6 +6,7 @@ myApp.controller('ReplyController', function ($mdDialog, $mdToast, moment, UserS
     vm.conversationId = MessageService.conversationId;
     vm.pictureUrl = MessageService.pictureUrl;
     vm.fromId = MessageService.fromId;
+    vm.theReplyMessage=MessageService.theReplyMessage;
     console.log('MessageService.thisMessage', MessageService.thisMessage);
 
 
@@ -36,5 +37,24 @@ myApp.controller('ReplyController', function ($mdDialog, $mdToast, moment, UserS
     vm.replyPicker = function () {
         MessageService.replyPicker();
     }
+    vm.fsClient = filestack.init('A1JwDWLRvRvgGNT0VV1LBz');
+    //file picker for reply message
+    vm.replyPicker = function () {
+        console.log('in reply picker')
+        vm.fsClient.pick({
+            fromSources: ["local_file_system"],
+            accept: ["image/*", "video/*"]
+        }).then(function (response) {
+            // declare this function to handle response
+            $scope.$apply(vm.theReplyMessage.picture.url = response.filesUploaded[0].url,
+            vm.theReplyMessage.picture.filename = response.filesUploaded[0].filename)
+            
+            // console.log('this is the picture', response.filesUploaded[0])
+            // vm.theReplyMessage.picture.url = response.filesUploaded[0].url;
+            // vm.theReplyMessage.picture.filename = response.filesUploaded[0].filename;
+            // console.log('what does this say?', vm.theReplyMessage.picture.url);
+
+        });
+    }    
 
 })

@@ -178,5 +178,13 @@ vm.setItem = function(i){
     })
   }
 
+  vm.attendance = function ($event)  {
+MessageService.attendance(event)
+// .then ( function (response){
+
+// })
+    
+}
+
 })//end user controller
 
