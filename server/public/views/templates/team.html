@@ -15,22 +15,22 @@
 
 <div>
     <!-- {{uc.gymnasts.data}} -->
-    <table>
-        <th>Gymnast Name</th>
-        <th>Level</th>
-        <th>Edit Level</th>
-        <th>Remove from Team?</th>
+    <table class = "teamTable">
+        <th class = "teamTableHead">Gymnast Name</th>
+        <th class = "teamTableHead">Level</th>
+        <th class = "teamTableHead">Edit Level</th>
+        <th class = "teamTableHead">Remove from Team?</th>
 
-        <tr ng-repeat="gymnast in uc.gymnasts.data">
-            <td class="name">{{gymnast.name}}</td>
-            <td>{{gymnast.level}}</td>
-            <td>
+        <tr class = "teamTableRows"ng-repeat="gymnast in uc.gymnasts.data">
+            <td class="teamTableData">{{gymnast.name}}</td>
+            <td class ="teamTableData">{{gymnast.level}}</td>
+            <td class = "teamTableData">
                 <md-button class="md-icon-button" aria-label="Edit">
                     <md-icon class="material-icons blue1" ng-click="uc.editGymnast(gymnast.gymnast_id, gymnast.name)">edit</md-icon>
                 </md-button>
 
             </td>
-            <td>
+            <td class = "teamTableData">
                 <md-button class="md-icon-button" aria-label="Delete">
                     <md-icon class="material-icons red1" ng-click="uc.deleteGymnast(gymnast.gymnast_id)">delete</md-icon>
                 </md-button>
@@ -38,6 +38,31 @@
         </tr>
         <!-- <li>{{gymnast.level}}</li> -->
     </table>
+
+        <table class="teamTable">
+            <th class="teamTableHead">Date</th>
+            <th class="teamTableHead">Gymnast Name</th>
+            <th class="teamTableHead">Attendance Status</th>
+            <th class="teamTableHead">Edit</th>
+            <th class="teamTableHead">Delete</th>
+        
+            <tr class="teamTableRows" ng-repeat="att in ac.gymnasts.data">
+                <td class="teamTableData">{{gymnast.name}}</td>
+                <td class="teamTableData"></td>
+                <td class="teamTableData">
+                    <md-button class="md-icon-button" aria-label="Edit">
+                        <md-icon class="material-icons blue1" ng-click="uc.editGymnast(gymnast.gymnast_id, gymnast.name)">edit</md-icon>
+                    </md-button>
+        
+                </td>
+                <td class="teamTableData">
+                    <md-button class="md-icon-button" aria-label="Delete">
+                        <md-icon class="material-icons red1" ng-click="uc.deleteGymnast(gymnast.gymnast_id)">delete</md-icon>
+                    </md-button>
+                </td>
+            </tr>
+            <!-- <li>{{gymnast.level}}</li> -->
+        </table>
     <!-- <div layout = "row">
 <md-card class = "gymnasts" ng-repeat="gymnast in uc.gymnasts.data">
     <md-card-header>

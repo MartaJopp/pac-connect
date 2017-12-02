@@ -10,8 +10,20 @@ myApp.service('UserService', function ($http, $location, $mdDialog, $mdToast) {
     level: ''
   }
 
+  self.attendance = {
+    gymnastId: '',
+    status: '',
+    date: ''
+  }
+
+  self.attendresult = {
+    data: []
+  }
+
   self.gymnastId = '';
   self.gymnastName = '';
+
+
 
   self.getuser = function () {
     console.log('UserService -- getuser');
@@ -90,7 +102,7 @@ myApp.service('UserService', function ($http, $location, $mdDialog, $mdToast) {
     self.updateGymnast.level = level;
     console.log('updated', self.updateGymnast);
     updateThisId = self.updateGymnast.gymnast_id
-    
+
 
     return $http.put('/team/update/' + updateThisId, self.updateGymnast).then(function (response) {
       return response;
@@ -100,12 +112,34 @@ myApp.service('UserService', function ($http, $location, $mdDialog, $mdToast) {
   } //end saveEdit function
 
 
-self.closeDialog = function () {
+  self.closeDialog = function () {
     $mdDialog.hide()
   } // end close dialog function
 
+  self.getTeamAttendance = function () {
+    console.log('this is being called')
+    $http.get('/attendance').then(function (response) {
+      console.log('response', response.data)
+      response.data = self.attendresult.data;
+    }).catch(function (response) {
+      console.log('error');
+    })
+  }
 
-  
+  self.presentStatus = function (gymnastId, status, date) {
+    self.attendance.gymnastId = gymnastId;
+    self.attendance.status = status;
+    self.attendance.date = date
+    console.log('attendance', self.attendance);
+    console.log(gymnastId, status, date);
+    return $http.post('/attendance/', self.attendance).then(function (response) {
+      return response
+    }).catch(function (response) {
+      console.log('error received')
+    })
+  }
+
+
 
 
 

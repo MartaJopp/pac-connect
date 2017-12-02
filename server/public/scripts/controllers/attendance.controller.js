@@ -3,35 +3,46 @@ myApp.controller('AttendanceController', function ($scope, $mdDialog, $mdToast, 
     vm.userService = UserService;
     vm.messageService = MessageService;
     vm.gymnasts = UserService.gymnasts;
+    vm.attendance = UserService.attendance;
 
-vm.attendanceStatus = 
-    {
-        gymnast_id: '',
-        status: '',
-        date: '',
+ vm.attendance = {
+     gymnastId: '',
+     status: '',
+     date: ''
+ }
+
+ vm.attendresult = UserService.attendresult;
+
+
+    // vm.choices = [
+    //     { name: 'N/A', selected: false },
+    //     { name: 'Present', selected: false },
+    //     { name: 'Late', selected: false },
+    //     { name: 'Left Early', selected: false }
+    // ]
+
+    vm.presentStatus = function (gymnastId, status, date) {
+        UserService.presentStatus(gymnastId, status, date).then(function (response){
+            UserService.getTeamAttendance();
+        })
+        
     }
 
-    vm.choices = [
-        { name: 'N/A', selected: false },
-        { name: 'Present', selected: false },
-        { name: 'Late', selected: false },
-        { name: 'Left Early', selected: false }
-    ];
+    vm.save = function () {
+        $mdDialog.hide()
+        $mdToast.show(
+            $mdToast.simple()
+                .textContent('Attendance Saved!')
+                .hideDelay(2500)
+        );
+    }
 
-    vm.selection = {
-    
-    };
-
-    vm.choices = [{ "name": "N/A", "id": "1" }, { "name": "Present", "id": "2" }, { "name": "Absent", "id": "3" }, { "name": "Late", "id": "4" }, { "name": "Left Early", "id": "5" } ];
-
-// vm.choices = ['N/A', 'Present', 'Late', 'Left Early'];
-
-vm.sendAttendance = function () {
+    vm.cancel = function () {
+        MessageService.cancel();
+    }
 
 
-    // console.log (vm.attendance)
-    // console.log(vm.attendance.data.gymnast_id);
 
-}
+
 
 }) //end AttendanceController

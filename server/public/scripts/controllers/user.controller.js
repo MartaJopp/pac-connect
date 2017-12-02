@@ -18,6 +18,7 @@ vm.gymnastName = UserService.gymnastName;
 vm.athleteCoachMessages = MessageService.athleteCoachMessages;
 vm.selected_item = null;
   vm.sentSelected_item = null;
+  vm.getTeamAttendance = UserService.getTeamAttendance.data;
 // vm.thisMessage = MessageService.thisMessage;
 //   console.log('MessageService.thisMessage', MessageService.thisMessage);
 
@@ -181,10 +182,13 @@ vm.setItem = function(i){
   vm.attendance = function ($event)  {
 MessageService.attendance(event)
 // .then ( function (response){
-
-// })
-    
 }
+
+  vm.getTeamAttendance = function () {
+    UserService.getTeamAttendance().then(function (response) {
+      console.log('the response', response.data)
+    })
+  } //end getTeamAttendance for coach
 
 })//end user controller
 
