@@ -10,6 +10,10 @@
           </li>
       <!-- <li ng-if = "uc.userObject.user_role === 'parent'"><a href="#/athletemessages">Athlete Messages</a></li> -->
       <li ng-if = "uc.userObject.user_role === 'coach'" ng-click="uc.getGymnastList()"><a href="#/team">Team</a></li>
+            <li ng-if="uc.userObject.user_role === 'coach'" ng-click="uc.getTeamAttendance()">
+              <a href="#/attendance">Attendance</a>
+            </li>
+
       <li md-button="submit" id = "logout" class="logout" ng-click="uc.userService.logout()">Logout</li>
     </ul>
   </div>

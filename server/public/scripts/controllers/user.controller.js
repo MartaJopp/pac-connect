@@ -7,6 +7,8 @@ myApp.controller('UserController', function ($mdDialog, $mdToast, moment, UserSe
   vm.messageService = MessageService;
   vm.allMessages = MessageService.allMessages;
   vm.sentMessages = MessageService.sentMessages;
+  vm.attendresult = UserService.attendresult;
+  vm.dates = UserService.dates;
 //  vm.messageSubject = MessageService.messageSubject;
 //  vm.conversationId = MessageService.conversationId;
 //  vm.fromId = MessageService.fromId;
@@ -185,10 +187,23 @@ MessageService.attendance(event)
 }
 
   vm.getTeamAttendance = function () {
-    UserService.getTeamAttendance().then(function (response) {
-      console.log('the response', response.data)
-    })
-  } //end getTeamAttendance for coach
+    UserService.getTeamAttendance();
 
+  } //end getTeamAttendance for coach
+vm.getTeamAttendance();
+
+vm.getDates = function () {
+  UserService.getDates()
+}
+
+vm.editAtt = function (id, name, status, date) {
+  UserService.editAtt(id, name, status, date)
+  
+}
+
+vm.deleteAtt = function (id) {
+  UserService.deleteAtt(id)
+  
+  }
 })//end user controller
 

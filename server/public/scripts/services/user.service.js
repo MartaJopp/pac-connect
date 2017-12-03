@@ -4,6 +4,7 @@ myApp.service('UserService', function ($http, $location, $mdDialog, $mdToast) {
   self.userObject = {};
   self.gymnasts = { data: [] };
   self.parents = { data: [] };
+  self.dates = { data: [] };
 
   self.updateGymnast = {
     gymnast_id: '',
@@ -23,6 +24,11 @@ myApp.service('UserService', function ($http, $location, $mdDialog, $mdToast) {
   self.gymnastId = '';
   self.gymnastName = '';
 
+  self.newAttendance = {
+    id: '',
+    date: '',
+    status: ''
+  }
 
 
   self.getuser = function () {
@@ -120,7 +126,9 @@ myApp.service('UserService', function ($http, $location, $mdDialog, $mdToast) {
     console.log('this is being called')
     $http.get('/attendance').then(function (response) {
       console.log('response', response.data)
-      response.data = self.attendresult.data;
+      self.attendresult.data = response.data
+      console.log('attendresult', self.attendresult.data)
+      self.getDates();
     }).catch(function (response) {
       console.log('error');
     })
@@ -139,9 +147,41 @@ myApp.service('UserService', function ($http, $location, $mdDialog, $mdToast) {
     })
   }
 
+self.getDates = function () {
+  console.log('getting dates');
+$http.get('/attendance/dates/').then(function (response) {
+  self.dates.data=response.data;
+  console.log('dates', self.dates.data)
+}).catch(function (response){
+  console.log('Error received getting dates')
+})
+}
+
+  self.editAtt=function (id, name, status, date){
+    self.editAttId = id;
+    self.editAttName = name;
+    self.editAtStatus = status;
+    self.editAtDate = date;
+    $mdDialog.show({
+      controller: 'EditAttendanceController as ea',
+      templateUrl: '/views/templates/editAttendance.html',
+      parent: angular.element(document.body),
+      targetEvent: event,
+      clickOutsideToClose: true,
+      fullscreen: self.customFullscreen // Only for -xs, -sm breakpoints.
+    }) //end popup edit
+  } //end edit gymanst  
 
 
+self.updateAtt = function (id, status, date, gymnastId) {
+self.newAttendance.id = id;
+self.newAttendance.status = status;
+self.newAttendance.date = date;
 
+$http.put('/attendance/' + gymnastId, self.newAttendance).then(function (response){
+
+})
+  }
 
 } //end service function 
 ) //end service

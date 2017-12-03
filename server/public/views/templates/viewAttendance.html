@@ -1,0 +1,67 @@
+<header ng-include="'/views/partials/header.html'"></header>
+<div ng-include="'views/partials/nav.html'"></div>
+<div class="container">
+    <p id="pWelcome" class="lead">Welcome, {{uc.userObject.userName}}!</p>
+    <div class="leftColumn" layout="row">
+        <div flex="15" class="sideBar">
+            <md-button ng-click="uc.attendance($event)" class="md-raised md-alert" id="startButton">Add Date</md-button>
+
+        </div>
+        <div flex="80" class="box1">
+
+
+
+
+            <div>
+                    <div layout-gt-xl="row">
+                        <span><md-input-container class="md-block" flex=50>
+                            <label>Select date to see attendance:</label>
+                            <md-select name="type" ng-model="dateFilter">
+                                <md-option></md-option>
+                                <md-option ng-repeat="date in uc.dates.data" value={{date.date}}>{{date.date | amDateFormat:'MMMM Do YYYY'}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex=50>
+                            <label>Select a name to see attendance:</label>
+                            <md-select name="type" ng-model="nameFilter">
+                                <md-option></md-option>
+                                <md-option ng-repeat="gymnast in uc.gymnasts.data" value={{gymnast.name}}>{{gymnast.name}}</md-option>
+                            </md-select>
+                        </md-input-container></span>
+                    </div>
+                <!-- <label>Name only
+                    <select ng-model="search.name" ng-repeat=>
+                        <option value="{{}}}">{{}}</option>
+                        <option value="Mary">Mary</option>
+                        <option value="Mary">Mary</option>
+                    </select>
+                </label> -->
+                <table class="teamTable" >
+                    <th class="teamTableHead">Date</th>
+                    <th class="teamTableHead">Gymnast Name</th>
+                    <th class="teamTableHead">Attendance Status</th>
+                    <th class="teamTableHead">Edit</th>
+                    <th class="teamTableHead">Delete</th>
+                    <tr class="teamTableRows" ng-repeat="att in uc.attendresult.data | filter: dateFilter || undefined | filter: nameFilter: true || undefined">
+                        <td class="teamTableData">{{att.date | amDateFormat:'MMMM Do YYYY'}}</td>
+                        <td class="teamTableData">{{att.name}}</td>
+                        <td class="teamTableData">{{att.status}}</td>
+                            <td class="teamTableData">
+                            <md-button class="md-icon-button" aria-label="Edit">
+                                <md-icon class="material-icons blue1" ng-click="uc.editAtt(att.id, att.name, att.status, att.date)">edit</md-icon>
+                            </md-button>
+
+                        </td>
+                        <td class="teamTableData">
+                            <md-button class="md-icon-button" aria-label="Delete">
+                                <md-icon class="material-icons red1" ng-click="uc.deleteAtt(att.id, att.name, att.status, att.date)">delete</md-icon>
+                            </md-button>
+                        </td>
+                    </tr>
+                    <!-- <li>{{gymnast.level}}</li> -->
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

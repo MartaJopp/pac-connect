@@ -73,7 +73,7 @@ router.get('/coachesTeam/', function (req, res) {
                 console.log('Error connecting', errorConnectingToDb);
                 res.sendStatus(500);
             } else {
-                var queryText = 'SELECT * FROM "user_gymnast" JOIN "users" on "users"."id" = "user_gymnast"."gymnast_id" JOIN "gymnast_properties" on "gymnast_properties"."user_id" = "user_gymnast"."gymnast_id" WHERE "user_gymnast"."coach_id" = $1;';
+                var queryText = 'SELECT * FROM "user_gymnast" JOIN "users" on "users"."id" = "user_gymnast"."gymnast_id" JOIN "gymnast_properties" on "gymnast_properties"."user_id" = "user_gymnast"."gymnast_id" WHERE "user_gymnast"."coach_id" = $1 ORDER BY "name";';
                 db.query(queryText, [coachId], function (errorMakingQuery, result) {
                     done();
                     var gymnastArray = []
