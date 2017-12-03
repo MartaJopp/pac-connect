@@ -8,9 +8,9 @@
     <div class="leftColumn" layout="row">
         <div flex="15" class="sideBar">
             <md-button ng-click="uc.startNewMessage($event)" ng-if="uc.userObject.user_role === 'coach'" class="md-raised md-primary"
-                id="startButton">Send Message</md-button>
+                id="startButton">New Message</md-button>
             <md-button ng-click="uc.startCoachMessage($event)" ng-if="uc.userObject.user_role != 'coach'" class="md-raised md-primary"
-                id="startButton">Send Message</md-button>
+                id="startButton">New Message</md-button>
         </div>
         <div flex="80" class="box1">
             <md-card class="messages" data-ng-repeat="message in uc.allMessages.data track by $index" ng-click="uc.messageRead(message.message_id)">

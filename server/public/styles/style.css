@@ -81,6 +81,7 @@ li a:hover {
 
 .teamTable {
   margin-left: 100px;
+  text-align: center;
 }
 
 .teamTableHead, .teamTableData {
@@ -352,3 +353,4 @@ pre {white-space: pre-wrap;       /* css-3 */
 .attendanceRadios {
   margin-left: 20PX
 }
+

@@ -70,6 +70,15 @@ myApp.config(function ($routeProvider, $locationProvider) {
         }
       }
     })
+    .when('/personalAttendance', {
+      templateUrl: '/views/templates/personalAttendance.html',
+      controller: 'UserController as uc',
+      resolve: {
+        getuser: function (UserService) {
+          return UserService.getuser();
+        }
+      }
+    })
     .otherwise({
       redirectTo: 'home'
     });

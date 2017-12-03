@@ -9,6 +9,9 @@ myApp.controller('UserController', function ($mdDialog, $mdToast, moment, UserSe
   vm.sentMessages = MessageService.sentMessages;
   vm.attendresult = UserService.attendresult;
   vm.dates = UserService.dates;
+  vm.gymnastAttendance = UserService.gymnastAttendance;
+  vm.childAttendance = UserService.childAttendance;
+  
 //  vm.messageSubject = MessageService.messageSubject;
 //  vm.conversationId = MessageService.conversationId;
 //  vm.fromId = MessageService.fromId;
@@ -205,5 +208,21 @@ vm.deleteAtt = function (id) {
   UserService.deleteAtt(id)
   
   }
+
+  vm.getPersonalAttendance = function() {
+    UserService.getPersonalAttendance().then(function (response){
+
+    })
+  }
+
+  UserService.getPersonalAttendance();
+
+  vm.getChildAttendance = function () {
+    UserService.getChildAttendance().then(function (response){
+
+    })
+  }
+
+  UserService.getChildAttendance();
 })//end user controller
 

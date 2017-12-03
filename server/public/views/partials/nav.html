@@ -14,6 +14,14 @@
               <a href="#/attendance">Attendance</a>
             </li>
 
+      <li ng-if="uc.userObject.user_role === 'gymnast'" ng-click="uc.getPersonalAttendance()">
+        <a href="#/personalAttendance">Attendance</a>
+      </li>
+
+        <li ng-if="uc.userObject.user_role === 'parent'" ng-click="uc.getChildAttendance()">
+          <a href="#/personalAttendance">Attendance</a>
+        </li>
+
       <li md-button="submit" id = "logout" class="logout" ng-click="uc.userService.logout()">Logout</li>
     </ul>
   </div>

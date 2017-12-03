@@ -120,10 +120,116 @@ router.get('/dates/', function (req, res) {
     }
 }) //end get date dropdown for filter
 
+router.put('/:id', function (req, res) {
+    if (req.isAuthenticated()) {
+        console.log('id', req.params.id);
+        console.log('body', req.body);
+        var attId = req.params.id;
+        var date = req.body.date;
+        var status = req.body.status;
+        pool.connect(function (err, client, done) {
+            if (err) {
+                console.log("Error connecting: ", err);
+                res.sendStatus(500);
+            }
+            var queryText = 'UPDATE "attendance" SET "status" = $1, "date" = $2 WHERE "attId" = $3;';
+            client.query(queryText, [status, date, attId], function (errorMakingQuery, result) {
+                done();
+                if (errorMakingQuery) {
+                    console.log('Error making query', errorMakingQuery);
+                    res.sendStatus(500);
+                }
+                else {
+                    res.sendStatus(201); // send back success
+                }
+            } //end query function 
+            ) // end query parameters
+        } //end pool function
+        ) // end pool connect     
+    }// end if req.isAuthenticated
+    else {
+        console.log('User is not authenticated');
+    } //end authentication else statement
+}
+) //end update route
+
+router.get('/gymnastAtt/', function (req, res) {
+    if (req.isAuthenticated()) {
+        gymnastId = req.user.id;
+
+        pool.connect(function (errorConnectingToDb, db, done) {
+            if (errorConnectingToDb) {
+                // No connection to database was made - error
+                console.log('Error connecting', errorConnectingToDb);
+                res.sendStatus(500);
+            } //end if error connection to db
+            else {
+                var queryText = 'SELECT * FROM attendance WHERE gymnast_id = $1 ORDER BY date DESC;';
+                db.query(queryText, [gymnastId], function (errorMakingQuery, result) {
+                    done(); // add + 1 to pool - we have received a result or error
+                    console.log('result.rows', result.rows);
+                    if (errorMakingQuery) {
+                        console.log('Error making query', errorMakingQuery);
+                        res.sendStatus(500);
+                    }
+                    else {
+
+                        res.send(result.rows);
+                    }
+                }
+                ); // END QUERY
+
+            }
+
+        }); // end pool connect
 
 
+    } // end req.isAuthenticated
+    else {
+        console.log('User is not authenticated')
+    }
+}) //end get gymnast attendance
+
+router.get('/childAtt/', function (req, res) {
+    if (req.isAuthenticated()) {
+        parentId = req.user.id;
+
+        pool.connect(function (errorConnectingToDb, db, done) {
+            if (errorConnectingToDb) {
+                // No connection to database was made - error
+                console.log('Error connecting', errorConnectingToDb);
+                res.sendStatus(500);
+            } //end if error connection to db
+            else {
+                var queryText = 'SELECT * FROM ATTENDANCE JOIN users on attendance.gymnast_id = users.id WHERE users.parent_id = $1 ORDER BY attendance.date DESC;';
+                db.query(queryText, [parentId], function (errorMakingQuery, result) {
+                    done(); // add + 1 to pool - we have received a result or error
+                    var attendanceArray = []
+                    for (var i = 0; i < result.rows.length; i++) {
+                        attendanceArray.push({ name: (result.rows[i].name), date: (result.rows[i].date), status: (result.rows[i].status)  })
+
+                    }
+                    if (errorMakingQuery) {
+                        console.log('Error making query', errorMakingQuery);
+                        res.sendStatus(500);
+                    }
+                    else {
+
+                        res.send(attendanceArray);
+                    }
+                }
+                ); // END QUERY
+
+            }
+
+        }); // end pool connect
 
 
+    } // end req.isAuthenticated
+    else {
+        console.log('User is not authenticated')
+    }
+}) //end get child attendance
 
 
 module.exports = router;

@@ -1,7 +1,7 @@
-<md-dialog class="regDialog" id="regDialog" aria-label="Register Pop Up">
+<md-dialog class="editDialog" id="editDialog" aria-label="Edit Attendance Pop Up">
     <md-toolbar>
         <div class="md-toolbar-tools">
-            <h3>Edit Attendance</h3>
+            <h3>Edit Attendance for: {{ea.name}}</h3>
             <span flex></span>
             <md-button class="md-icon-button" ng-click="ea.cancel()">
                 <i class="material-icons" md-dialog-close aria-label="Close dialog">close</i>
@@ -37,7 +37,7 @@
         </md-button>
         <span flex></span>
         <!-- <input class="btn btn-default" type="submit" name="submit" value="submit" /> -->
-        <md-button class="md-raised" type="submit" name="submit" value="submit" ng-click="ea.updateAtt(ea.newDate, ea.selected.value)">
+        <md-button class="md-raised" type="submit" name="submit" value="submit" ng-click="ea.updateAtt(ea.attId, ea.newDate, ea.selected)">
             Save
         </md-button>
     </md-dialog-actions>

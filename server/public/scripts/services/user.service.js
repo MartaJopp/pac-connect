@@ -5,6 +5,9 @@ myApp.service('UserService', function ($http, $location, $mdDialog, $mdToast) {
   self.gymnasts = { data: [] };
   self.parents = { data: [] };
   self.dates = { data: [] };
+  self.attId = '';
+  self.gymnastAttendance = {data: []};
+  self.childAttendance = {data: []};
 
   self.updateGymnast = {
     gymnast_id: '',
@@ -24,12 +27,13 @@ myApp.service('UserService', function ($http, $location, $mdDialog, $mdToast) {
   self.gymnastId = '';
   self.gymnastName = '';
 
-  self.newAttendance = {
-    id: '',
+  self.updatedAttendance = {
     date: '',
     status: ''
   }
 
+  self.name = '';
+  self.attId = '';
 
   self.getuser = function () {
     console.log('UserService -- getuser');
@@ -158,10 +162,11 @@ $http.get('/attendance/dates/').then(function (response) {
 }
 
   self.editAtt=function (id, name, status, date){
-    self.editAttId = id;
-    self.editAttName = name;
-    self.editAtStatus = status;
-    self.editAtDate = date;
+    console.log(name);
+ self.name = name;
+ self.attId = id;
+ console.log(self.attId);
+ console.log(self.name);
     $mdDialog.show({
       controller: 'EditAttendanceController as ea',
       templateUrl: '/views/templates/editAttendance.html',
@@ -173,16 +178,39 @@ $http.get('/attendance/dates/').then(function (response) {
   } //end edit gymanst  
 
 
-self.updateAtt = function (id, status, date, gymnastId) {
-self.newAttendance.id = id;
-self.newAttendance.status = status;
-self.newAttendance.date = date;
+self.updateAtt = function (id, date, status) {
+self.attId = id;
+self.updatedAttendance.status = status;
+self.updatedAttendance.date = date;
+console.log(self.updatedAttendance)
 
-$http.put('/attendance/' + gymnastId, self.newAttendance).then(function (response){
+return $http.put('/attendance/' + self.attId, self.updatedAttendance).then(function (response){
+  console.log('updated attendance', response)
+  return response;
 
 })
   }
 
+
+
+  self.getPersonalAttendance = function () {
+    console.log('getting dates');
+    return $http.get('/attendance/gymnastAtt/').then(function (response) {
+      self.gymnastAttendance.data = response.data;
+      return response
+    }).catch(function (response) {
+      console.log('Error received getting attendance.')
+    })
+  }
+
+  self.getChildAttendance = function () {
+    return $http.get('/attendance/childAtt/').then(function (response){
+      self.childAttendance.data = response.data;
+      return response
+    }).catch(function (response){
+      console.log('Error received getting attendance.')
+    })
+  }
 } //end service function 
 ) //end service
 
