@@ -201,7 +201,7 @@ return $http.put('/attendance/' + self.attId, self.updatedAttendance).then(funct
     }).catch(function (response) {
       console.log('Error received getting attendance.')
     })
-  }
+  } // end get attendance for gymnast view
 
   self.getChildAttendance = function () {
     return $http.get('/attendance/childAtt/').then(function (response){
@@ -210,7 +210,16 @@ return $http.put('/attendance/' + self.attId, self.updatedAttendance).then(funct
     }).catch(function (response){
       console.log('Error received getting attendance.')
     })
+  } // end getChildAttendance for parent view
+
+  self.deleteAtt = function (attId) {
+    return $http.delete('/attendance/delete' + attId).then(function (response) {
+      return response
+    }).catch(function (response) {
+      console.log('Error deleting gymnast');
+    })
   }
+
 } //end service function 
 ) //end service
 

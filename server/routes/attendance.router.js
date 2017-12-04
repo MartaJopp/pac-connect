@@ -231,5 +231,36 @@ router.get('/childAtt/', function (req, res) {
     }
 }) //end get child attendance
 
+// delete attendance record
+router.delete('/delete:id/', function (req, res) {
+    if (req.isAuthenticated()) {
+        var deleteRecord = req.params.id;
+        pool.connect(function (err, client, done) {
+            if (err) {
+                console.log("Error connecting: ", err);
+                res.sendStatus(500);
+            }
+            var queryText = 'DELETE FROM "attendance" WHERE "attId" = $1;';
+            client.query(queryText, [deleteRecord], function (errorMakingQuery, result) {
+                done();
+                if (errorMakingQuery) {
+                    console.log('Error making query', errorMakingQuery);
+                    res.sendStatus(500);
+                }
+                else {
+                    res.sendStatus(201); // send back success
+                }
+            } //end query function 
+            ) // end query parameters
+        } //end pool function
+        ) // end pool connect     
+    }// end if req.isAuthenticated
+    else {
+        console.log('User is not authenticated');
+    } //end authentication else statement
+
+
+}
+) //end delete route
 
 module.exports = router;

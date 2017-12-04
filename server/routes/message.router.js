@@ -146,10 +146,29 @@ router.post('/reply/', function (req, res){
 console.log('reply being sent', req.body);
 console.log('req.user id', req.user.id)
 if (req.isAuthenticated()){
-var fromId = req.user.id;
-var fromName = req.user.name;
-var replyMessage = req.body
 
+if (req.user.user_role === 'gymnast'){
+    var fromId = req.user.id;
+    var fromName = req.user.name;
+    var replyMessage = req.body;
+    replyMessage.replyTo = req.user.coach_id;
+}
+
+    if (req.user.user_role === 'parent') {
+        var fromId = req.user.id;
+        var fromName = req.user.name;
+        var replyMessage = req.body;
+        replyMessage.replyTo = req.user.coach_id;
+    }
+
+if (req.user.user_role === 'coach') {
+    var fromId = req.user.id;
+    var fromName = req.user.name;
+    var replyMessage = req.body
+    replyMessage.replyTo = req.body.replyTo
+}
+console.log('the body', req.body)
+console.log('this is who it is going to', replyMessage.replyTo)
     pool.connect(function (errorConnectingToDb, db, done) {
         if (errorConnectingToDb) {
             // No connection to database was made - error

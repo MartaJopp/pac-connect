@@ -33,6 +33,7 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, $mdToast,
     self.messageSubject = '';
     self.conversationId = '';
     self.fromId = '';
+    self.toId = '';
     self.thisMessage = '';
     self.allMessages = { data: [] };
     self.sentMessages = { data: [] };
@@ -104,12 +105,15 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, $mdToast,
         })
     }
 
-    self.reply = function ($event, conversationId, thisMessage, messageSubject, fromId) {
+    self.reply = function ($event, conversationId, thisMessage, messageSubject, fromId, toId) {
         console.log('reply clicked');
+        console.log('fromId', fromId)
         self.messageSubject = messageSubject;
         self.conversationId = conversationId;
         self.fromId = fromId;
         self.thisMessage = thisMessage;
+        self.toId = toId
+        console.log('the to Id', toId)
         console.log('fromId in reply function', fromId)
         console.log('this is the Id', conversationId);
         $mdDialog.show({
@@ -123,13 +127,17 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, $mdToast,
     } // end pop up dialog
 
     // send response from popup reply
-    self.answer = function (replyMessage, conversationId, fromId, pictureUrl) {
+    self.answer = function (replyMessage, conversationId, fromId, pictureUrl, toId) {
         console.log('reply', replyMessage, 'conversationId', conversationId)
         self.closeDialog(); // close the dialog box once send reply 
 
         self.theReplyMessage.conversation_id = conversationId;
         self.theReplyMessage.replyMessage = replyMessage;
-        self.theReplyMessage.replyTo = fromId;
+        self.theReplyMessage.replyFrom = fromId;
+        self.theReplyMessage.replyTo = toId;
+        console.log('this is the to Who!', toId)
+
+        console.log('who replying To', fromId)
 
         var reply = self.theReplyMessage;
 

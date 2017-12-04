@@ -36,7 +36,8 @@
                         <option value="Mary">Mary</option>
                     </select>
                 </label> -->
-                <table class="teamTable" >
+                <div id="coachViewAttendance">
+                <table class="teamTable">
                     <th class="teamTableHead">Date</th>
                     <th class="teamTableHead">Gymnast Name</th>
                     <th class="teamTableHead">Attendance Status</th>
@@ -54,12 +55,13 @@
                         </td>
                         <td class="teamTableData">
                             <md-button class="md-icon-button" aria-label="Delete">
-                                <md-icon class="material-icons red1" ng-click="uc.deleteAtt(att.id, att.name, att.status, att.date)">delete</md-icon>
+                                <md-icon class="material-icons red1" ng-click="uc.deleteAtt(att.id)">delete</md-icon>
                             </md-button>
                         </td>
                     </tr>
                     <!-- <li>{{gymnast.level}}</li> -->
                 </table>
+                </div>
 
             </div>
         </div>

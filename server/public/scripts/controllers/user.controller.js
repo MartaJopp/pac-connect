@@ -43,9 +43,9 @@ vm.getMessage = function () {
 }
   
 
-vm.reply = function ($event, conversationId, thisMessage, messageSubject, fromId) {
+vm.reply = function ($event, conversationId, thisMessage, messageSubject, fromId, toId) {
   // console.log('\n\n-------------\n' + thisMessage.message);
-  MessageService.reply($event, conversationId, thisMessage, messageSubject, fromId);
+  MessageService.reply($event, conversationId, thisMessage, messageSubject, fromId, toId);
 }
 
 vm.cancel = function () {
@@ -204,10 +204,47 @@ vm.editAtt = function (id, name, status, date) {
   
 }
 
-vm.deleteAtt = function (id) {
-  UserService.deleteAtt(id)
-  
-  }
+  vm.deleteAtt = function (attId) {
+    console.log('delete', attId)
+    var toast = $mdToast.simple()
+      .textContent('Are you sure you want to delete?')
+      .action('Cancel')
+      .highlightAction(true)
+      .highlightClass('md-accent');
+
+    $mdToast.show(toast).then(function (response) {
+      if (response == 'ok') {
+        // alert ('Delete cancelled.')
+        $mdDialog.show(
+          $mdDialog.alert()
+            .parent(angular.element(document.querySelector('#popupContainer')))
+            .clickOutsideToClose(true)
+            .title('Cancel!')
+            .textContent('You cancelled deleting the attendance record.')
+            .ariaLabel('Alert Dialog Demo')
+            .ok('Thanks')
+            .targetEvent(event)
+        );
+      }
+      else {
+        UserService.deleteAtt(attId).then(function (response) {
+
+          UserService.getTeamAttendance();
+
+          $mdToast.show(
+            $mdToast.simple()
+              .textContent('Attendance record deleted!')
+              .hideDelay(2500)
+          );
+
+        })
+
+      }
+    } //   
+    ) // }
+  } //end delete attendance record  
+
+
 
   vm.getPersonalAttendance = function() {
     UserService.getPersonalAttendance().then(function (response){

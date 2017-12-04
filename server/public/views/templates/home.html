@@ -2,7 +2,7 @@
     <div layout="row" class = "homeHeader" layout-align="space-between center">
     
     <img src="images/smaller logo.png" id="theLogo">
-    
+
 <form ng-submit="lc.login()" id = "homeLogin">
     <div id="usernameInput">
         <label for="username">USERNAME:</label>
@@ -41,7 +41,10 @@
     <div layout="row" layout-align="center center">
     <H3> Don't already have an account?  Click here to <a class = "link" ng-click="lc.register($event)">register</a>!</H3>  
     </div>
-    <div layout="row" layout-align="center center">
+    <div layout="row" layout-align="center end">
+        
+            
+        
     <!-- <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h2>
           <form ng-submit="lc.login()">
             <div>

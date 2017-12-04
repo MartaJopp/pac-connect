@@ -6,6 +6,7 @@ myApp.controller('ReplyController', function ($scope, $mdDialog, $mdToast, momen
     vm.conversationId = MessageService.conversationId;
     vm.pictureUrl = MessageService.pictureUrl;
     vm.fromId = MessageService.fromId;
+    vm.toId = MessageService.toId;
     vm.theReplyMessage=MessageService.theReplyMessage;
     console.log('MessageService.thisMessage', MessageService.thisMessage);
 
@@ -17,8 +18,8 @@ myApp.controller('ReplyController', function ($scope, $mdDialog, $mdToast, momen
     //     MessageService.reply($event, conversationId, thisMessage, messageSubject, fromId);
     // }
 
-    vm.answer = function (conversationId, messageSubject, fromId, pictureUrl) {
-        MessageService.answer(conversationId, messageSubject, fromId, pictureUrl).then(function (response) {
+    vm.answer = function (conversationId, messageSubject, fromId, pictureUrl, toId) {
+        MessageService.answer(conversationId, messageSubject, fromId, pictureUrl, toId).then(function (response) {
             MessageService.getMessage();
             // MessageService.getSent();
             vm.replyForm.$setPristine();

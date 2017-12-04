@@ -354,3 +354,12 @@ pre {white-space: pre-wrap;       /* css-3 */
   margin-left: 20PX
 }
 
+#coachViewAttendance {
+  overflow-y: auto;
+height: 350px;
+width: 900px;
+}
+
+#aboutList {
+  margin-left: 20PX;
+}

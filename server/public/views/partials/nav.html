@@ -22,6 +22,10 @@
           <a href="#/personalAttendance">Attendance</a>
         </li>
 
+        <li ng-if = "uc.userObject.user_role === 'parent'">
+          <a href="#/about">About</a>
+        </li>
+
       <li md-button="submit" id = "logout" class="logout" ng-click="uc.userService.logout()">Logout</li>
     </ul>
   </div>
