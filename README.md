@@ -1,10 +1,16 @@
-# Name of Project
+# PAC Connect
 
-One Paragraph of project description goes here. Link to the live version of the app if it's hosted on Heroku.
+PAC Connect is a communication application for the Parent, Athlete, Coach triangle geared specifically towards gymnastics.  It provides a layer of protection to the athlete by aligning with Safe Sport policy and sending copies of messages between the athlete and coach to the parent.  It also provides separation to the coach's personal accounts.
 
 ## Built With
 
-List technologies and frameworks here
+PostgreSQL
+Express
+AngularJS
+Node.js
+Filestack
+Moment.js
+Angular-Carousel
 
 ## Getting Started
 
@@ -15,7 +21,7 @@ These instructions will get you a copy of the project up and running on your loc
 Link to software that is required to install the app (e.g. node).
 
 - [Node.js](https://nodejs.org/en/)
-- List other prerequisites here
+- PG
 
 
 ### Installing
@@ -42,12 +48,19 @@ Link to a read-only version of your scope document or other relevant documentati
 
 High level list of items completed.
 
-- [x] Feature a
-- [x] Feature b
+- [x] Parents can send messages to the coach.
+- [x] Athletes can send messages to the coach and a copy is sent to the parent.
+- [x] Coaches can send messages to a parent or gymnast.  A copy of messages to the gymnast are sent to their 
+      registered parent.
+- [x] The ability to reply to a specific message.
+- [x] Ability to send pictures via Filestack.
+- [x] Attendance tracker for coaches.  Filter by name or date.
+- [x] Parents and gymnasts can view their personal attendance.
 
 ### Next Steps
 
-Features that you would like to add at some point in the future.
+- [ ] Ability for coach to add meet results and parents/gymnasts to view their personal results.
+- [ ] Charts.js to compare attendance to meets for parents/gymnasts.
 
 - [ ] Feature c
 
@@ -57,7 +70,7 @@ Add additional notes about how to deploy this on a live system
 
 ## Authors
 
-* Name of author(s)
+* Marta Jopp
 
 
 ## Acknowledgments
