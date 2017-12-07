@@ -1,34 +1,47 @@
 # PAC Connect
 
-PAC Connect is a communication application for the Parent, Athlete, Coach triangle geared specifically towards gymnastics.  It provides a layer of protection to the athlete by aligning with Safe Sport policy and sending copies of messages between the athlete and coach to the parent.  It also provides separation to the coach's personal accounts.
+PAC Connect is a communication application for the Parent, Athlete, Coach triangle geared specifically towards gymnastics.  It provides a layer of protection to the athlete by aligning with Safe Sport policy and sending copies of messages between the athlete and coach to the parent.  It also provides separation to the coach's personal accounts.  
+
+PAC Connect allows coaches to message their athletes and parent's of athletes on their team.  It also allows the coach to track their team's attendance, filter by date and name.
+
+Parents may send and receive messages to/from the coach.  They can view copies of all messages between their child and coach.  They may also view their child's individual attendance.
+
+Gymnasts may send and receive messages to/from the coach.  They can also view their individual attendance.
 
 ## Built With
 
-PostgreSQL
-Express
-AngularJS
-Node.js
-Filestack
-Moment.js
-Angular-Carousel
+- PostgreSQL
+- Express
+- AngularJS 
+- Node.js
+- Moment.js
+- Angular Material for styling
+- Passport for user authentication
+- FileStack API for sending pictures
+- Heroku and  POSTGRES Add-On for web deployment
 
 ## Getting Started
 
-To get the application running locally: 
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the on a live system.
 
-```
-CREATE TABLE "conversations" (
-	"conversation_id" serial NOT NULL,
-	"subject" integer NOT NULL,
-	"to_user_id" BINARY NOT NULL,
-	"from_user_id" BINARY NOT NULL,
-	CONSTRAINT conversations_pk PRIMARY KEY ("conversation_id")
-) WITH (
-  OIDS=FALSE
-);
+### Prerequisites
 
+- [Node.js](https://nodejs.org/en/)
+- [AngularJS](https://angularjs.org/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Express](http://expressjs.com/)
+- [Angular Material](https://material.angularjs.org/latest/)
 
+### Installing
 
+Steps to get the development environment running.
+
+In a terminal window, navigate to the project folder once saved on your computer.
+- Run `npm install`
+- Make sure postgreSQL is running in an open terminal window
+- `npm start`
+
+```sql
 CREATE TABLE "users" (
 	"user_id" serial NOT NULL,
 	"name" varchar(80) NOT NULL,
@@ -44,8 +57,6 @@ CREATE TABLE "users" (
   OIDS=FALSE
 );
 
-
-
 CREATE TABLE "user_gymnast" (
 	"parent_id" integer NOT NULL,
 	"coach_id" integer NOT NULL,
@@ -55,8 +66,6 @@ CREATE TABLE "user_gymnast" (
   OIDS=FALSE
 );
 
-
-
 CREATE TABLE "gymnast_properties" (
 	"user_id" serial NOT NULL,
 	"level" integer NOT NULL,
@@ -65,7 +74,15 @@ CREATE TABLE "gymnast_properties" (
   OIDS=FALSE
 );
 
-
+CREATE TABLE "conversations" (
+	"conversation_id" serial NOT NULL,
+	"subject" integer NOT NULL,
+	"to_user_id" BINARY NOT NULL,
+	"from_user_id" BINARY NOT NULL,
+	CONSTRAINT conversations_pk PRIMARY KEY ("conversation_id")
+) WITH (
+  OIDS=FALSE
+);
 
 CREATE TABLE "messages" (
 	"user_id" integer NOT NULL,
@@ -81,17 +98,6 @@ CREATE TABLE "messages" (
   OIDS=FALSE
 );
 
-
-
-CREATE TABLE "user_thread" (
-	"thread_id" integer NOT NULL,
-	"user_id" integer NOT NULL
-) WITH (
-  OIDS=FALSE
-);
-
-
-
 CREATE TABLE "attendance" (
 	"attid" serial NOT NULL,
 	"gymnast_id" integer NOT NULL,
@@ -101,8 +107,6 @@ CREATE TABLE "attendance" (
 ) WITH (
   OIDS=FALSE
 );
-
-
 
 ALTER TABLE "conversations" ADD CONSTRAINT "conversations_fk0" FOREIGN KEY ("subject") REFERENCES "users"("user_id");
 
@@ -115,42 +119,14 @@ ALTER TABLE "gymnast_properties" ADD CONSTRAINT "gymnast_properties_fk0" FOREIGN
 ALTER TABLE "messages" ADD CONSTRAINT "messages_fk0" FOREIGN KEY ("user_id") REFERENCES "users"("user_id");
 ALTER TABLE "messages" ADD CONSTRAINT "messages_fk1" FOREIGN KEY ("conversation_id") REFERENCES "conversations"("conversation_id");
 
-ALTER TABLE "user_thread" ADD CONSTRAINT "user_thread_fk0" FOREIGN KEY ("thread_id") REFERENCES "conversations"("conversation_id");
-ALTER TABLE "user_thread" ADD CONSTRAINT "user_thread_fk1" FOREIGN KEY ("user_id") REFERENCES "users"("user_id");
-
 ALTER TABLE "attendance" ADD CONSTRAINT "attendance_fk0" FOREIGN KEY ("gymnast_id") REFERENCES "user_gymnast"("gymnast_id");
 
 ```
 
-### Prerequisites
-
-Link to software that is required to install the app (e.g. node).
-
-- [Node.js](https://nodejs.org/en/)
-- Postgres (https://www.postgresql.org/download/)
-- Moment.js (http://momentjs.com/)
-- AngularJS Responsive Carou
-
-
-### Installing
-
-Steps to get the development environment running.
-
-```sql
-CREATE TABLE "users" (
-  "id" serial primary key,
-  "username" varchar(80) not null UNIQUE,
-  "password" varchar(240) not null
-);
-```
-
 ## Screen Shot
 
-Include one or two screen shots of your project here (optional). Remove if unused.
-
-## Documentation
-
-Link to a read-only version of your scope document or other relevant documentation here (optional). Remove if unused.
+![Inbox](public/images/pacconnectinbox.png)
+![AttendanceTracker](public/images/pacconnectinbox.png)
 
 ### Completed Features
 
@@ -169,12 +145,11 @@ High level list of items completed.
 
 - [ ] Ability for coach to add meet results and parents/gymnasts to view their personal results.
 - [ ] Charts.js to compare attendance to meets for parents/gymnasts.
-
-- [ ] Feature c
+- [ ] Complete the ability for sent videos to be viewable by recepient.
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+This application requires an access key for the FileStackAPI, which can be requested from the site. Once requested, save the key API key in a `.env` file outside the server folder and add .env to your .gitignore file.
 
 ## Authors
 
@@ -183,4 +158,4 @@ Add additional notes about how to deploy this on a live system
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
+* Chris Black, Kris Szfranski, Prime Digital Academy
