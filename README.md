@@ -14,14 +14,122 @@ Angular-Carousel
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+To get the application running locally: 
+
+```
+CREATE TABLE "conversations" (
+	"conversation_id" serial NOT NULL,
+	"subject" integer NOT NULL,
+	"to_user_id" BINARY NOT NULL,
+	"from_user_id" BINARY NOT NULL,
+	CONSTRAINT conversations_pk PRIMARY KEY ("conversation_id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "users" (
+	"user_id" serial NOT NULL,
+	"name" varchar(80) NOT NULL,
+	"user_role" integer(80) NOT NULL,
+	"username" varchar(80) NOT NULL UNIQUE,
+	"password" varchar(80) NOT NULL,
+	"profile" VARCHAR(200) NOT NULL,
+	"gym_id" integer(80) NOT NULL,
+	"coach_id" integer NOT NULL,
+	"parent_id" integer NOT NULL,
+	CONSTRAINT users_pk PRIMARY KEY ("user_id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "user_gymnast" (
+	"parent_id" integer NOT NULL,
+	"coach_id" integer NOT NULL,
+	"gymnast_id" integer NOT NULL,
+	CONSTRAINT user_gymnast_pk PRIMARY KEY ("gymnast_id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "gymnast_properties" (
+	"user_id" serial NOT NULL,
+	"level" integer NOT NULL,
+	CONSTRAINT gymnast_properties_pk PRIMARY KEY ("user_id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "messages" (
+	"user_id" integer NOT NULL,
+	"conversation_id" integer NOT NULL,
+	"date" TIMESTAMP NOT NULL,
+	"message" varchar(500) NOT NULL,
+	"from_user_id" BINARY NOT NULL,
+	"picture_url" VARCHAR(255) NOT NULL,
+	"picture_filename" VARCHAR(255) NOT NULL,
+	"read" BOOLEAN NOT NULL,
+	"parentRead" BOOLEAN NOT NULL
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "user_thread" (
+	"thread_id" integer NOT NULL,
+	"user_id" integer NOT NULL
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "attendance" (
+	"attid" serial NOT NULL,
+	"gymnast_id" integer NOT NULL,
+	"date" TIMESTAMP NOT NULL,
+	"status" varchar NOT NULL,
+	CONSTRAINT attendance_pk PRIMARY KEY ("attid")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+ALTER TABLE "conversations" ADD CONSTRAINT "conversations_fk0" FOREIGN KEY ("subject") REFERENCES "users"("user_id");
+
+ALTER TABLE "user_gymnast" ADD CONSTRAINT "user_gymnast_fk0" FOREIGN KEY ("parent_id") REFERENCES "users"("user_id");
+ALTER TABLE "user_gymnast" ADD CONSTRAINT "user_gymnast_fk1" FOREIGN KEY ("coach_id") REFERENCES "users"("user_id");
+ALTER TABLE "user_gymnast" ADD CONSTRAINT "user_gymnast_fk2" FOREIGN KEY ("gymnast_id") REFERENCES "users"("user_id");
+
+ALTER TABLE "gymnast_properties" ADD CONSTRAINT "gymnast_properties_fk0" FOREIGN KEY ("user_id") REFERENCES "user_gymnast"("gymnast_id");
+
+ALTER TABLE "messages" ADD CONSTRAINT "messages_fk0" FOREIGN KEY ("user_id") REFERENCES "users"("user_id");
+ALTER TABLE "messages" ADD CONSTRAINT "messages_fk1" FOREIGN KEY ("conversation_id") REFERENCES "conversations"("conversation_id");
+
+ALTER TABLE "user_thread" ADD CONSTRAINT "user_thread_fk0" FOREIGN KEY ("thread_id") REFERENCES "conversations"("conversation_id");
+ALTER TABLE "user_thread" ADD CONSTRAINT "user_thread_fk1" FOREIGN KEY ("user_id") REFERENCES "users"("user_id");
+
+ALTER TABLE "attendance" ADD CONSTRAINT "attendance_fk0" FOREIGN KEY ("gymnast_id") REFERENCES "user_gymnast"("gymnast_id");
+
+```
 
 ### Prerequisites
 
 Link to software that is required to install the app (e.g. node).
 
 - [Node.js](https://nodejs.org/en/)
-- PG
+- Postgres (https://www.postgresql.org/download/)
+- Moment.js (http://momentjs.com/)
+- AngularJS Responsive Carou
 
 
 ### Installing
