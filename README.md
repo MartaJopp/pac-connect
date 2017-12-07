@@ -125,8 +125,8 @@ ALTER TABLE "attendance" ADD CONSTRAINT "attendance_fk0" FOREIGN KEY ("gymnast_i
 
 ## Screen Shot
 
-![Inbox](public/images/pacconnectinbox.png)
-![AttendanceTracker](public/images/pacconnectinbox.png)
+![Inbox](server/public/images/pacconnectinbox.png)
+![AttendanceTracker](server/public/images/pacconnectinbox.png)
 
 ### Completed Features
 
