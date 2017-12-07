@@ -125,8 +125,8 @@ ALTER TABLE "attendance" ADD CONSTRAINT "attendance_fk0" FOREIGN KEY ("gymnast_i
 
 ## Screen Shot
 
-![Inbox](server/public/images/pacconnectinbox.png)
-![AttendanceTracker](server/public/images/pacconnectinbox.png)
+![Inbox](server/public/images/pacconnectinbox.png) 
+![AttendanceTracker](server/public/images/pacconnect_attendance.png)
 
 ### Completed Features
 
@@ -158,4 +158,4 @@ This application requires an access key for the FileStackAPI, which can be reque
 
 ## Acknowledgments
 
-* Chris Black, Kris Szfranski, Prime Digital Academy
+* Chris Black, Kris Szafranski, Prime Digital Academy
