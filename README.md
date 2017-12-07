@@ -18,7 +18,9 @@ Gymnasts may send and receive messages to/from the coach.  They can also view th
 - Angular Material for styling
 - Passport for user authentication
 - FileStack API for sending pictures
+- AngularJS Responsive Carousel
 - Heroku and  POSTGRES Add-On for web deployment
+
 
 ## Getting Started
 
@@ -125,7 +127,8 @@ ALTER TABLE "attendance" ADD CONSTRAINT "attendance_fk0" FOREIGN KEY ("gymnast_i
 
 ## Screen Shot
 
-![Inbox](server/public/images/pacconnectinbox.png) 
+![Inbox](server/public/images/pacconnectinbox.png)
+
 ![AttendanceTracker](server/public/images/pacconnect_attendance.png)
 
 ### Completed Features
