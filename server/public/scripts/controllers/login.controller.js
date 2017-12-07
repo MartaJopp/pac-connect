@@ -105,8 +105,8 @@ vm.messageService = MessageService;
   };
 
   vm.arrayData = [
-    { src: 'images/Parent.JPG'},
-    { src: 'images/Athlete.jpg'},
+    { src: 'images/parent.jpg'},
+    { src: 'images/athlete.jpg'},
     { src: 'images/unnamed.jpg' }, //placeholder for coach picture
     { src: 'images/smaller logo.png'}
   ]
@@ -123,5 +123,6 @@ vm.messageService = MessageService;
       fullscreen: self.customFullscreen // Only for -xs, -sm breakpoints.
     })
   }
+
 
 });
