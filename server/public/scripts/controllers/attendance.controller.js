@@ -5,13 +5,13 @@ myApp.controller('AttendanceController', function ($scope, $mdDialog, $mdToast, 
     vm.gymnasts = UserService.gymnasts;
     vm.attendance = UserService.attendance;
 
- vm.attendance = {
-     gymnastId: '',
-     status: '',
-     date: ''
- }
+    vm.attendance = {
+        gymnastId: '',
+        status: '',
+        date: ''
+    }
 
- vm.attendresult = UserService.attendresult;
+    vm.attendresult = UserService.attendresult;
 
 
     // vm.choices = [
@@ -22,10 +22,10 @@ myApp.controller('AttendanceController', function ($scope, $mdDialog, $mdToast, 
     // ]
 
     vm.presentStatus = function (gymnastId, status, date) {
-        UserService.presentStatus(gymnastId, status, date).then(function (response){
+        UserService.presentStatus(gymnastId, status, date).then(function (response) {
             UserService.getTeamAttendance();
         })
-        
+
     }
 
     vm.save = function () {

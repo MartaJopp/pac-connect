@@ -6,8 +6,8 @@ myApp.service('UserService', function ($http, $location, $mdDialog, $mdToast) {
   self.parents = { data: [] };
   self.dates = { data: [] };
   self.attId = '';
-  self.gymnastAttendance = {data: []};
-  self.childAttendance = {data: []};
+  self.gymnastAttendance = { data: [] };
+  self.childAttendance = { data: [] };
 
   self.updateGymnast = {
     gymnast_id: '',
@@ -151,22 +151,22 @@ myApp.service('UserService', function ($http, $location, $mdDialog, $mdToast) {
     })
   }
 
-self.getDates = function () {
-  console.log('getting dates');
-$http.get('/attendance/dates/').then(function (response) {
-  self.dates.data=response.data;
-  console.log('dates', self.dates.data)
-}).catch(function (response){
-  console.log('Error received getting dates')
-})
-}
+  self.getDates = function () {
+    console.log('getting dates');
+    $http.get('/attendance/dates/').then(function (response) {
+      self.dates.data = response.data;
+      console.log('dates', self.dates.data)
+    }).catch(function (response) {
+      console.log('Error received getting dates')
+    })
+  }
 
-  self.editAtt=function (id, name, status, date){
+  self.editAtt = function (id, name, status, date) {
     console.log(name);
- self.name = name;
- self.attId = id;
- console.log(self.attId);
- console.log(self.name);
+    self.name = name;
+    self.attId = id;
+    console.log(self.attId);
+    console.log(self.name);
     $mdDialog.show({
       controller: 'EditAttendanceController as ea',
       templateUrl: '/views/templates/editAttendance.html',
@@ -178,17 +178,17 @@ $http.get('/attendance/dates/').then(function (response) {
   } //end edit gymanst  
 
 
-self.updateAtt = function (id, date, status) {
-self.attId = id;
-self.updatedAttendance.status = status;
-self.updatedAttendance.date = date;
-console.log(self.updatedAttendance)
+  self.updateAtt = function (id, date, status) {
+    self.attId = id;
+    self.updatedAttendance.status = status;
+    self.updatedAttendance.date = date;
+    console.log(self.updatedAttendance)
 
-return $http.put('/attendance/' + self.attId, self.updatedAttendance).then(function (response){
-  console.log('updated attendance', response)
-  return response;
+    return $http.put('/attendance/' + self.attId, self.updatedAttendance).then(function (response) {
+      console.log('updated attendance', response)
+      return response;
 
-})
+    })
   }
 
 
@@ -204,10 +204,10 @@ return $http.put('/attendance/' + self.attId, self.updatedAttendance).then(funct
   } // end get attendance for gymnast view
 
   self.getChildAttendance = function () {
-    return $http.get('/attendance/childAtt/').then(function (response){
+    return $http.get('/attendance/childAtt/').then(function (response) {
       self.childAttendance.data = response.data;
       return response
-    }).catch(function (response){
+    }).catch(function (response) {
       console.log('Error received getting attendance.')
     })
   } // end getChildAttendance for parent view

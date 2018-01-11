@@ -26,7 +26,7 @@ router.post('/', function (req, res) {
         else {
             var to = req.body.to_id;
         }
-console.log('should be setting to a number var to', to);
+        console.log('should be setting to a number var to', to);
         pool.connect(function (errorConnectingToDb, db, done) {
             if (errorConnectingToDb) {
                 console.log('Error connecting', errorConnectingToDb);
@@ -36,14 +36,14 @@ console.log('should be setting to a number var to', to);
                 var queryText = 'INSERT INTO "conversations" ("subject", "to_user_id", "from_user_id") VALUES ($1, $2, $3) returning conversation_id;';
                 db.query(queryText, [message.subject, to, from], function (errorMakingQuery, result) {
                     // We have received an error or result at this point
-                    
+
                     done(); // pool +1
                     if (errorMakingQuery) {
                         console.log('Error making query', errorMakingQuery);
                         res.sendStatus(500);
                     } else {
                         // Send back success!
-                        console.log('result',result.rows);
+                        console.log('result', result.rows);
                         var conversationId = result.rows[0].conversation_id;
 
                         pool.connect(function (errorConnectingToDb, db, done) {
@@ -97,7 +97,7 @@ router.get('/gymnast/', function (req, res) {
                         res.sendStatus(500);
                     }
                     else {
-console.log(result.rows)
+                        console.log(result.rows)
                         res.send(result.rows);
                     }
                 }
@@ -142,63 +142,63 @@ router.get('/sent/', function (req, res) {
 });// end get messages route
 
 //post reply messages
-router.post('/reply/', function (req, res){
-console.log('reply being sent', req.body);
-console.log('req.user id', req.user.id)
-if (req.isAuthenticated()){
+router.post('/reply/', function (req, res) {
+    console.log('reply being sent', req.body);
+    console.log('req.user id', req.user.id)
+    if (req.isAuthenticated()) {
 
-if (req.user.user_role === 'gymnast'){
-    var fromId = req.user.id;
-    var fromName = req.user.name;
-    var replyMessage = req.body;
-    replyMessage.replyTo = req.user.coach_id;
-}
-
-    if (req.user.user_role === 'parent') {
-        var fromId = req.user.id;
-        var fromName = req.user.name;
-        var replyMessage = req.body;
-        replyMessage.replyTo = req.user.coach_id;
-    }
-
-if (req.user.user_role === 'coach') {
-    var fromId = req.user.id;
-    var fromName = req.user.name;
-    var replyMessage = req.body
-    replyMessage.replyTo = req.body.replyTo
-}
-console.log('the body', req.body)
-console.log('this is who it is going to', replyMessage.replyTo)
-    pool.connect(function (errorConnectingToDb, db, done) {
-        if (errorConnectingToDb) {
-            // No connection to database was made - error
-            console.log('Error connecting', errorConnectingToDb);
-            res.sendStatus(500);
-        } //end if error connection to db
-        else {
-            var queryText = 'INSERT INTO "messages" ("message", "to_user_id", "from_user_id", "conversation_id", "from_name", "picture_url", "picture_filename") VALUES ($1, $2, $3, $4, $5, $6, $7) ;';
-            db.query(queryText, [replyMessage.replyMessage, replyMessage.replyTo, fromId, replyMessage.conversation_id, fromName, replyMessage.picture.url, replyMessage.picture.filename], function (errorMakingQuery, result) {
-                done(); // add + 1 to pool - we have received a result or error
-                if (errorMakingQuery) {
-                    console.log('Error making query', errorMakingQuery);
-                    res.sendStatus(500);
-                }
-                else {
-
-                    res.send(result.rows);
-                }
-            }
-            ); // END QUERY
-
+        if (req.user.user_role === 'gymnast') {
+            var fromId = req.user.id;
+            var fromName = req.user.name;
+            var replyMessage = req.body;
+            replyMessage.replyTo = req.user.coach_id;
         }
 
-    }); // end pool connect
+        if (req.user.user_role === 'parent') {
+            var fromId = req.user.id;
+            var fromName = req.user.name;
+            var replyMessage = req.body;
+            replyMessage.replyTo = req.user.coach_id;
+        }
+
+        if (req.user.user_role === 'coach') {
+            var fromId = req.user.id;
+            var fromName = req.user.name;
+            var replyMessage = req.body
+            replyMessage.replyTo = req.body.replyTo
+        }
+        console.log('the body', req.body)
+        console.log('this is who it is going to', replyMessage.replyTo)
+        pool.connect(function (errorConnectingToDb, db, done) {
+            if (errorConnectingToDb) {
+                // No connection to database was made - error
+                console.log('Error connecting', errorConnectingToDb);
+                res.sendStatus(500);
+            } //end if error connection to db
+            else {
+                var queryText = 'INSERT INTO "messages" ("message", "to_user_id", "from_user_id", "conversation_id", "from_name", "picture_url", "picture_filename") VALUES ($1, $2, $3, $4, $5, $6, $7) ;';
+                db.query(queryText, [replyMessage.replyMessage, replyMessage.replyTo, fromId, replyMessage.conversation_id, fromName, replyMessage.picture.url, replyMessage.picture.filename], function (errorMakingQuery, result) {
+                    done(); // add + 1 to pool - we have received a result or error
+                    if (errorMakingQuery) {
+                        console.log('Error making query', errorMakingQuery);
+                        res.sendStatus(500);
+                    }
+                    else {
+
+                        res.send(result.rows);
+                    }
+                }
+                ); // END QUERY
+
+            }
+
+        }); // end pool connect
 
 
-} // end req.isAuthenticated
-else {
-    console.log('User is not authenticated')
-}
+    } // end req.isAuthenticated
+    else {
+        console.log('User is not authenticated')
+    }
 }) // end POST route for reply messages
 
 //get athlete and coach messages
@@ -236,7 +236,7 @@ router.get('/athCoach', function (req, res) {
 router.put('/read/:id', function (req, res) {
     if (req.isAuthenticated()) {
         console.log('message id', req.params.id)
-       var messageId = req.params.id;
+        var messageId = req.params.id;
         pool.connect(function (err, client, done) {
             if (err) {
                 console.log("Error connecting: ", err);

@@ -137,8 +137,7 @@ High level list of items completed.
 
 - [x] Parents can send messages to the coach.
 - [x] Athletes can send messages to the coach and a copy is sent to the parent.
-- [x] Coaches can send messages to a parent or gymnast.  A copy of messages to the gymnast are sent to their 
-      registered parent.
+- [x] Coaches can send messages to a parent or gymnast.  A copy of messages to the gymnast are sent to their registered parent.
 - [x] The ability to reply to a specific message.
 - [x] Ability to send pictures via Filestack.
 - [x] Attendance tracker for coaches.  Filter by name or date.
@@ -150,10 +149,6 @@ High level list of items completed.
 - [ ] Charts.js to compare attendance to meets for parents/gymnasts.
 - [ ] Complete the ability for sent videos to be viewable by recepient.
 
-## Deployment
-
-This application requires an access key for the FileStackAPI, which can be requested from the site. Once requested, save the key API key in a `.env` file outside the server folder and add .env to your .gitignore file.
-
 ## Authors
 
 * Marta Jopp
@@ -161,4 +156,5 @@ This application requires an access key for the FileStackAPI, which can be reque
 
 ## Acknowledgments
 
-* Chris Black, Kris Szafranski, Prime Digital Academy
+* Thank you to my instructors Chris Black, Kris Szafranski and Prime Digital Academy
+* Thank you to Prime Digital Academy for providing the Passport Authentication code

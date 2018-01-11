@@ -15,10 +15,7 @@ myApp.controller('InfoController', function ($mdDialog, $mdToast, UserService, M
     MessageService.sendCoachMessage();
   }
 
-  // commented this out because not sure this exists - but just in case not deleting it quite yet:)
-  // vm.sendMessage = function () {
-  //   MessageService.sendMessage();
-  // }
+
 
   vm.getCoachesParents = function () {
     UserService.getCoachesParents();
@@ -35,29 +32,6 @@ myApp.controller('InfoController', function ($mdDialog, $mdToast, UserService, M
   }
 
   vm.getCoachesParents();
-
-  // vm.startNewMessage = function ($event) {
-  //   MessageService.startNewMessage($event)
-  // }
-
-  // vm.startCoachMessage = function ($event) {
-  //   MessageService.startCoachMessage($event)
-  // }
-
-  
-  // vm.sendNewMessage = function (toId, subject, message) {
-  //   MessageService.sendNewMessage(toId, subject, message).then(function (response){
-      
-  //     MessageService.getMessage();
-  //     $mdDialog.hide();
-  //     $mdToast.show(
-  //       $mdToast.simple()
-  //         .textContent('Message Sent!')
-  //         .hideDelay(2500)
-  //     );
-
-  //   })
-  // }
 
   vm.cancel = function () {
     MessageService.cancel()

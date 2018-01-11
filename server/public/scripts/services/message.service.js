@@ -14,9 +14,7 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, $mdToast,
         },
         read: '',
         parentRead: ''
-        // for parent/gymnast I can set the to field on the server side.  I think I will be able to pull the 
-        // dropdown on the coach in the html form to set who it is to and then send it through here with
-        // data binding.  I hope.
+        // for parent/gymnast I can set the to field on the server side.  
     }
 
 

@@ -42,7 +42,7 @@ router.post('/', function (req, res, next) {
       res.sendStatus(500);
     }
     var queryText = "INSERT INTO users (username, password, gym_id, profile, user_role, name, coach_id, parent_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id, coach_id, parent_id;";
-    client.query(queryText, 
+    client.query(queryText,
       [saveUser.username, saveUser.password, saveUser.gym_id, saveUser.profile, saveUser.user_role, saveUser.name, saveUser.coach_id, saveUser.parent_id],
       // client.query("INSERT INTO user_gymnast(parent_id, coach_id, gymnast_id) SELECT parent_id, coach_id, id FROM users WHERE user_role like 'gymnast';"),  
       function (err, result) { // first function after query
@@ -68,31 +68,31 @@ router.post('/', function (req, res, next) {
                   console.log('Error inserting data:', err);
                   res.sendStatus(500);
                 } else {
-              var level = 0;
-              client.query("INSERT INTO gymnast_properties (user_id, level) VALUES ($1, $2);",
-              [gymnastId, level],
-              
-                function (err, result) { 
-                  client.end();
-                  if (err) {
-                    console.log('Error inserting data:', err);
-                    res.sendStatus(500);
-                  } else { // end this if
-                    res.sendStatus(201);
-                  } // end this else
-                } // end function
-              ) //end 3rd client.query
-            } // end else before 3rd client query
-          } // end function before 3rd client query
-        ) // end 2nd client.query
-      } // end if gymnast
-      else {
-        res.sendStatus(201);
-      }
-    } // end first else
-  } // end first function after query
-) // end first query
+                  var level = 0;
+                  client.query("INSERT INTO gymnast_properties (user_id, level) VALUES ($1, $2);",
+                    [gymnastId, level],
+
+                    function (err, result) {
+                      client.end();
+                      if (err) {
+                        console.log('Error inserting data:', err);
+                        res.sendStatus(500);
+                      } else { // end this if
+                        res.sendStatus(201);
+                      } // end this else
+                    } // end function
+                  ) //end 3rd client.query
+                } // end else before 3rd client query
+              } // end function before 3rd client query
+            ) // end 2nd client.query
+          } // end if gymnast
+          else {
+            res.sendStatus(201);
+          }
+        } // end first else
+      } // end first function after query
+    ) // end first query
   } // end pool connect function
-) // end pool 
+  ) // end pool 
 }); // end POST ROUTE
 module.exports = router;

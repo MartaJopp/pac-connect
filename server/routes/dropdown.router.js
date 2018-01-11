@@ -16,7 +16,6 @@ router.get('/coach/:id', function (req, res) {
             console.log('Error connecting', errorConnectingToDb);
             res.sendStatus(500);
         } else {
-            // 'UPDATE "hotel_pets" SET "name" = $1, "breed" = $2, "color" = $3 WHERE "id" = $4;';
             // We connected to the db!!!!! pool -1
             var queryText = 'SELECT * FROM "users" where "gym_id" = $1 and "user_role" = $2;';
             db.query(queryText, [theId, role], function (errorMakingQuery, result) {
@@ -46,7 +45,6 @@ router.get('/parent/:id', function (req, res) {
             console.log('Error connecting', errorConnectingToDb);
             res.sendStatus(500);
         } else {
-            // 'UPDATE "hotel_pets" SET "name" = $1, "breed" = $2, "color" = $3 WHERE "id" = $4;';
             // We connected to the db!!!!! pool -1
             var queryText = 'SELECT * FROM "users" where "gym_id" = $1 and "user_role" = $2;';
             db.query(queryText, [theId, role], function (errorMakingQuery, result) {

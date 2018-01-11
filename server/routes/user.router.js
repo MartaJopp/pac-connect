@@ -11,7 +11,7 @@ router.get('/', function (req, res) {
     var userInfo = {
       username: req.user.username,
       user_role: req.user.user_role,//sending role for registration purposes
-      name: req.user.name 
+      name: req.user.name
     };
     res.send(userInfo);
   } else {

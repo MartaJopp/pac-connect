@@ -50,10 +50,6 @@ myApp.controller('ReplyController', function ($scope, $mdDialog, $mdToast, momen
             $scope.$apply(vm.theReplyMessage.picture.url = response.filesUploaded[0].url,
             vm.theReplyMessage.picture.filename = response.filesUploaded[0].filename)
             
-            // console.log('this is the picture', response.filesUploaded[0])
-            // vm.theReplyMessage.picture.url = response.filesUploaded[0].url;
-            // vm.theReplyMessage.picture.filename = response.filesUploaded[0].filename;
-            // console.log('what does this say?', vm.theReplyMessage.picture.url);
 
         });
     }    
