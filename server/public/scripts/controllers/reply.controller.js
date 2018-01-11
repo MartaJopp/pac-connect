@@ -13,11 +13,6 @@ myApp.controller('ReplyController', function ($scope, $mdDialog, $mdToast, momen
 
     vm.replyMessage = '\n\n\n\n\n\n-------------\n Subject: Re:' + MessageService.thisMessage.subject + '\n From: ' + MessageService.thisMessage.from_name + '\n Date: ' + moment(MessageService.thisMessage.date).format('MMMM Do YYYY, h:mm:ss a') + '\n\n Message: ' + MessageService.thisMessage.message ;
 
-    // vm.reply = function ($event, conversationId, thisMessage, messageSubject, fromId) {
-    //     console.log('\n\n-------------\n' + thisMessage.message);
-    //     MessageService.reply($event, conversationId, thisMessage, messageSubject, fromId);
-    // }
-
     vm.answer = function (conversationId, messageSubject, fromId, pictureUrl, toId) {
         MessageService.answer(conversationId, messageSubject, fromId, pictureUrl, toId).then(function (response) {
             MessageService.getMessage();

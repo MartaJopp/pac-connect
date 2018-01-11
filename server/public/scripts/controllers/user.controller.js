@@ -11,10 +11,6 @@ myApp.controller('UserController', function ($mdDialog, $mdToast, moment, UserSe
   vm.dates = UserService.dates;
   vm.gymnastAttendance = UserService.gymnastAttendance;
   vm.childAttendance = UserService.childAttendance;
-  
-//  vm.messageSubject = MessageService.messageSubject;
-//  vm.conversationId = MessageService.conversationId;
-//  vm.fromId = MessageService.fromId;
   vm.status = '';
   vm.customFullscreen = false;
   vm.updateGymnast = UserService.updateGymnast;
@@ -24,11 +20,6 @@ vm.athleteCoachMessages = MessageService.athleteCoachMessages;
 vm.selected_item = null;
   vm.sentSelected_item = null;
   vm.getTeamAttendance = UserService.getTeamAttendance.data;
-// vm.thisMessage = MessageService.thisMessage;
-//   console.log('MessageService.thisMessage', MessageService.thisMessage);
-
-
-//   vm.replyMessage = '\n\n-------------\n' + MessageService.thisMessage.message;
 
 vm.getGymnastList = function () { // calls getGymnast upon click of link in nav bar
     UserService.getGymnastList();
@@ -44,24 +35,12 @@ vm.getMessage = function () {
   
 
 vm.reply = function ($event, conversationId, thisMessage, messageSubject, fromId, toId) {
-  // console.log('\n\n-------------\n' + thisMessage.message);
   MessageService.reply($event, conversationId, thisMessage, messageSubject, fromId, toId);
 }
 
 vm.cancel = function () {
   MessageService.cancel();
 }
-
-//   vm.answer = function (conversationId, messageSubject, fromId) {
-//     MessageService.answer(conversationId, messageSubject, fromId).then(function (response){
-//       MessageService.getMessage();
-//       $mdToast.show(
-//         $mdToast.simple()
-//           .textContent('Reply Sent!')
-//           .hideDelay(2500)
-//       );
-//     })
-// }
 
   vm.startNewMessage = function ($event) {
     UserService.getCoachesParents();
@@ -108,9 +87,8 @@ vm.cancel = function () {
     })
   
   }
- // vm.sendNewMessage = function (toId, subject, message) {
- } //   MessageService.sendNewMessage(toId, subject, message)
- ) // }
+ } //  
+ ) // 
   } //end delete gymnast function 
 
   vm.editGymnast = function (gymnastId, gymnastName)  {
@@ -136,9 +114,6 @@ vm.getAthleteCoachMessages = function() {
 }
 vm.getAthleteCoachMessages();
 
-// vm.openPicker = function (){
-//   MessageService.openPicker();
-// }
 vm.setItem = function(i){
   console.log('clicked')
   if (vm.selected_item === i) {
@@ -186,7 +161,6 @@ vm.setItem = function(i){
 
   vm.attendance = function ($event)  {
 MessageService.attendance(event)
-// .then ( function (response){
 }
 
   vm.getTeamAttendance = function () {

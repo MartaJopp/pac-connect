@@ -38,7 +38,6 @@ myApp.service('UserService', function ($http, $location, $mdDialog, $mdToast) {
   self.getuser = function () {
     console.log('UserService -- getuser');
     $http.get('/user').then(function (response) {
-      console.log('response', response);
       if (response.data.username) {
         // user has a curret session on the server
         self.userObject.userName = response.data.username;
@@ -65,9 +64,7 @@ myApp.service('UserService', function ($http, $location, $mdDialog, $mdToast) {
     }
 
   self.getGymnastList = function () {
-    console.log('Get gymnast')
     $http.get('/dropdown/coachesTeam/').then(function (response) {
-      console.log('response', response)
       self.gymnasts.data = response.data;
     }).catch(function (response) {
       console.log('Error getting dropdown');
@@ -110,13 +107,11 @@ myApp.service('UserService', function ($http, $location, $mdDialog, $mdToast) {
     self.closeDialog(); //close the dialog once save is clicked
     self.updateGymnast.gymnast_id = gymnastId;
     self.updateGymnast.level = level;
-    console.log('updated', self.updateGymnast);
     updateThisId = self.updateGymnast.gymnast_id
-
 
     return $http.put('/team/update/' + updateThisId, self.updateGymnast).then(function (response) {
       return response;
-      console.log(response);
+
     })//end put route
 
   } //end saveEdit function
@@ -127,11 +122,8 @@ myApp.service('UserService', function ($http, $location, $mdDialog, $mdToast) {
   } // end close dialog function
 
   self.getTeamAttendance = function () {
-    console.log('this is being called')
     $http.get('/attendance').then(function (response) {
-      console.log('response', response.data)
       self.attendresult.data = response.data
-      console.log('attendresult', self.attendresult.data)
       self.getDates();
     }).catch(function (response) {
       console.log('error');
@@ -142,8 +134,6 @@ myApp.service('UserService', function ($http, $location, $mdDialog, $mdToast) {
     self.attendance.gymnastId = gymnastId;
     self.attendance.status = status;
     self.attendance.date = date
-    console.log('attendance', self.attendance);
-    console.log(gymnastId, status, date);
     return $http.post('/attendance/', self.attendance).then(function (response) {
       return response
     }).catch(function (response) {
@@ -152,21 +142,18 @@ myApp.service('UserService', function ($http, $location, $mdDialog, $mdToast) {
   }
 
   self.getDates = function () {
-    console.log('getting dates');
     $http.get('/attendance/dates/').then(function (response) {
       self.dates.data = response.data;
-      console.log('dates', self.dates.data)
     }).catch(function (response) {
       console.log('Error received getting dates')
     })
   }
 
   self.editAtt = function (id, name, status, date) {
-    console.log(name);
+
     self.name = name;
     self.attId = id;
-    console.log(self.attId);
-    console.log(self.name);
+
     $mdDialog.show({
       controller: 'EditAttendanceController as ea',
       templateUrl: '/views/templates/editAttendance.html',
@@ -182,10 +169,8 @@ myApp.service('UserService', function ($http, $location, $mdDialog, $mdToast) {
     self.attId = id;
     self.updatedAttendance.status = status;
     self.updatedAttendance.date = date;
-    console.log(self.updatedAttendance)
 
     return $http.put('/attendance/' + self.attId, self.updatedAttendance).then(function (response) {
-      console.log('updated attendance', response)
       return response;
 
     })
@@ -194,7 +179,6 @@ myApp.service('UserService', function ($http, $location, $mdDialog, $mdToast) {
 
 
   self.getPersonalAttendance = function () {
-    console.log('getting dates');
     return $http.get('/attendance/gymnastAtt/').then(function (response) {
       self.gymnastAttendance.data = response.data;
       return response

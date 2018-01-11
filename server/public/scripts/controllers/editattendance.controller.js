@@ -33,10 +33,6 @@ vm.updateAtt = function (id, status, date) {
         );
 
     })
-    // vm.updatedAttendance.date = date
-    // vm.updatedAttendance.status = status
-    // vm.updatedAttendance.attId = id
-    // console.log(id, status, date);
 }
 
 

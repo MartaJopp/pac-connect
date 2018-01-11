@@ -13,14 +13,6 @@ myApp.controller('AttendanceController', function ($scope, $mdDialog, $mdToast, 
 
     vm.attendresult = UserService.attendresult;
 
-
-    // vm.choices = [
-    //     { name: 'N/A', selected: false },
-    //     { name: 'Present', selected: false },
-    //     { name: 'Late', selected: false },
-    //     { name: 'Left Early', selected: false }
-    // ]
-
     vm.presentStatus = function (gymnastId, status, date) {
         UserService.presentStatus(gymnastId, status, date).then(function (response) {
             UserService.getTeamAttendance();
