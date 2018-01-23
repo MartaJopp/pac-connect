@@ -16,7 +16,7 @@ myApp.controller('RegisterController', function ($http, $mdDialog, $mdToast, mom
     vm.roles = ['coach', 'parent', 'gymnast'];
     vm.coaches = { data: [] };
     vm.parents = { data: [] };
-
+    //depending on group selected specific form dropdowns
     vm.groupSelected = function (selectedGroup, gymId) {
         console.log('running the change!!')
         console.log('selected', selectedGroup);
@@ -51,7 +51,7 @@ myApp.controller('RegisterController', function ($http, $mdDialog, $mdToast, mom
     }
     // start registerUser function
     vm.registerUser = function () {
-        
+
         console.log('register clicked');
         console.log('LoginController -- registerUser');
         console.log('coach data', vm.user.coach_id);
@@ -60,11 +60,11 @@ myApp.controller('RegisterController', function ($http, $mdDialog, $mdToast, mom
         } else {
             console.log('LoginController -- registerUser -- sending to server...', vm.user);
             $http.post('/register', vm.user).then(function (response) {
-                
+
                 console.log('response', response);
                 $mdDialog.hide();
                 // $location.path('/home');
-              
+
             }).catch(function (response) {
                 console.log('LoginController -- registerUser -- error');
                 vm.message = "Please try again."

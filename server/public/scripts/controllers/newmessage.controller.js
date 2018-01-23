@@ -14,10 +14,9 @@ myApp.controller('NewMessageController', function ($scope, $mdDialog, $mdToast, 
         $mdDialog.cancel();
     } //cancel dialog function
 
-
+    //new message function
     vm.sendNewMessage = function (toId, subject, message) {
         MessageService.sendNewMessage(toId, subject, message).then(function (response) {
-            
             MessageService.getMessage();
             vm.closeDialog();
             vm.coachMessage.message = '';
@@ -32,8 +31,8 @@ myApp.controller('NewMessageController', function ($scope, $mdDialog, $mdToast, 
         })
     }
 
-   
-//open filestack for new message
+
+    //open filestack for new message
     vm.fsClient = filestack.init('A1JwDWLRvRvgGNT0VV1LBz');
     vm.openPicker = function () {
         console.log(vm.uploadShow);
@@ -42,7 +41,7 @@ myApp.controller('NewMessageController', function ($scope, $mdDialog, $mdToast, 
             accept: ["image/*", "video/*"]
         }).then(function (response) {
             $scope.$apply(vm.coachMessage.picture.url = response.filesUploaded[0].url,
-            vm.coachMessage.picture.filename = response.filesUploaded[0].filename);
+                vm.coachMessage.picture.filename = response.filesUploaded[0].filename);
             vm.uploadShow = true;
         });
     }

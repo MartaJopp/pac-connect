@@ -14,14 +14,14 @@ myApp.controller('UserController', function ($mdDialog, $mdToast, moment, UserSe
   vm.status = '';
   vm.customFullscreen = false;
   vm.updateGymnast = UserService.updateGymnast;
-vm.gymnastId = UserService.gymnastId;
-vm.gymnastName = UserService.gymnastName;
-vm.athleteCoachMessages = MessageService.athleteCoachMessages;
-vm.selected_item = null;
+  vm.gymnastId = UserService.gymnastId;
+  vm.gymnastName = UserService.gymnastName;
+  vm.athleteCoachMessages = MessageService.athleteCoachMessages;
+  vm.selected_item = null;
   vm.sentSelected_item = null;
   vm.getTeamAttendance = UserService.getTeamAttendance.data;
 
-vm.getGymnastList = function () { // calls getGymnast upon click of link in nav bar
+  vm.getGymnastList = function () { // calls getGymnast upon click of link in nav bar
     UserService.getGymnastList();
   }
 
@@ -29,18 +29,18 @@ vm.getGymnastList = function () { // calls getGymnast upon click of link in nav 
 
 
 
-vm.getMessage = function () {
-  MessageService.getMessage();
-}
-  
+  vm.getMessage = function () {
+    MessageService.getMessage();
+  }
 
-vm.reply = function ($event, conversationId, thisMessage, messageSubject, fromId, toId) {
-  MessageService.reply($event, conversationId, thisMessage, messageSubject, fromId, toId);
-}
 
-vm.cancel = function () {
-  MessageService.cancel();
-}
+  vm.reply = function ($event, conversationId, thisMessage, messageSubject, fromId, toId) {
+    MessageService.reply($event, conversationId, thisMessage, messageSubject, fromId, toId);
+  }
+
+  vm.cancel = function () {
+    MessageService.cancel();
+  }
 
   vm.startNewMessage = function ($event) {
     UserService.getCoachesParents();
@@ -73,28 +73,29 @@ vm.cancel = function () {
             .targetEvent(event)
         );
       }
-        else {
-    UserService.deleteGymnast(gymnastId).then(function (response){
-    
-      UserService.getGymnastList();
+      else {
+        UserService.deleteGymnast(gymnastId).then(function (response) {
 
-      $mdToast.show(
-        $mdToast.simple()
-          .textContent('Gymnast Deleted!')
-          .hideDelay(2500)
-      );
-      
-    })
-  
-  }
- } //  
- ) // 
+          UserService.getGymnastList();
+
+          $mdToast.show(
+            $mdToast.simple()
+              .textContent('Gymnast Deleted!')
+              .hideDelay(2500)
+          );
+
+        })
+
+      }
+    } //  
+    ) // 
   } //end delete gymnast function 
 
-  vm.editGymnast = function (gymnastId, gymnastName)  {
-    UserService.editGymnast(gymnastId, gymnastName) 
+  vm.editGymnast = function (gymnastId, gymnastName) {
+    UserService.editGymnast(gymnastId, gymnastName)
   } //end editGymnast Function
 
+  //save changes to team
   vm.saveEdit = function (gymnastId, level) {
     UserService.saveEdit(gymnastId, level).then(function (response) {
 
@@ -105,27 +106,29 @@ vm.cancel = function () {
           .textContent('Update Complete!')
           .hideDelay(2500)
       );
-  }
+    }
     )
-} // end saveEdit function
+  } // end saveEdit function
 
-vm.getAthleteCoachMessages = function() {
-  MessageService.getAthleteCoachMessages();
-}
-vm.getAthleteCoachMessages();
-
-vm.setItem = function(i){
-  console.log('clicked')
-  if (vm.selected_item === i) {
-    vm.selected_item = null;
+  //gets messages between the athlete and the coach
+  vm.getAthleteCoachMessages = function () {
+    MessageService.getAthleteCoachMessages();
   }
-  else {
-    vm.selected_item = i;  
-}
-}
+  vm.getAthleteCoachMessages();
 
+  //shows messages when clicked
+  vm.setItem = function (i) {
+    console.log('clicked')
+    if (vm.selected_item === i) {
+      vm.selected_item = null;
+    }
+    else {
+      vm.selected_item = i;
+    }
+  }
+  //shows sent messages when clicked
   vm.sentSetItem = function (i) {
-    
+
     if (vm.sentSelected_item === i) {
       vm.sentSelected_item = null;
     }
@@ -133,51 +136,56 @@ vm.setItem = function(i){
       vm.sentSelected_item = i;
     }
   }
-
+  //get sent messages
   vm.getSent = function () {
     MessageService.getSent();
   }
   vm.getSent();
   vm.getMessage();
 
-  vm.clickImage = function(event, pictureUrl) {
+  //displays image as a pop up
+  vm.clickImage = function (event, pictureUrl) {
     MessageService.clickImage(event, pictureUrl)
   }
-
+  //if message has been clicked - shows as read
   vm.messageRead = function (messageId) {
-  
-    MessageService.messageRead(messageId).then(function(response){
+
+    MessageService.messageRead(messageId).then(function (response) {
       vm.getMessage();
       vm.getSent();
     })
-}
-
+  }
+  //if parent has read the message between coach and athlete shows as read
   vm.parentRead = function (messageId) {
 
-    MessageService.parentRead(messageId).then(function(response){
+    MessageService.parentRead(messageId).then(function (response) {
       vm.getAthleteCoachMessages();
     })
   }
 
-  vm.attendance = function ($event)  {
-MessageService.attendance(event)
-}
+  //attendance
+  vm.attendance = function ($event) {
+    MessageService.attendance(event)
+  }
 
+  //gets the team's attendance
   vm.getTeamAttendance = function () {
     UserService.getTeamAttendance();
 
   } //end getTeamAttendance for coach
-vm.getTeamAttendance();
+  vm.getTeamAttendance();
 
-vm.getDates = function () {
-  UserService.getDates()
-}
+  vm.getDates = function () {
+    UserService.getDates()
+  }
 
-vm.editAtt = function (id, name, status, date) {
-  UserService.editAtt(id, name, status, date)
-  
-}
+  //eidt attendance
+  vm.editAtt = function (id, name, status, date) {
+    UserService.editAtt(id, name, status, date)
 
+  }
+
+  //delete attendance
   vm.deleteAtt = function (attId) {
     console.log('delete', attId)
     var toast = $mdToast.simple()
@@ -219,17 +227,17 @@ vm.editAtt = function (id, name, status, date) {
   } //end delete attendance record  
 
 
-
-  vm.getPersonalAttendance = function() {
-    UserService.getPersonalAttendance().then(function (response){
+  //attendance for gymnast
+  vm.getPersonalAttendance = function () {
+    UserService.getPersonalAttendance().then(function (response) {
 
     })
   }
 
   UserService.getPersonalAttendance();
-
+  //child's attendance for parent
   vm.getChildAttendance = function () {
-    UserService.getChildAttendance().then(function (response){
+    UserService.getChildAttendance().then(function (response) {
 
     })
   }

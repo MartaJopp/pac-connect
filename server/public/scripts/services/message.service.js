@@ -39,6 +39,7 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, $mdToast,
     self.athleteCoachMessages = { data: [] };
     self.selected_item = null;
 
+    //new message popup from coach
     self.startNewMessage = function ($event) {
         $mdDialog.show({
             controller: 'NewMessageController as nm',
@@ -50,6 +51,7 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, $mdToast,
         })
     } // end pop up dialog/form for startNewMessage from Coach
 
+    //new message popup to coach
     self.startCoachMessage = function ($event) {
         $mdDialog.show({
             controller: 'NewMessageController as nm',
@@ -61,6 +63,7 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, $mdToast,
         })
     } //start new message to coach from parent/gymnast
 
+    //send New message
     self.sendNewMessage = function (toId, subject, message) {
 
         self.coachMessage.subject = subject;
@@ -75,7 +78,7 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, $mdToast,
         });
     }; //send message from the popup
 
-
+    //get messages for athlete
     self.getMessage = function () {
         $http.get('/message/gymnast/').then(function (response) {
             self.allMessages.data = response.data;
@@ -83,12 +86,14 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, $mdToast,
         })
     } // end getMessages function
 
+    //get sent messages
     self.getSent = function () {
         $http.get('/message/sent/').then(function (response) {
             self.sentMessages.data = response.data;
         })
     }
 
+    //reply popup
     self.reply = function ($event, conversationId, thisMessage, messageSubject, fromId, toId) {
         self.messageSubject = messageSubject;
         self.conversationId = conversationId;
@@ -168,7 +173,7 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, $mdToast,
     }//end parentRead
     // end clickImage
 
-
+    //attendance popup
     self.attendance = function (event) {
         $mdDialog.show({
             controller: 'AttendanceController as ac',
@@ -178,6 +183,6 @@ myApp.service('MessageService', function ($http, $location, $mdDialog, $mdToast,
             clickOutsideToClose: true,
             fullscreen: self.customFullscreen // Only for -xs, -sm breakpoints.
         })
-    }
+    }//end attendance popup
 
 })

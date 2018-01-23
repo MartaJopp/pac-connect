@@ -157,4 +157,4 @@ High level list of items completed.
 ## Acknowledgments
 
 * Thank you to my instructors Chris Black, Kris Szafranski and Prime Digital Academy
-* Thank you to Prime Digital Academy for providing the Passport Authentication code
+* Thank you to Prime Digital Academy for providing the Passport local strategy code

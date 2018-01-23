@@ -12,7 +12,7 @@ myApp.controller('LoginController', function ($http, $mdDialog, $location, UserS
     parent_id: ''
   };
   vm.message = '';
-vm.messageService = MessageService;
+  vm.messageService = MessageService;
   vm.roles = ['coach', 'parent', 'gymnast'];
   vm.coaches = { data: [] };
   vm.parents = { data: [] };
@@ -28,7 +28,7 @@ vm.messageService = MessageService;
           MessageService.getMessage();
           console.log(' the IF login LoginController -- login -- success: ', response.data);
           // location works with SPA (ng-route)
-          
+
           $location.path('/user'); // http://localhost:5000/#/user
         } else {
           console.log('LoginController -- login -- failure: ', response);
@@ -42,7 +42,7 @@ vm.messageService = MessageService;
   };
 
 
-
+  //shows specific form inputs depending on selected group
   vm.groupSelected = function (selectedGroup, gymId) {
     console.log('selected', selectedGroup);
     console.log('gymId', gymId);
@@ -104,11 +104,12 @@ vm.messageService = MessageService;
     }
   };
 
+  //slideshow 
   vm.arrayData = [
-    { src: 'images/mom.jpg'},
-    { src: 'images/chalk.jpg'},
-    { src: 'images/coach.jpg' }, //placeholder for coach picture
-    { src: 'images/smaller logo.png'}
+    { src: 'images/mom.jpg' },
+    { src: 'images/chalk.jpg' },
+    { src: 'images/coach.jpg' },
+    { src: 'images/smaller logo.png' }
   ]
 
   vm.register = function (event) {
