@@ -1,11 +1,10 @@
-
-<md-dialog class = "replyDialog" aria-label="reply pop up">
-    <form ng-cloak name = "rc.replyForm">
+<md-dialog class="replyDialog" aria-label="reply pop up">
+    <form ng-cloak name="rc.replyForm">
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h3>Subject: Re: {{rc.messageSubject}}</h3>
                 <span flex></span>
-                <md-button class="md-icon-button" ng-click = "rc.cancel()">
+                <md-button class="md-icon-button" ng-click="rc.cancel()">
                     <i class="material-icons" md-dialog-close aria-label="Close dialog">close</i>
                 </md-button>
             </div>
@@ -13,30 +12,30 @@
 
         <md-dialog-content>
             <div class="md-dialog-content">
-<md-input-container class="md-block">
-   <div class="md-dialog-content"></div>
-    <label>Reply:</label>
-    <textarea ng-model="rc.replyMessage" rows="10" placeholder="Write message here."> </textarea>
-</md-input-container>
-</div>
-<div layout-gt-xl="row">
-    <md-input-container class="md-block" flex-gt-xl>
-        <md-button class="md-raised" ng-click="rc.replyPicker()">Upload
-            <span class="caret"></span>
-        </md-button>
-    </md-input-container>
-    <img class="preview" ng-src="{{rc.theReplyMessage.picture.url}}" alt="{{rc.theReplyMessage.picture.picture_filename}}">
-    </div>
-</md-dialog-content>
+                <md-input-container class="md-block">
+                    <div class="md-dialog-content"></div>
+                    <label>Reply:</label>
+                    <textarea ng-model="rc.replyMessage" rows="10" placeholder="Write message here."> </textarea>
+                </md-input-container>
+            </div>
+            <div layout-gt-xl="row">
+                <md-input-container class="md-block" flex-gt-xl>
+                    <md-button class="md-raised" ng-click="rc.replyPicker()">Upload
+                        <span class="caret"></span>
+                    </md-button>
+                </md-input-container>
+                <img class="preview" ng-src="{{rc.theReplyMessage.picture.url}}" alt="{{rc.theReplyMessage.picture.picture_filename}}">
+            </div>
+        </md-dialog-content>
 
-<md-dialog-actions layout="row">
-    <md-button ng-click = "rc.cancel()">
-        Cancel
-    </md-button>
-    <span flex></span>
-    <md-button ng-click="rc.answer(rc.replyMessage, rc.conversationId, rc.fromId, rc.pictureUrl, rc.toId)" >
-        Send reply
-    </md-button>
-</md-dialog-actions>
-</form>
+        <md-dialog-actions layout="row">
+            <md-button ng-click="rc.cancel()">
+                Cancel
+            </md-button>
+            <span flex></span>
+            <md-button ng-click="rc.answer(rc.replyMessage, rc.conversationId, rc.fromId, rc.pictureUrl, rc.toId)">
+                Send reply
+            </md-button>
+        </md-dialog-actions>
+    </form>
 </md-dialog>

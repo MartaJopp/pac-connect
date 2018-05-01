@@ -1,45 +1,39 @@
 <header ng-include="'/views/partials/header.html'"></header>
 <div ng-include="'views/partials/nav.html'"></div>
 <div class="container">
-<p id="pWelcome" class="lead">Welcome, {{uc.userObject.userName}}!</p>
-<div class="leftColumn" layout="row">
-    <div flex="15" class="sideBar">
-       
+    <p id="pWelcome" class="lead">Welcome, {{uc.userObject.userName}}!</p>
+    <div class="leftColumn" layout="row">
+        <div flex="15" class="sideBar">
 
+
+        </div>
+        <div flex="80" class="box1">
+            <div>
+                <table class="teamTable">
+                    <th class="teamTableHead">Gymnast Name</th>
+                    <th class="teamTableHead">Level</th>
+                    <th class="teamTableHead">Edit Level</th>
+                    <th class="teamTableHead">Remove from Team?</th>
+
+                    <tr class="teamTableRows" ng-repeat="gymnast in uc.gymnasts.data">
+                        <td class="teamTableData">{{gymnast.name}}</td>
+                        <td class="teamTableData">{{gymnast.level}}</td>
+                        <td class="teamTableData">
+                            <md-button class="md-icon-button" aria-label="Edit">
+                                <md-icon class="material-icons blue1" ng-click="uc.editGymnast(gymnast.gymnast_id, gymnast.name)">edit</md-icon>
+                            </md-button>
+
+                        </td>
+                        <td class="teamTableData">
+                            <md-button class="md-icon-button" aria-label="Delete">
+                                <md-icon class="material-icons red1" ng-click="uc.deleteGymnast(gymnast.gymnast_id)">delete</md-icon>
+                            </md-button>
+                        </td>
+                    </tr>
+                </table>
+
+
+
+            </div>
+        </div>
     </div>
-    <div flex="80" class="box1">
-    
-       
-
-
-<div>
-    <!-- {{uc.gymnasts.data}} -->
-    <table class = "teamTable">
-        <th class = "teamTableHead">Gymnast Name</th>
-        <th class = "teamTableHead">Level</th>
-        <th class = "teamTableHead">Edit Level</th>
-        <th class = "teamTableHead">Remove from Team?</th>
-
-        <tr class = "teamTableRows"ng-repeat="gymnast in uc.gymnasts.data">
-            <td class="teamTableData">{{gymnast.name}}</td>
-            <td class ="teamTableData">{{gymnast.level}}</td>
-            <td class = "teamTableData">
-                <md-button class="md-icon-button" aria-label="Edit">
-                    <md-icon class="material-icons blue1" ng-click="uc.editGymnast(gymnast.gymnast_id, gymnast.name)">edit</md-icon>
-                </md-button>
-
-            </td>
-            <td class = "teamTableData">
-                <md-button class="md-icon-button" aria-label="Delete">
-                    <md-icon class="material-icons red1" ng-click="uc.deleteGymnast(gymnast.gymnast_id)">delete</md-icon>
-                </md-button>
-            </td>
-        </tr>
-        <!-- <li>{{gymnast.level}}</li> -->
-    </table>
-
-        
-   
-</div>
-</div>
-</div>

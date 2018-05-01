@@ -1,18 +1,13 @@
 <md-dialog class="imageDialog" aria-label="Uploaded photo">
-    
-
-        <md-dialog-content>
-            <div class="md-dialog-content">
-                
-<img id="popupImage" ng-src="{{img.pictureUrl}}" alt="Received photo">
-</div>
-        </md-dialog-content>
-
-        <md-dialog-actions layout="row">
-            <span flex></span>
-<!-- <img src="images/smaller logo.png"> could place logo here -->
-            <md-button ng-click="img.ok()">
-                Ok
-            </md-button>
-        </md-dialog-actions>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <img id="popupImage" ng-src="{{img.pictureUrl}}" alt="Received photo">
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-click="img.ok()">
+            Ok
+        </md-button>
+    </md-dialog-actions>
 </md-dialog>

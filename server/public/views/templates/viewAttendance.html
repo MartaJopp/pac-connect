@@ -13,8 +13,9 @@
 
 
             <div>
-                    <div layout-gt-xl="row">
-                        <span><md-input-container class="md-block" flex=50>
+                <div layout-gt-xl="row">
+                    <span>
+                        <md-input-container class="md-block" flex=50>
                             <label>Select date to see attendance:</label>
                             <md-select name="type" ng-model="dateFilter">
                                 <md-option></md-option>
@@ -27,40 +28,33 @@
                                 <md-option></md-option>
                                 <md-option ng-repeat="gymnast in uc.gymnasts.data" value={{gymnast.name}}>{{gymnast.name}}</md-option>
                             </md-select>
-                        </md-input-container></span>
-                    </div>
-                <!-- <label>Name only
-                    <select ng-model="search.name" ng-repeat=>
-                        <option value="{{}}}">{{}}</option>
-                        <option value="Mary">Mary</option>
-                        <option value="Mary">Mary</option>
-                    </select>
-                </label> -->
+                        </md-input-container>
+                    </span>
+                </div>
                 <div id="coachViewAttendance">
-                <table class="teamTable">
-                    <th class="teamTableHead">Date</th>
-                    <th class="teamTableHead">Gymnast Name</th>
-                    <th class="teamTableHead">Attendance Status</th>
-                    <th class="teamTableHead">Edit</th>
-                    <th class="teamTableHead">Delete</th>
-                    <tr class="teamTableRows" ng-repeat="att in uc.attendresult.data | filter: dateFilter || undefined | filter: nameFilter: true || undefined">
-                        <td class="teamTableData">{{att.date | amDateFormat:'MMMM Do YYYY'}}</td>
-                        <td class="teamTableData">{{att.name}}</td>
-                        <td class="teamTableData">{{att.status}}</td>
+                    <table class="teamTable">
+                        <th class="teamTableHead">Date</th>
+                        <th class="teamTableHead">Gymnast Name</th>
+                        <th class="teamTableHead">Attendance Status</th>
+                        <th class="teamTableHead">Edit</th>
+                        <th class="teamTableHead">Delete</th>
+                        <tr class="teamTableRows" ng-repeat="att in uc.attendresult.data | filter: dateFilter || undefined | filter: nameFilter: true || undefined">
+                            <td class="teamTableData">{{att.date | amDateFormat:'MMMM Do YYYY'}}</td>
+                            <td class="teamTableData">{{att.name}}</td>
+                            <td class="teamTableData">{{att.status}}</td>
                             <td class="teamTableData">
-                            <md-button class="md-icon-button" aria-label="Edit">
-                                <md-icon class="material-icons blue1" ng-click="uc.editAtt(att.id, att.name, att.status, att.date)">edit</md-icon>
-                            </md-button>
+                                <md-button class="md-icon-button" aria-label="Edit">
+                                    <md-icon class="material-icons blue1" ng-click="uc.editAtt(att.id, att.name, att.status, att.date)">edit</md-icon>
+                                </md-button>
 
-                        </td>
-                        <td class="teamTableData">
-                            <md-button class="md-icon-button" aria-label="Delete">
-                                <md-icon class="material-icons red1" ng-click="uc.deleteAtt(att.id)">delete</md-icon>
-                            </md-button>
-                        </td>
-                    </tr>
-                    <!-- <li>{{gymnast.level}}</li> -->
-                </table>
+                            </td>
+                            <td class="teamTableData">
+                                <md-button class="md-icon-button" aria-label="Delete">
+                                    <md-icon class="material-icons red1" ng-click="uc.deleteAtt(att.id)">delete</md-icon>
+                                </md-button>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
 
             </div>

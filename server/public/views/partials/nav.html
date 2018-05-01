@@ -1,32 +1,35 @@
 <div class="navbar">
   <div class="container">
     <ul>
-      <li><a href="#/user">Inbox</a></li>
+      <li>
+        <a href="#/user">Inbox</a>
+      </li>
       <li>
         <a href="#/sent">Sent Messages</a>
       </li>
-          <li ng-show = "uc.userObject.user_role === 'parent'">
-            <a href="#/info">View Athlete/Coach Messages</a>
-          </li>
-      <!-- <li ng-if = "uc.userObject.user_role === 'parent'"><a href="#/athletemessages">Athlete Messages</a></li> -->
-      <li ng-if = "uc.userObject.user_role === 'coach'" ng-click="uc.getGymnastList()"><a href="#/team">Team</a></li>
-            <li ng-if="uc.userObject.user_role === 'coach'" ng-click="uc.getTeamAttendance()">
-              <a href="#/attendance">Attendance</a>
-            </li>
+      <li ng-show="uc.userObject.user_role === 'parent'">
+        <a href="#/info">View Athlete/Coach Messages</a>
+      </li>
+      <li ng-if="uc.userObject.user_role === 'coach'" ng-click="uc.getGymnastList()">
+        <a href="#/team">Team</a>
+      </li>
+      <li ng-if="uc.userObject.user_role === 'coach'" ng-click="uc.getTeamAttendance()">
+        <a href="#/attendance">Attendance</a>
+      </li>
 
       <li ng-if="uc.userObject.user_role === 'gymnast'" ng-click="uc.getPersonalAttendance()">
         <a href="#/personalAttendance">Attendance</a>
       </li>
 
-        <li ng-if="uc.userObject.user_role === 'parent'" ng-click="uc.getChildAttendance()">
-          <a href="#/personalAttendance">Attendance</a>
-        </li>
+      <li ng-if="uc.userObject.user_role === 'parent'" ng-click="uc.getChildAttendance()">
+        <a href="#/personalAttendance">Attendance</a>
+      </li>
 
-        <li ng-if = "uc.userObject.user_role === 'parent'">
-          <a href="#/about">About</a>
-        </li>
+      <li ng-if="uc.userObject.user_role === 'parent'">
+        <a href="#/about">About</a>
+      </li>
 
-      <li md-button="submit" id = "logout" class="logout" ng-click="uc.userService.logout()">Logout</li>
+      <li md-button="submit" id="logout" class="logout" ng-click="uc.userService.logout()">Logout</li>
     </ul>
   </div>
 </div>

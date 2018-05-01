@@ -10,10 +10,8 @@
     </md-toolbar>
     <md-dialog-content id="attendance Content">
         <div class="md-dialog-content">
-            Edit Attendance: 
-            
+            Edit Attendance:
             <md-datepicker ng-model="ea.newDate"> </md-datepicker>
-
             <md-card>
                 <md-card-header>
                     <md-card-header-text>
@@ -36,7 +34,6 @@
             Cancel
         </md-button>
         <span flex></span>
-        <!-- <input class="btn btn-default" type="submit" name="submit" value="submit" /> -->
         <md-button class="md-raised" type="submit" name="submit" value="submit" ng-click="ea.updateAtt(ea.attId, ea.newDate, ea.selected)">
             Save
         </md-button>

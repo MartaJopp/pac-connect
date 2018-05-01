@@ -1,49 +1,43 @@
 <div class="container">
-    <div layout="row" class = "homeHeader" layout-align="space-between center">
-    
-    <img src="images/smaller logo.png" id="theLogo" alt="Pac Connect Logo">
+    <div layout="row" class="homeHeader" layout-align="space-between center">
 
-<form ng-submit="lc.login()" id = "homeLogin">
-    <div id="usernameInput">
-        <label for="username">USERNAME:</label>
-        <input type="text" ng-model="lc.user.username" />
-    </div>
-    
-    <div id="passwordInput">
-        <label for="password"> PASSWORD: </label>
-        <input type="password" ng-model="lc.user.password" />
-    </div>
-    <div id="loginButton">
-        <md-button type = "submit" value="LOG IN" name="submit" id = "logButton">LOGIN</md-button>
-        <a class = "link" ng-click="lc.register($event)">Register</a>
-        
-        <!-- <input class="btn btn-default" id="theButton" type="submit" name="submit" value="LOG IN" />
-        <a href="#register">Register</a> -->
-    </div>
-    
-</form>
+        <img src="images/smaller logo.png" id="theLogo" alt="Pac Connect Logo">
+
+        <form ng-submit="lc.login()" id="homeLogin">
+            <div id="usernameInput">
+                <label for="username">USERNAME:</label>
+                <input type="text" ng-model="lc.user.username" />
+            </div>
+
+            <div id="passwordInput">
+                <label for="password"> PASSWORD: </label>
+                <input type="password" ng-model="lc.user.password" />
+            </div>
+            <div id="loginButton">
+                <md-button type="submit" value="LOG IN" name="submit" id="logButton">LOGIN</md-button>
+                <a class="link" ng-click="lc.register($event)">Register</a>
+            </div>
+
+        </form>
 
     </div>
     <div layout="row" layout-align="center center" class="slideshow">
-    <md-card layout="column" layout-align="center center" style="padding-bottom: 10px">
-        <jk-carousel 
-        data="lc.arrayData" 
-        item-template-url="'views/templates/item-template.html'"
-        max-width="400" max-height="250" 
-        auto-slide="true"
-        auto-slide-time="2000">
-        </jk-carousel>
-    </md-card>
+        <md-card layout="column" layout-align="center center" style="padding-bottom: 10px">
+            <jk-carousel data="lc.arrayData" item-template-url="'views/templates/item-template.html'" max-width="400" max-height="250"
+                auto-slide="true" auto-slide-time="2000">
+            </jk-carousel>
+        </md-card>
     </div>
     <div layout="row" layout-align="center center">
-    <H1 id="homeWelcome">Welcome to PAC Connect where communication is key in the Parent, Athlete, Coach Triangle!</H1>
+        <H1 id="homeWelcome">Welcome to PAC Connect where communication is key in the Parent, Athlete, Coach Triangle!</H1>
     </div>
     <div layout="row" layout-align="center center">
-    <H3> Don't already have an account?  Click here to <a class = "link" ng-click="lc.register($event)">register</a>!</H3>  
+        <H3> Don't already have an account? Click here to
+            <a class="link" ng-click="lc.register($event)">register</a>!</H3>
     </div>
     <div layout="row" layout-align="center end">
-        
-        
 
-</div>
+
+
+    </div>
 </div>

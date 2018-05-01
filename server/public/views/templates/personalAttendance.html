@@ -7,37 +7,7 @@
 
         </div>
         <div flex="80" class="box1">
-
-
-
-
-            <!-- <div>
-                <div layout-gt-xl="row">
-                    <span>
-                        <md-input-container class="md-block" flex=50>
-                            <label>Select date to see attendance:</label>
-                            <md-select name="type" ng-model="dateFilter">
-                                <md-option></md-option>
-                                <md-option ng-repeat="date in uc.dates.data" value={{date.date}}>{{date.date | amDateFormat:'MMMM Do YYYY'}}</md-option>
-                            </md-select>
-                        </md-input-container>
-                        <md-input-container class="md-block" flex=50>
-                            <label>Select a name to see attendance:</label>
-                            <md-select name="type" ng-model="nameFilter">
-                                <md-option></md-option>
-                                <md-option ng-repeat="gymnast in uc.gymnasts.data" value={{gymnast.name}}>{{gymnast.name}}</md-option>
-                            </md-select>
-                        </md-input-container>
-                    </span>
-                </div> -->
-                <!-- <label>Name only
-                    <select ng-model="search.name" ng-repeat=>
-                        <option value="{{}}}">{{}}</option>
-                        <option value="Mary">Mary</option>
-                        <option value="Mary">Mary</option>
-                    </select>
-                </label> -->
-   <div layout = "row" ng-show="uc.userObject.user_role === 'gymnast'" id="coachViewAttendance">
+            <div layout="row" ng-show="uc.userObject.user_role === 'gymnast'" id="coachViewAttendance">
                 <table class="teamTable">
                     <th class="teamTableHead">Date</th>
                     <th class="teamTableHead">Attendance Status</th>
@@ -48,24 +18,22 @@
                     </tr>
                     <!-- <li>{{gymnast.level}}</li> -->
                 </table>
-                </div>
-                <div layout="row" ng-show="uc.userObject.user_role === 'parent'" id="coachViewAttendance">
-                    <table class="teamTable">
-                        <th class="teamTableHead">Date</th>
-                        <th class="teamTableHead">Child's Name</th>
-                        <th class="teamTableHead">Attendance Status</th>       
-                        <tr class="teamTableRows" ng-repeat="att in uc.childAttendance.data | filter: dateFilter || undefined | filter: nameFilter: true || undefined">
-                            <td class="teamTableData">{{att.date | amDateFormat:'MMMM Do YYYY'}}</td>
-                                                        <td class="teamTableData">{{att.name}}</td>
+            </div>
+            <div layout="row" ng-show="uc.userObject.user_role === 'parent'" id="coachViewAttendance">
+                <table class="teamTable">
+                    <th class="teamTableHead">Date</th>
+                    <th class="teamTableHead">Child's Name</th>
+                    <th class="teamTableHead">Attendance Status</th>
+                    <tr class="teamTableRows" ng-repeat="att in uc.childAttendance.data | filter: dateFilter || undefined | filter: nameFilter: true || undefined">
+                        <td class="teamTableData">{{att.date | amDateFormat:'MMMM Do YYYY'}}</td>
+                        <td class="teamTableData">{{att.name}}</td>
 
-                            <td class="teamTableData">{{att.status}}</td>
-                            </td>
-                        </tr>
-                        <!-- <li>{{gymnast.level}}</li> -->
-                    </table>
-                </div>
-
+                        <td class="teamTableData">{{att.status}}</td>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
+</div>
 </div>

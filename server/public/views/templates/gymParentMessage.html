@@ -11,44 +11,38 @@
         </md-toolbar>
         <md-dialog-content>
             <div class="md-dialog-content">
-<form id="gym_Parent" name="form" ng-if="nm.userObject.user_role != 'coach'">
-    <!-- <div layout-gt-xl="row">
-        <md-input-container class="md-block" flex-gt-xl>
-            <label id="coach">Send to Coach:</label>
-            <input ng-model="ic.userObject.user" disabled>
-        </md-input-container> -->
-        
-        <div layout-gt-xl="row">
-            <md-input-container class="md-block" flex-gt-xl>
-                <label>Message Subject:</label>
-                <input ng-model="nm.coachMessage.subject" placeholder = "This is the subject!">
-            </md-input-container>
-        </div>
-        <div layout-gt-xl="row">
-            <md-input-container class="md-block" flex-gt-xl>
-                <label>Message:</label>
-                <textarea ng-model="nm.coachMessage.message" md-maxlength="1000" rows="10" md-select-on-focus placeholder="Write your message here."></textarea>
-            </md-input-container>
-        </div>
-        <div layout-gt-xl="row">
-            <md-input-container class="md-block" flex-gt-xl>
-                <md-button class="md-raised" ng-click="nm.openPicker()">Upload
-                    <span class="caret"></span>
-                </md-button>
-            </md-input-container>
+                <form id="gym_Parent" name="form" ng-if="nm.userObject.user_role != 'coach'">
+                    <div layout-gt-xl="row">
+                        <md-input-container class="md-block" flex-gt-xl>
+                            <label>Message Subject:</label>
+                            <input ng-model="nm.coachMessage.subject" placeholder="This is the subject!">
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-xl="row">
+                        <md-input-container class="md-block" flex-gt-xl>
+                            <label>Message:</label>
+                            <textarea ng-model="nm.coachMessage.message" md-maxlength="1000" rows="10" md-select-on-focus placeholder="Write your message here."></textarea>
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-xl="row">
+                        <md-input-container class="md-block" flex-gt-xl>
+                            <md-button class="md-raised" ng-click="nm.openPicker()">Upload
+                                <span class="caret"></span>
+                            </md-button>
+                        </md-input-container>
+                    </div>
+                </form>
             </div>
-</form>
-</div>
-</md-dialog-content>
+        </md-dialog-content>
 
-<md-dialog-actions layout="row">
-    <md-button ng-click="nm.cancel()">
-        Cancel
-    </md-button>
-    <span flex></span>
+        <md-dialog-actions layout="row">
+            <md-button ng-click="nm.cancel()">
+                Cancel
+            </md-button>
+            <span flex></span>
 
-   <md-button ng-click="nm.sendNewMessage(nm.user.coach_id, nm.coachMessage.subject, nm.coachMessage.message, nm.coachMessage.picture.url, nm.coachMessage.picture.filename)"> 
-        Send Message
-    </md-button> 
-</md-dialog-actions>
+            <md-button ng-click="nm.sendNewMessage(nm.user.coach_id, nm.coachMessage.subject, nm.coachMessage.message, nm.coachMessage.picture.url, nm.coachMessage.picture.filename)">
+                Send Message
+            </md-button>
+        </md-dialog-actions>
 </md-dialog>
